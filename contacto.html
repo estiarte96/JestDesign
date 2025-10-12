@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>EST Ingenieros – Impresión, Diseño y Escaneo 3D</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Impresión 3D profesional, diseño a medida y escaneo 3D (ingeniería inversa). Accesorios para coches, piezas industriales y herramientas de supervivencia.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root { --fg:#111; --muted:#666; --line:#eee; --bg:#fff; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Montserrat, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+    a { color:inherit; text-decoration:none; }
+    header { position:sticky; top:0; background:#fff; border-bottom:1px solid var(--line); z-index:20; }
+    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
+    nav { display:flex; gap:18px; align-items:center; justify-content:space-between; }
+    .brand { font-weight:600; letter-spacing:.2px; }
+    .menu { display:flex; gap:14px; }
+    .btn { display:inline-block; padding:10px 14px; border:1px solid var(--line); border-radius:999px; }
+    .btn.primary { border-color:#111; }
+    .muted { color:var(--muted); }
+    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:26px; align-items:center; padding:28px 0; }
+    .hero h1 { font-size:36px; margin:0 0 8px; line-height:1.15; }
+    .hero p { margin:0 0 14px; color:var(--muted); }
+    .hero-media { width:100%; aspect-ratio:4/3; border-radius:18px; object-fit:cover; background:#f6f6f6; }
+    .section { padding:28px 0; }
+    .h2 { font-size:24px; margin:0 0 8px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:16px; padding:14px; transition:transform .18s ease; }
+    .card:hover { transform:translateY(-3px); }
+    .thumb { width:100%; aspect-ratio:4/3; border-radius:12px; object-fit:cover; background:#f6f6f6; }
+    .title { font-weight:600; margin:10px 0 6px; }
+    .chip { display:inline-block; font-size:12px; padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted); }
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+    .feature { border:1px solid var(--line); border-radius:16px; padding:14px; }
+    .cta { border:1px solid var(--line); border-radius:18px; padding:20px; display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+    footer { border-top:1px solid var(--line); margin-top:30px; }
+    [data-reveal] { opacity:0; transform:translateY(8px); transition:opacity .4s ease, transform .4s ease; }
+    [data-reveal].in { opacity:1; transform:none; }
+    @media (max-width:880px){
+      .hero { grid-template-columns:1fr; }
+      .cta { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER (se carga desde header.html) -->
+  <div data-include="header.html"></div>
+<body>
+
+  <!-- Header dinámico -->
+  <div id="navbar-container"></div>
+
+  <main class="wrap" id="main">
+    <h1 style="margin:10px 0 18px;">Contacto</h1>
+
+    <div class="contact-container">
+      <!-- Información -->
+      <div class="contact-info">
+        <h2>Información de Contacto</h2>
+        <p>Si necesitas más información sobre mis servicios o quieres solicitar un peritaje, no dudes en contactarme.</p>
+
+        <p><i class="fa fa-phone" style="color:#1b6e3a;"></i> <strong>Teléfono:</strong> +34 639 709 440</p>
+        <p><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> <strong>Whatsapp:</strong>
+          <a href="https://wa.me/34639709440" target="_blank">+34 639 709 440</a>
+        </p>
+        <p><i class="fa fa-envelope" style="color:#d63f1f;"></i> <strong>Email:</strong>
+          <a href="mailto:p.estiarte@gmail.com">p.estiarte@gmail.com</a>
+        </p>
+      </div>
+
+      <!-- Formulario -->
+      <div class="contact-form">
+        <h2>Formulario de Contacto</h2>
+        <form>
+          <div class="row" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div><input class="form-control" type="text" placeholder="Nombre" required></div>
+            <div><input class="form-control" type="email" placeholder="Correo Electrónico" required></div>
+          </div>
+          <br>
+          <input class="form-control" type="text" placeholder="Asunto">
+          <br>
+          <textarea class="form-control" rows="5" placeholder="Mensaje"></textarea>
+          <br>
+          <div class="checkbox">
+            <label><input type="checkbox" required> Acepto la política de privacidad</label>
+          </div>
+          <br>
+          <button class="btn btn-action" type="submit">Enviar</button>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer dinámico -->
+  <div id="footer-container"></div>
+
+  <!-- JS: dependencias para .load() -->
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <!-- (Opcional) Bootstrap JS si lo necesitas. Si no, puedes quitar esta línea. -->
+  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
+
+  <!-- Cargar header y footer externos -->
+  <script>
+    $(function () {
+      $("#navbar-container").load("header.html", function(){ console.log("Header cargado"); });
+      $("#footer-container").load("footer.html", function(){ console.log("Footer cargado"); });
+      // Si necesitas ejecutar JS tras cargar el footer, hazlo aquí.
+      // $.getScript("assets/js/template.js");
+    });
+  </script>
+</body>
+</html>

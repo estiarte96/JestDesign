@@ -1,0 +1,144 @@
+#footer {
+  background-color: #111;
+  color: #fff;
+  padding: 20px 0;
+  font-family: 'Montserrat', sans-serif;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.footer-left p {
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+.footer-left a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.footer-left a:hover {
+  text-decoration: underline;
+}
+
+.footer-logo {
+  max-width: 180px; /* tamaño máximo del logo */
+  height: auto;
+  opacity: 0.9;
+}
+.header-logo {
+  max-width: 180px; /* tamaño máximo del logo */
+  height: auto;
+  opacity: 0.9;
+}
+
+@media (max-width: 700px) {
+  .footer-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .footer-logo {
+    margin-top: 10px;
+  }
+}
+
+.hero-media {
+  width: 100%;
+  aspect-ratio: 4/3;
+  border-radius: 18px;
+  object-fit: cover;
+  background: #000;
+}
+
+.thumb {
+  width: 30%;           /* ocupa todo el ancho del contenedor */
+  height: auto;           /* mantiene proporción original */
+  aspect-ratio: 4 / 4;    /* puedes cambiarlo: 4/3, 16/9, 3/2... */
+  border-radius: 12px;
+  object-fit: cover;      /* recorta para llenar sin deformar */
+  background: #f6f6f6;
+}
+/* Alineación horizontal de imagen y texto */
+.card-content {
+  display: flex;
+  align-items: center;
+  gap: 16px;               /* separación entre imagen y texto */
+}
+
+/* Ajuste de la imagen dentro de la tarjeta */
+.card-content .thumb {
+  width: 80px;             /* 🔹 ajusta este tamaño a tu gusto */
+  height: 80px;
+  object-fit: cover;     /* mantiene proporciones sin recortar */
+  border-radius: 10px;
+  flex-shrink: 0;          /* evita que se deforme si el texto es largo */
+}
+
+/* El texto ocupa el resto del espacio */
+.card-text {
+  flex: 1;
+}
+
+#footer { background:#111; color:#fff; padding:20px 0; font-family: 'Montserrat', system-ui, sans-serif; }
+.footer-content { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; max-width:1100px; margin:0 auto; padding:0 20px; }
+.footer-left p { margin:6px 0; font-size:14px; }
+.footer-left a { color:#fff; text-decoration:none; }
+.footer-left a:hover { text-decoration:underline; }
+.footer-logo { max-width:180px; height:auto; opacity:.9; }
+@media (max-width:700px){ .footer-content { flex-direction:column; text-align:center; } .footer-logo { margin-top:10px; } }
+
+
+.contact-form {
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px;        /* 🔹 Más espacio interior */
+  background:#fff;
+}
+
+.contact-form .form-control {
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  font:inherit;
+  background:#fff;
+  margin-bottom:14px;   /* 🔹 Añade separación entre todos los campos */
+}
+
+.contact-container {
+  max-width:1100px;
+  margin:0 auto;
+  padding:24px;
+  display:grid;
+  grid-template-columns: 0.8fr 1.2fr; /* formulario más ancho */
+  gap:32px;
+  align-items:start;                 /* alinear arriba */
+}
+.contact-info {
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:24px;
+  background:#fff;
+  align-self:start;
+}
+.contact-info h2,
+.contact-form h2 { margin:0 0 12px; }
+
+.contact-form .form-control {
+  width:100%;
+  padding:10px 12px;
+  border:1px solid var(--line);
+  border-radius:10px;
+  font:inherit;
+  background:#fff;
+  margin-bottom:14px;    /* separación vertical entre campos */
+}

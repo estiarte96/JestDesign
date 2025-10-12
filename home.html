@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>EST Ingenieros – Impresión, Diseño y Escaneo 3D</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Impresión 3D profesional, diseño a medida y escaneo 3D (ingeniería inversa). Accesorios para coches, piezas industriales y herramientas de supervivencia.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    :root { --fg:#111; --muted:#666; --line:#eee; --bg:#fff; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: Montserrat, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
+    a { color:inherit; text-decoration:none; }
+    header { position:sticky; top:0; background:#fff; border-bottom:1px solid var(--line); z-index:20; }
+    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
+    nav { display:flex; gap:18px; align-items:center; justify-content:space-between; }
+    .brand { font-weight:600; letter-spacing:.2px; }
+    .menu { display:flex; gap:14px; }
+    .btn { display:inline-block; padding:10px 14px; border:1px solid var(--line); border-radius:999px; }
+    .btn.primary { border-color:#111; }
+    .muted { color:var(--muted); }
+    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:26px; align-items:center; padding:28px 0; }
+    .hero h1 { font-size:36px; margin:0 0 8px; line-height:1.15; }
+    .hero p { margin:0 0 14px; color:var(--muted); }
+    .hero-media { width:100%; aspect-ratio:4/3; border-radius:18px; object-fit:cover; background:#f6f6f6; }
+    .section { padding:28px 0; }
+    .h2 { font-size:24px; margin:0 0 8px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:16px; padding:14px; transition:transform .18s ease; }
+    .card:hover { transform:translateY(-3px); }
+    .thumb { width:100%; aspect-ratio:4/3; border-radius:12px; object-fit:cover; background:#f6f6f6; }
+    .title { font-weight:600; margin:10px 0 6px; }
+    .chip { display:inline-block; font-size:12px; padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted); }
+    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
+    .feature { border:1px solid var(--line); border-radius:16px; padding:14px; }
+    .cta { border:1px solid var(--line); border-radius:18px; padding:20px; display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+    footer { border-top:1px solid var(--line); margin-top:30px; }
+    [data-reveal] { opacity:0; transform:translateY(8px); transition:opacity .4s ease, transform .4s ease; }
+    [data-reveal].in { opacity:1; transform:none; }
+    @media (max-width:880px){
+      .hero { grid-template-columns:1fr; }
+      .cta { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body>
+  <!-- HEADER (se carga desde header.html) -->
+  <div data-include="header.html"></div>
+  <main class="wrap">
+    <section class="hero" data-reveal>
+      <div>
+        <h1>Impresión 3D profesional para automoción, industria y herramientas</h1>
+        <p>Fabricamos piezas a medida, realizamos diseño CAD y escaneo 3D (ingeniería inversa). Producción bajo pedido con acabados de calidad.</p>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:10px;">
+          <a class="btn primary" href="productos.html">Ver tienda</a>
+          <a class="btn primary" href="diseno3d.html">Solicitar diseño</a>
+          <a class="btn primary" href="escaneo3d.html">Ingeniería inversa</a>
+        </div>
+      </div>
+
+      <video class="hero-media" autoplay muted loop playsinline preload="auto" poster="img/hero_poster.jpg"> <!-- LÍNEA A MODIFICAR -->
+        <source src="assets/videos/3dPrint.mp4" type="video/mp4">
+        <source src="videos/3dPrint.webm" type="video/webm">  <!-- VP9/AV1 -->
+        Tu navegador no soporta video HTML5.
+      </video>
+    </section>
+
+    <!-- CATEGORÍAS DESTACADAS -->
+    <section class="section" data-reveal>
+      <div style="display:flex; justify-content:space-between; align-items:end; gap:12px; margin-bottom:6px;">
+        <h2 class="h2">Categorías</h2>
+        <a class="muted" href="productos.html">Ver todo →</a>
+      </div>
+      <div class="grid">
+        <!-- COCHES -->
+        <a class="card" href="productos.html?cat=coches">
+          <div class="card-content">
+            <img class="thumb" src="assets/images/Coche.png" alt="Accesorios y piezas para coches">
+            <div class="card-text">
+              <div class="title">Accesorios para coches</div>
+              <div class="muted">Soportes, adaptadores, carcasas y piezas específicas por modelo.</div>
+            </div>
+          </div>
+        </a>
+        
+        <!-- INDUSTRIAL -->
+        <a class="card" href="productos.html?cat=industrial">
+          <div class="card-content">
+            <img class="thumb" src="assets/images/Industria.png" alt="Piezas para máquinas industriales">
+            <div class="card-text">
+              <div class="title">Piezas industriales</div>                                            <!-- LÍNEA 95: TÍTULO INDUSTRIAL -->
+          <div class="muted">Guardas, carcasas, útiles, protectores y recambios bajo plano.</div>
+            </div>
+          </div>
+        </a>
+        <!-- Herramientas -->
+         <a class="card" href="productos.html?cat=herramientas">
+          <div class="card-content">
+            <img class="thumb" src="assets/images/Tools.png" alt="Herramientas y Accesorios">
+            <div class="card-text">
+              <div class="title">Herramientas</div>                                                  <!-- LÍNEA 101: TÍTULO SUPERVIVENCIA -->
+          <div class="muted">Kits, organizadores Molle, adaptadores y accesorios resistentes.</div>                                            <!-- LÍNEA 95: TÍTULO INDUSTRIAL -->
+            </div>
+          </div>
+        </a>
+        
+           <!-- LÍNEA 100: IMG SUPERVIVENCIA -->
+           <!-- LÍNEA 102: DESC SUPERVIVENCIA -->
+        </a>
+      </div>
+    </section>
+
+    <!-- SERVICIOS -->
+    <section class="section" data-reveal>
+      <h2 class="h2">Servicios</h2>
+      <div class="features">
+        <div class="feature">
+          <div class="title">Diseño 3D a medida</div>
+          <p class="muted">De idea a CAD: validación, iteraciones y entrega lista para fabricar.</p> <!-- LÍNEA 113: TEXTO DISEÑO 3D -->
+          <a class="btn" href="diseno3d.html">Saber más</a>
+        </div>
+        <div class="feature">
+          <div class="title">Escaneo 3D / Ingeniería inversa</div>
+          <p class="muted">Digitalizamos la pieza física y generamos el modelo paramétrico.</p> <!-- LÍNEA 119: TEXTO ESCANEO -->
+          <a class="btn" href="escaneo3d.html">Saber más</a>
+        </div>
+        <div class="feature">
+          <div class="title">Impresión 3D profesional</div>
+          <p class="muted">PLA, PETG, ABS, nylon y compuestos. Lotes cortos con control dimensional.</p> <!-- LÍNEA 124: TEXTO IMPRESIÓN -->
+          <a class="btn" href="productos.html">Ver productos</a>
+        </div>
+      </div>
+    </section>
+<!--
+  <section class="section" data-reveal>
+    <h2 class="h2">Trabajos recientes</h2>
+    <div class="grid">
+      <div class="card">
+        <img class="thumb" src="img/work_coche.jpg" alt="Adaptador para vehículo">
+        <div class="title">Adaptador para vehículo</div>
+        <div class="muted">Diseño y fabricación a medida</div>
+      </div>
+      <div class="card">
+        <img class="thumb" src="img/work_industrial.jpg" alt="Protector de máquina">
+        <div class="title">Protector de máquina</div>
+        <div class="muted">Impresión técnica PETG</div>
+      </div>
+      <div class="card">
+        <img class="thumb" src="img/work_supervivencia.jpg" alt="Organizador Molle">
+        <div class="title">Organizador Molle</div>
+        <div class="muted">Prototipo y serie corta</div>
+      </div>
+    </div>
+  </section>
+-->
+
+    <!-- CTA CONTACTO -->
+    <section class="section" data-reveal>
+      <div class="cta">
+        <div>
+          <div class="title">¿Tienes una pieza en mente?</div> <!-- LÍNEA 155: CTA TÍTULO -->
+          <div class="muted">Envíanos fotos, medidas o el modelo y te damos presupuesto.</div> <!-- LÍNEA 156: CTA TEXTO -->
+        </div>
+        <div style="display:flex; gap:10px; flex-wrap:wrap;">
+          <a class="btn primary" href="contacto.html">Contactar</a>  <!-- LÍNEA 159: CTA BOTÓN 1 -->
+          
+        </div>
+      </div>
+    </section>
+  </main>
+
+  </main>
+
+  <!-- Footer externo -->
+  <div data-include="footer.html"></div>
+
+  <!-- Scripts -->
+  <script>
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+    }, {threshold: 0.1});
+    document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+  </script>
+
+  <!-- Cargar footer externo -->
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const slots = document.querySelectorAll('[data-include]');
+      for (const el of slots) {
+        const file = el.getAttribute('data-include');
+        try {
+          const res = await fetch(file, { cache: 'no-store' });
+          if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+          el.outerHTML = await res.text();
+        } catch (err) {
+          console.error('Include error en', file, err);
+        }
+      }
+    });
+  </script>
+</body>
+</html>

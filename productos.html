@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Tienda – EST Ingenieros</title> <!-- LÍNEA 5: TÍTULO -->
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Tienda de piezas y accesorios: automoción, industrial y herramientas. Impresión 3D técnica y diseños a medida."> <!-- LÍNEA 7: DESCRIPTION -->
+
+  <!-- Fuentes e iconos -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <!-- Estilos -->
+  <style>
+    :root { --fg:#111; --muted:#666; --line:#eee; --bg:#fff; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family:Montserrat,system-ui,sans-serif; color:var(--fg); background:var(--bg); }
+    a { color:inherit; text-decoration:none; }
+    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
+    .muted { color:var(--muted); }
+
+    /* Utilidades y layout base */
+    .section { padding:28px 0; }
+    .h1 { font-size:34px; margin:0 0 8px; line-height:1.15; }
+    .h2 { font-size:24px; margin:0 0 8px; }
+    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(240px,1fr)); gap:18px; }
+    .card { border:1px solid var(--line); border-radius:16px; padding:14px; transition:transform .18s ease; }
+    .card:hover { transform:translateY(-3px); }
+
+    /* Filtros */
+    .filters-bar { display:flex; gap:22px; flex-wrap:wrap; align-items:center; border:1px solid var(--line); border-radius:14px; padding:12px; }
+    .filters-bar .group { display:flex; gap:12px; flex-wrap:wrap; align-items:center; }
+    .filters-bar .label { font-weight:600; color:#111; margin-right:6px; }
+    .filters-bar input[type="search"] { border:1px solid var(--line); border-radius:10px; padding:8px 10px; min-width:200px; }
+    .filters-bar select { border:1px solid var(--line); border-radius:10px; padding:8px 10px; }
+
+    /* Tarjeta de producto */
+    .product-card .cover { width:100%; aspect-ratio:4/3; object-fit:cover; border-radius:12px; background:#f6f6f6; }
+    .product-card .title { font-weight:600; margin:8px 0 4px; }
+    .product-card .subtitle { color:var(--muted); font-size:14px; margin:0 0 6px; min-height:18px; }
+    .product-card .bottom { display:flex; align-items:center; justify-content:space-between; gap:8px; }
+    .price { font-weight:600; }
+    .btn { display:inline-block; padding:8px 12px; border:1px solid var(--line); border-radius:999px; }
+    .btn:hover { background:#f6f6f6; }
+
+    /* Animación suave */
+    [data-reveal] { opacity:0; transform:translateY(8px); transition:opacity .4s ease, transform .4s ease; }
+    [data-reveal].in { opacity:1; transform:none; }
+
+    @media (max-width:880px){
+      .filters-bar{ gap:14px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div data-include="header.html"></div>
+
+  <main class="wrap">
+    <!-- TÍTULO + FILTROS -->
+    <section class="section" id="filters" data-reveal>
+      <h1 class="h2" style="margin:0 0 12px;">Tienda</h1>
+      <div class="filters-bar">
+        <div class="group" aria-label="Filtro por categoría">
+          <span class="label">Categoría:</span>
+          <label><input type="radio" name="cat" value="" checked> Todas</label>
+          <label><input type="radio" name="cat" value="coches"> Coches</label>
+          <label><input type="radio" name="cat" value="industrial"> Industrial</label>
+          <label><input type="radio" name="cat" value="herramientas"> Herramientas</label> <!-- LÍNEA 86: CATEGORÍAS -->
+        </div>
+
+        <div class="group" aria-label="Buscar">
+          <input id="search" type="search" placeholder="Buscar producto..."> <!-- LÍNEA 90: PLACEHOLDER BUSCADOR -->
+        </div>
+
+        <div class="group" aria-label="Ordenar">
+          <span class="label">Ordenar:</span>
+          <select id="sort">
+            <option value="name-asc">Nombre (A–Z)</option>
+            <option value="name-desc">Nombre (Z–A)</option>
+            <option value="price-asc">Precio (menor a mayor)</option>
+            <option value="price-desc">Precio (mayor a menor)</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- GRID -->
+    <section class="section" data-reveal>
+      <div id="products-grid" class="grid" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <div data-include="footer.html"></div>
+
+  <!-- Scripts -->
+  <script>
+    // Animación al hacer scroll
+    const io = new IntersectionObserver(entries=>{
+      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
+    }, {threshold: 0.1});
+    document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
+
+    // Cargar header y footer
+    document.addEventListener('DOMContentLoaded', async () => {
+      const slots = document.querySelectorAll('[data-include]');
+      for (const el of slots) {
+        const file = el.getAttribute('data-include');
+        try {
+          const res = await fetch(file, { cache: 'no-store' });
+          if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
+          el.outerHTML = await res.text();
+        } catch (err) {
+          console.error('Include error en', file, err);
+        }
+      }
+    });
+
+    // ---------- TIENDA ----------
+    function getParam(name){
+      const url = new URL(location.href);
+      return url.searchParams.get(name);
+    }
+
+    function formatPrice(n){
+      try { return n.toFixed(2).replace('.', ',') + ' €'; }
+      catch(e){ return n + ' €'; }
+    }
+
+    function renderCard(p){
+      return `
+        <a class="card product-card" href="${p.url}" aria-label="${p.title}">
+          <img class="cover" src="${p.cover}" alt="${p.title}">
+          <div class="title">${p.title}</div>
+          <div class="subtitle">${p.subtitle ?? ''}</div>
+          <div class="bottom">
+            <span class="price">${formatPrice(p.price)}</span>
+            <span class="btn">Ver</span>
+          </div>
+        </a>
+      `;
+    }
+
+    function applyFilters(products){
+      const cat = document.querySelector('input[name="cat"]:checked')?.value || '';
+      const q = (document.getElementById('search').value || '').trim().toLowerCase();
+
+      return products.filter(p=>{
+        const okCat = !cat || p.category === cat;
+        const hay = (p.title + ' ' + (p.subtitle||'')).toLowerCase().includes(q);
+        return okCat && hay;
+      });
+    }
+
+    function applySort(list){
+      const v = document.getElementById('sort').value;
+      const arr = [...list];
+      switch(v){
+        case 'name-asc':  arr.sort((a,b)=>a.title.localeCompare(b.title)); break;
+        case 'name-desc': arr.sort((a,b)=>b.title.localeCompare(a.title)); break;
+        case 'price-asc': arr.sort((a,b)=>a.price-b.price); break;
+        case 'price-desc':arr.sort((a,b)=>b.price-a.price); break;
+      }
+      return arr;
+    }
+
+    document.addEventListener('DOMContentLoaded', async ()=>{
+      const grid = document.getElementById('products-grid');
+
+// 1) Cargar JSON (prueba varias rutas)
+let products = [];
+const candidates = [
+  '/assets/data/products.json',     // absoluta desde la raíz
+  'assets/data/products.json',      // relativa a esta página
+  '../assets/data/products.json'    // por si la tienda acaba en subcarpeta
+];
+
+let ok = false;
+for (const path of candidates) {
+  try {
+    const res = await fetch(path, { cache: 'no-store' });
+    if (res.ok) {
+      products = await res.json();
+      console.log('Catálogo cargado desde:', path, products);
+      ok = true;
+      break;
+    } else {
+      console.warn('HTTP', res.status, 'al cargar', path);
+    }
+  } catch (e) {
+    console.warn('Error cargando', path, e);
+  }
+}
+
+if (!ok) {
+  grid.innerHTML = '<p class="muted">No se pudo cargar el catálogo.</p>';
+  return;
+}
+
+
+      // 2) Preseleccionar categoría por ?cat=...
+      const initialCat = (getParam('cat') || '').toLowerCase();
+      if(initialCat){
+        const radio = document.querySelector(`input[name="cat"][value="${initialCat}"]`);
+        if(radio) radio.checked = true;
+      }
+
+      // 3) Render
+      function render(){
+        const filtered = applyFilters(products);
+        const finalList = applySort(filtered);
+        grid.innerHTML = finalList.map(renderCard).join('') || '<p class="muted">No hay productos para este filtro.</p>';
+      }
+      render();
+
+      // 4) Eventos
+      document.querySelectorAll('input[name="cat"]').forEach(r=> r.addEventListener('change', render));
+      document.getElementById('search').addEventListener('input', render);
+      document.getElementById('sort').addEventListener('change', render);
+    });
+  </script>
+</body>
+</html>
