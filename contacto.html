@@ -2,95 +2,128 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>EST Ingenieros – Impresión, Diseño y Escaneo 3D</title>
+  <title>Contacto – EST Ingenieros</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Impresión 3D profesional, diseño a medida y escaneo 3D (ingeniería inversa). Accesorios para coches, piezas industriales y herramientas de supervivencia.">
+  <meta name="description" content="Solicita presupuesto para diseño 3D, ingeniería inversa o maquinaria industrial.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <style>
-    :root { --fg:#111; --muted:#666; --line:#eee; --bg:#fff; }
+    :root { --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; }
     * { box-sizing: border-box; }
-    body { margin:0; font-family: Montserrat, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
-    a { color:inherit; text-decoration:none; }
-    header { position:sticky; top:0; background:#fff; border-bottom:1px solid var(--line); z-index:20; }
-    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
-    nav { display:flex; gap:18px; align-items:center; justify-content:space-between; }
-    .brand { font-weight:600; letter-spacing:.2px; }
-    .menu { display:flex; gap:14px; }
-    .btn { display:inline-block; padding:10px 14px; border:1px solid var(--line); border-radius:999px; }
-    .btn.primary { border-color:#111; }
-    .muted { color:var(--muted); }
-    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:26px; align-items:center; padding:28px 0; }
-    .hero h1 { font-size:36px; margin:0 0 8px; line-height:1.15; }
-    .hero p { margin:0 0 14px; color:var(--muted); }
-    .hero-media { width:100%; aspect-ratio:4/3; border-radius:18px; object-fit:cover; background:#f6f6f6; }
-    .section { padding:28px 0; }
-    .h2 { font-size:24px; margin:0 0 8px; }
-    .grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(260px,1fr)); gap:18px; }
-    .card { border:1px solid var(--line); border-radius:16px; padding:14px; transition:transform .18s ease; }
-    .card:hover { transform:translateY(-3px); }
-    .thumb { width:100%; aspect-ratio:4/3; border-radius:12px; object-fit:cover; background:#f6f6f6; }
-    .title { font-weight:600; margin:10px 0 6px; }
-    .chip { display:inline-block; font-size:12px; padding:4px 8px; border:1px solid var(--line); border-radius:999px; color:var(--muted); }
-    .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:14px; }
-    .feature { border:1px solid var(--line); border-radius:16px; padding:14px; }
-    .cta { border:1px solid var(--line); border-radius:18px; padding:20px; display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
-    footer { border-top:1px solid var(--line); margin-top:30px; }
-    [data-reveal] { opacity:0; transform:translateY(8px); transition:opacity .4s ease, transform .4s ease; }
-    [data-reveal].in { opacity:1; transform:none; }
-    @media (max-width:880px){
-      .hero { grid-template-columns:1fr; }
-      .cta { grid-template-columns:1fr; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--fg); background: #fdfdfd; line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
+
+    h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* LAYOUT 2 COLUMNAS */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; margin-top: 40px; }
+
+    /* INFO IZQUIERDA */
+    .contact-info h1 { font-size: 42px; margin-bottom: 20px; line-height: 1.1; }
+    .contact-info p.lead { font-size: 18px; color: var(--muted); margin-bottom: 40px; font-weight: 300; }
+    
+    .info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
+    .info-item i { font-size: 22px; color: var(--primary); margin-top: 4px; }
+    .info-item h4 { margin: 0; font-size: 16px; font-weight: 600; font-family: 'Montserrat', sans-serif; } /* Título pequeño en Montserrat */
+    .info-item p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+    .info-item a:hover { color: var(--primary); text-decoration: underline; }
+
+    /* FORMULARIO DERECHA */
+    .contact-form { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
+    .form-group { margin-bottom: 20px; }
+    .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; text-transform: uppercase; color: var(--muted); }
+    
+    .form-control { 
+      width: 100%; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; 
+      font-family: inherit; font-size: 15px; background: #fafafa; transition: .2s; 
     }
+    .form-control:focus { outline: none; border-color: var(--primary); background: #fff; }
+    
+    textarea.form-control { resize: vertical; min-height: 120px; }
+
+    .btn-submit { 
+      width: 100%; padding: 14px; background: var(--fg); color: #fff; border: none; 
+      border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer; transition: .2s; margin-top: 10px;
+    }
+    .btn-submit:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(27,110,58,0.2); }
+
+    @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
   </style>
 </head>
 <body>
-  <!-- HEADER (se carga desde header.html) -->
   <div data-include="header.html"></div>
-<body>
 
-  <!-- Header dinámico -->
-  <div id="navbar-container"></div>
-
-  <main class="wrap" id="main">
-    <h1 style="margin:10px 0 18px;">Contacto</h1>
-
-    <div class="contact-container">
-      <!-- Información -->
+  <main class="wrap">
+    <div class="contact-grid">
       <div class="contact-info">
-        <h2>Información de Contacto</h2>
-        <p>Si necesitas más información sobre mis servicios o quieres solicitar un peritaje, no dudes en contactarme.</p>
-
-        <p><i class="fa fa-phone" style="color:#1b6e3a;"></i> <strong>Teléfono:</strong> +34 639 709 440</p>
-        <p><i class="fa-brands fa-whatsapp" style="color:#25D366;"></i> <strong>Whatsapp:</strong>
-          <a href="https://wa.me/34639709440" target="_blank">+34 639 709 440</a>
-        </p>
-        <p><i class="fa fa-envelope" style="color:#d63f1f;"></i> <strong>Email:</strong>
-          <a href="mailto:p.estiarte@gmail.com">p.estiarte@gmail.com</a>
-        </p>
+        <h1>Hablemos de tu Proyecto</h1>
+        <p class="lead">¿Tienes una idea técnica o necesitas un repuesto? Estamos listos para ayudarte.</p>
+        
+        <div class="info-item">
+          <i class="fa fa-phone"></i>
+          <div>
+            <h4>Teléfono</h4>
+            <p>+34 639 709 440</p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fa-brands fa-whatsapp"></i>
+          <div>
+            <h4>WhatsApp</h4>
+            <p><a href="https://wa.me/34639709440" target="_blank">Iniciar chat directo</a></p>
+          </div>
+        </div>
+        <div class="info-item">
+          <i class="fa fa-envelope"></i>
+          <div>
+            <h4>Email</h4>
+            <p><a href="mailto:p.estiarte@gmail.com">p.estiarte@gmail.com</a></p>
+          </div>
+        </div>
       </div>
 
+      <div class="contact-form">
+        <form action="https://formspree.io/f/mlggezql" method="POST"> 
+  <div class="form-group">
+    <label class="form-label">Nombre</label>
+    <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Email</label>
+    <input type="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Asunto</label>
+    <select name="asunto" class="form-control">
+      <option value="General">Información General</option>
+      <option value="Presupuesto-3D">Solicitar Presupuesto (Diseño 3D)</option>
+      <option value="Presupuesto-Maquinaria">Solicitar Presupuesto (Maquinaria)</option>
+      <option value="Tienda">Duda sobre Tienda</option>
+    </select>
+  </div>
+  
+  <div class="form-group">
+    <label class="form-label">Mensaje</label>
+    <textarea name="mensaje" class="form-control" placeholder="Cuéntanos los detalles..." required></textarea>
+  </div>
 
+  <div style="margin-bottom: 15px; font-size: 13px; color: var(--muted);">
+    <label><input type="checkbox" required> Acepto la política de privacidad</label>
+  </div>
+
+  <button type="submit" class="btn-submit">Enviar Mensaje</button>
+</form>
+      </div>
+    </div>
   </main>
 
-  <!-- Footer dinámico -->
-  <div id="footer-container"></div>
-
-  <!-- JS: dependencias para .load() -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <!-- (Opcional) Bootstrap JS si lo necesitas. Si no, puedes quitar esta línea. -->
-  <script src="https://netdna.bootstrapcdn.com/bootstrap/3.0.0/js/bootstrap.min.js"></script>
-
-  <!-- Cargar header y footer externos -->
-  <script>
-    $(function () {
-      $("#navbar-container").load("header.html", function(){ console.log("Header cargado"); });
-      $("#footer-container").load("footer.html", function(){ console.log("Footer cargado"); });
-      // Si necesitas ejecutar JS tras cargar el footer, hazlo aquí.
-      // $.getScript("assets/js/template.js");
-    });
-  </script>
+  <div data-include="footer.html"></div>
+  <script>document.addEventListener('DOMContentLoaded',async()=>{document.querySelectorAll('[data-include]').forEach(async el=>{try{el.outerHTML=await(await fetch(el.getAttribute('data-include'))).text()}catch(e){}})});</script>
 </body>
 </html>

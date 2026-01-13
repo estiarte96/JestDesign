@@ -6,70 +6,77 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <meta name="description" content="Digitalizamos tu pieza y la convertimos en un modelo CAD STEP listo para fabricar o imprimir. Automoción, industrial y prototipos.">
 
-  <!-- Fuentes e iconos -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <!-- Estilos coherentes con tu web -->
   <style>
-    :root { --fg:#111; --muted:#666; --line:#eee; --bg:#fff; }
+    :root { --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; }
     * { box-sizing: border-box; }
-    body { margin:0; font-family: Montserrat, system-ui, sans-serif; color:var(--fg); background:var(--bg); }
-    a { color:inherit; text-decoration:none; }
-    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
-    .muted { color:var(--muted); }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--fg); background: var(--bg); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
 
-    /* Secciones base */
-    .section { padding:28px 0; }
-    .h1 { font-size:34px; margin:0 0 8px; line-height:1.15; }
-    .h2 { font-size:24px; margin:0 0 8px; }
-    .h2.no-margin { margin:0; }
-    .lead { color:var(--muted); margin:0 0 14px; }
+    /* 🔹 Títulos con fuente Oswald para coincidir con el Home */
+    .h1, .h2, h3, .price { 
+      font-family: 'Oswald', sans-serif; 
+      text-transform: uppercase; 
+      letter-spacing: 0.5px; 
+    }
+
+    .section { padding: 40px 0; border-bottom: 1px solid #f0f0f0; }
+    .section:last-of-type { border-bottom: none; }
+    
+    .h1 { font-size: 42px; margin: 0 0 20px; font-weight: 500; line-height: 1.1; }
+    .h2 { font-size: 28px; margin: 0 0 15px; font-weight: 500; }
+    .h2.no-margin { margin: 0; }
+    .lead { color: var(--muted); font-size: 18px; margin: 0 0 20px; font-weight: 300; }
 
     /* Hero */
-    .hero { display:grid; grid-template-columns:1.1fr .9fr; gap:26px; align-items:center; padding:28px 0; }
-    .hero-media { width:100%; aspect-ratio:16/9; border-radius:18px; object-fit:cover; background:#000; }
-    .actions { display:flex; gap:10px; flex-wrap:wrap; margin-top:10px; }
-    .btn { display:inline-block; padding:10px 14px; border:1px solid var(--line); border-radius:999px; transition:all .2s ease; }
-    .btn:hover { background:#f6f6f6; }
-    .btn.primary { border-color:#111; }
+    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 60px 0; }
+    .hero-media { width: 100%; aspect-ratio: 16/9; border-radius: 12px; object-fit: cover; background: #000; border: 1px solid #eee; }
+    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    
+    .btn { display: inline-block; padding: 12px 28px; border: 1px solid var(--line); border-radius: 50px; font-weight: 600; font-size: 14px; transition: all .2s ease; }
+    .btn:hover { background: #f6f6f6; transform: translateY(-2px); }
+    .btn.primary { background: var(--fg); color: #fff; border-color: var(--fg); }
+    .btn.primary:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
 
     /* Paso a paso */
-    .steps { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:14px; }
-    .step { border:1px solid var(--line); border-radius:16px; padding:14px; }
-    .step .n { display:inline-block; width:28px; height:28px; border-radius:999px; border:1px solid var(--line); text-align:center; line-height:28px; margin-bottom:8px; font-weight:600; }
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    .step { border: 1px solid var(--line); border-radius: 12px; padding: 24px; background: #fdfdfd; }
+    .step .n { display: inline-block; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--primary); color: var(--primary); text-align: center; line-height: 30px; margin-bottom: 12px; font-weight: 700; font-family: 'Oswald'; }
+    .step h3 { font-size: 18px; margin-bottom: 8px; }
 
-    /* Entrega, tecnologías, precios, requisitos */
-    .cards { display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px; }
-    .card { border:1px solid var(--line); border-radius:16px; padding:14px; }
-    .card h3 { margin:0 0 6px; font-size:18px; }
-    .list { margin:0; padding-left:16px; color:var(--muted); }
-    .price { font-weight:600; font-size:18px; }
+    /* Entrega, tecnologías, precios */
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+    .card { border: 1px solid var(--line); border-radius: 12px; padding: 24px; background: #fff; }
+    .card h3 { margin: 0 0 10px; font-size: 20px; color: var(--primary); }
+    .list { margin: 0; padding-left: 20px; color: var(--muted); }
+    .price { font-weight: 700; font-size: 24px; color: var(--fg); display: block; margin-bottom: 5px; }
 
     /* CTA final */
-    .cta { border:1px solid var(--line); border-radius:18px; padding:20px; display:grid; grid-template-columns:1fr auto; gap:12px; align-items:center; }
+    .cta { border: 1px solid var(--line); border-radius: 12px; padding: 40px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; background: #f9f9f9; }
 
     /* Animación suave */
-    [data-reveal] { opacity:0; transform:translateY(8px); transition:opacity .4s ease, transform .4s ease; }
-    [data-reveal].in { opacity:1; transform:none; }
+    [data-reveal] { opacity: 0; transform: translateY(15px); transition: opacity .6s ease, transform .6s ease; }
+    [data-reveal].in { opacity: 1; transform: none; }
 
-    @media (max-width:880px){
-      .hero { grid-template-columns:1fr; }
-      .cta { grid-template-columns:1fr; }
+    @media (max-width: 880px) {
+      .hero { grid-template-columns: 1fr; padding: 40px 0; }
+      .cta { grid-template-columns: 1fr; text-align: center; }
+      .actions { justify-content: center; }
+      .h1 { font-size: 34px; }
     }
   </style>
 </head>
 <body>
 
-  <!-- HEADER -->
   <div data-include="header.html"></div>
 
-  <!-- CONTENIDO -->
   <main class="wrap">
 
-    <!-- HERO -->
     <section class="hero" data-reveal>
       <div>
         <h1 class="h1">Ingeniería inversa y escaneo 3D profesional</h1>
@@ -81,7 +88,6 @@
       <img class="hero-media" src="assets/images/Scanner.jpg" alt="Escaneo 3D de pieza">
     </section>
 
-    <!-- QUÉ HACEMOS -->
     <section class="section" data-reveal>
       <h2 class="h2">Qué hacemos</h2>
       <p>Convertimos piezas reales en modelos 3D precisos. Partimos de la pieza física y, mediante escaneo 3D y medición, reconstruimos su geometría en CAD paramétrico para poder modificarla, optimizarla o fabricarla de nuevo.</p>
@@ -94,7 +100,6 @@
       </ul>
     </section>
 
-    <!-- PROCESO -->
     <section class="section" data-reveal>
       <h2 class="h2">Proceso</h2>
       <div class="steps">
@@ -107,7 +112,6 @@
       </div>
     </section>
 
-    <!-- ENTREGA Y FORMATOS -->
     <section class="section" data-reveal>
       <h2 class="h2">Entrega y formatos</h2>
       <div class="cards">
@@ -126,36 +130,33 @@
       </div>
     </section>
 
-    <!-- COMPATIBILIDADES Y TECNOLOGÍAS -->
     <section class="section" data-reveal>
       <h2 class="h2">Compatibilidades y tecnologías</h2>
       <p>Seleccionamos la metodología según la pieza: <strong>escáner de luz estructurada</strong>, <strong>fotogrametría</strong> con calibración y <strong>medición manual</strong> con calibres/profundímetros para cotas clave. Combinamos nubes de puntos y reconstrucción paramétrica para obtener un modelo fiable y editable.</p>
     </section>
 
-    <!-- PRECIOS -->
     <section class="section" data-reveal>
       <h2 class="h2">Precios orientativos</h2>
       <div class="cards">
         <article class="card">
+          <span class="price">desde 60–120 €</span>
           <h3>Básico</h3>
-          <p class="price">desde 60–120 €</p>
           <p class="muted">Pieza simple, 1–2 cotas clave.</p>
         </article>
         <article class="card">
+          <span class="price">desde 180–350 €</span>
           <h3>Medio</h3>
-          <p class="price">desde 180–350 €</p>
           <p class="muted">Geometría mixta, encajes.</p>
         </article>
         <article class="card">
+          <span class="price">desde 450–900 €</span>
           <h3>Avanzado</h3>
-          <p class="price">desde 450–900 €</p>
           <p class="muted">Carcasa compleja/forma orgánica.</p>
         </article>
       </div>
-      <p class="muted" style="margin-top:8px;">Incluye escaneo/medición y entrega CAD STEP + malla si la necesitas. La impresión 3D es opcional (presupuesto aparte).</p>
+      <p class="muted" style="margin-top:15px; font-size: 13px;">Incluye escaneo/medición y entrega CAD STEP + malla si la necesitas. La impresión 3D es opcional (presupuesto aparte).</p>
     </section>
 
-    <!-- ANTES DE EMPEZAR -->
     <section class="section" data-reveal>
       <h2 class="h2">Antes de empezar</h2>
       <ul class="list">
@@ -167,7 +168,6 @@
       </ul>
     </section>
 
-    <!-- CTA FINAL -->
     <section class="section" data-reveal>
       <div class="cta">
         <div>
@@ -181,18 +181,14 @@
     </section>
   </main>
 
-  <!-- FOOTER -->
   <div data-include="footer.html"></div>
 
-  <!-- Scripts -->
   <script>
-    // Animación de aparición
     const io = new IntersectionObserver(entries=>{
       entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
     }, {threshold: 0.1});
     document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
 
-    // Cargar header y footer
     document.addEventListener('DOMContentLoaded', async () => {
       const slots = document.querySelectorAll('[data-include]');
       for (const el of slots) {

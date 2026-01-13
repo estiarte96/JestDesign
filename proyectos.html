@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Proyectos – EST Ingenieros</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Casos de éxito: Maquinaria industrial, automatización y desarrollos a medida.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root { --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--fg); background: var(--bg); line-height: 1.6; }
+    a { text-decoration: none; color: inherit; }
+    .wrap { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+
+    /* FUENTES */
+    h1, h2, .proj-title { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
+
+    /* HEADER */
+    .page-intro { padding: 80px 0 60px; text-align: center; max-width: 700px; margin: 0 auto; }
+    .page-intro h1 { font-size: 42px; margin: 0 0 20px; }
+    .page-intro p { font-size: 18px; color: var(--muted); font-weight: 300; }
+    .sep { width: 60px; height: 3px; background: var(--primary); margin: 30px auto 0; }
+
+    /* PROYECTOS */
+    .project-row { display: flex; align-items: center; gap: 60px; padding: 80px 0; border-bottom: 1px solid #f0f0f0; }
+    .project-row:last-child { border-bottom: none; }
+    .project-row.reverse { flex-direction: row-reverse; }
+
+    .proj-img-col { flex: 1; }
+    .proj-img {
+      width: 100%; aspect-ratio: 16/9; object-fit: contain; 
+      display: block; border-radius: 8px; background: #fff; /* FONDO BLANCO */
+      border: 1px solid #eee; transition: transform .3s, box-shadow .3s;
+    }
+    .project-row:hover .proj-img { transform: scale(1.02); box-shadow: 0 10px 30px rgba(0,0,0,0.08); border-color: #ddd; }
+
+    .proj-txt-col { flex: 1; padding: 20px 0; }
+    .proj-cat { font-size: 12px; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); margin-bottom: 12px; font-weight: 600; display: block; }
+    .proj-title { font-size: 32px; margin: 0 0 16px; line-height: 1.2; font-weight: 500; }
+    .proj-desc { color: var(--muted); font-size: 16px; margin-bottom: 24px; max-width: 480px; }
+    
+    .proj-link { display: inline-flex; align-items: center; gap: 8px; font-weight: 600; border-bottom: 1px solid var(--fg); padding-bottom: 2px; transition: .2s; }
+    .proj-link:hover { color: var(--primary); border-color: var(--primary); }
+
+    @media (max-width: 850px) { .project-row, .project-row.reverse { flex-direction: column; gap: 30px; padding: 50px 0; text-align: left; } }
+  </style>
+</head>
+<body>
+  <div data-include="header.html"></div>
+
+  <main class="wrap">
+    <section class="page-intro">
+      <h1>Ingeniería & Proyectos</h1>
+      <p>Soluciones técnicas llave en mano. Del concepto a la fabricación.</p>
+      <div class="sep"></div>
+    </section>
+
+    <article class="project-row">
+      <div class="proj-img-col">
+        <a href="assets/Maquinas/MaquinaBurletes/maquina-burletes.html">
+          <img src="assets/Maquinas/MaquinaBurletes/Images/Burletes1.png" alt="Máquina de Corte" class="proj-img">
+        </a>
+      </div>
+      <div class="proj-txt-col">
+        <span class="proj-cat">Industrial / Automatización</span>
+        <h2 class="proj-title"><a href="assets/Maquinas/MaquinaBurletes/maquina-burletes.html">Máquina de Corte de Burletes</a></h2>
+        <p class="proj-desc">Diseño y fabricación de estación semiautomática para corte de precisión. Aumento de productividad x4.</p>
+        <a href="assets/Maquinas/MaquinaBurletes/maquina-burletes.html" class="proj-link">Ver Caso de Éxito →</a>
+      </div>
+    </article>
+
+    <article class="project-row reverse">
+      <div class="proj-img-col">
+        <a href="assets/Maquinas/Transportador/Images/Transportador.html">
+          <img src="assets/Maquinas/Transportador/Images/ZR transportador.png" alt="Transportador" class="proj-img">
+        </a>
+      </div>
+      <div class="proj-txt-col">
+        <span class="proj-cat">Industrial / Transporte</span>
+        <h2 class="proj-title"><a href="assets/Maquinas/Transportador/Images/Transportador.html">Sistema Transportador</a></h2>
+        <p class="proj-desc">Cinta transportadora modular para optimización de flujo logístico. Velocidad variable y control integrado.</p>
+        <a href="assets/Maquinas/Transportador/Images/Transportador.html" class="proj-link">Ver Caso de Éxito →</a>
+      </div>
+    </article>
+
+    <article class="project-row">
+      <div class="proj-img-col">
+        <a href="contacto.html">
+          <div style="background:#fff; width:100%; height:100%; aspect-ratio:16/9; display:flex; align-items:center; justify-content:center; color:#ccc; border:1px solid #eee; border-radius:8px;">
+            <i class="fa fa-plus" style="font-size:40px;"></i>
+          </div>
+        </a>
+      </div>
+      <div class="proj-txt-col">
+        <span class="proj-cat">Nuevo Reto</span>
+        <h2 class="proj-title"><a href="contacto.html">Tu Próximo Proyecto</a></h2>
+        <p class="proj-desc">¿Necesitas desarrollar una máquina o pieza? Cuéntanos tu idea y la haremos realidad.</p>
+        <a href="contacto.html" class="proj-link">Iniciar Proyecto →</a>
+      </div>
+    </article>
+  </main>
+
+  <div data-include="footer.html"></div>
+  <script>document.addEventListener('DOMContentLoaded',async()=>{document.querySelectorAll('[data-include]').forEach(async el=>{try{el.outerHTML=await(await fetch(el.getAttribute('data-include'))).text()}catch(e){}})});</script>
+</body>
+</html>

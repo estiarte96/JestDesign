@@ -142,3 +142,23 @@
   background:#fff;
   margin-bottom:14px;    /* separación vertical entre campos */
 }
+/* IMAGEN COMPLETA (SIN CORTES) */
+    .proj-img {
+      width: 100%;
+      aspect-ratio: 16/9;  /* Mantiene la caja fija rectangular */
+      
+      object-fit: contain; /* <--- EL CAMBIO CLAVE: Ajusta la imagen para que quepa ENTERA */
+      
+      display: block;
+      border-radius: 8px;
+      background: #fff; /* Fondo gris suave para rellenar los huecos si sobran */
+      border: 1px solid #eee; /* Un borde fino para enmarcarla */
+      transition: transform .3s;
+    }
+    
+    /* Efecto al pasar el ratón */
+    .project-row:hover .proj-img {
+      transform: scale(1.02);
+      background: #fff; /* El fondo se vuelve blanco al pasar el ratón */
+      border-color: #eee;
+    }

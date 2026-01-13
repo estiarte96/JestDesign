@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Sistema Transportador de Láminas – EST Ingenieros</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Diseño y fabricación de cinta transportadora modular para láminas industriales. Optimización de flujo logístico.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root { --fg:#111; --muted:#555; --line:#e0e0e0; --bg:#fff; --primary:#1b6e3a; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: 'Montserrat', sans-serif; color:var(--fg); background:#fcfcfc; line-height:1.6; }
+    .wrap { max-width:1000px; margin:0 auto; padding:40px 20px; }
+
+    /* ENCABEZADO PROYECTO */
+    .project-header { margin-bottom: 40px; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .breadcrumb a { text-decoration: none; color: var(--muted); }
+    .breadcrumb a:hover { color: var(--primary); }
+    
+    h1 { font-family: 'Oswald', sans-serif; font-size: 34px; margin: 0 0 10px; text-transform: uppercase; letter-spacing: -0.5px; }
+    .subtitle { font-size: 18px; color: var(--muted); font-weight: 500; }
+
+    /* LAYOUT PRINCIPAL */
+    .project-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; }
+
+    /* GALERÍA */
+    .gallery img { width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #eee; }
+
+    /* CONTENIDO TÉCNICO */
+    h3 { font-family: 'Oswald', sans-serif; font-size: 20px; margin: 30px 0 10px; border-left: 4px solid var(--primary); padding-left: 12px; text-transform: uppercase; }
+    p { color: #444; margin-bottom: 20px; text-align: justify; }
+    
+    .feature-list { list-style: none; padding: 0; margin-bottom: 20px; }
+    .feature-list li { margin-bottom: 10px; padding-left: 20px; position: relative; }
+    .feature-list li::before { content: "•"; color: var(--primary); font-weight: bold; position: absolute; left: 0; }
+
+    /* SIDEBAR TÉCNICO */
+    .tech-sheet { background: #fff; border: 1px solid var(--line); padding: 24px; border-radius: 8px; height: fit-content; position: sticky; top: 100px; }
+    .tech-item { margin-bottom: 16px; border-bottom: 1px solid #f0f0f0; padding-bottom: 12px; }
+    .tech-item:last-child { border: none; }
+    .tech-label { display: block; font-size: 11px; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .tech-value { font-size: 15px; font-weight: 600; color: #222; }
+
+    /* CTA FINAL */
+    .cta-box { margin-top: 30px; background: #eef7f2; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #cce3d4; }
+    .btn { display: inline-block; background: var(--fg); color: #fff; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 10px; transition: .2s; }
+    .btn:hover { background: var(--primary); transform: translateY(-2px); }
+
+    @media (max-width: 800px) { .project-grid { grid-template-columns: 1fr; } .tech-sheet { position: static; margin-bottom: 40px; order: -1; } }
+  </style>
+</head>
+<body>
+
+  <div data-include="/header.html"></div>
+
+  <main class="wrap">
+    
+    <header class="project-header">
+      <div class="breadcrumb"><a href="/proyectos.html">← Volver a Proyectos</a> / Industrial</div>
+      <h1>Transportadora de Láminas</h1>
+      <div class="subtitle">Optimización logística y flujo continuo de material</div>
+    </header>
+
+    <div class="project-grid">
+      
+      <section class="content">
+        <div class="gallery">
+          <img src="/assets/Maquinas/Transportador/Images/ZRtransportador.png" alt="Sistema transportador de láminas">
+        </div>
+
+        <h3>El Reto</h3>
+        <p>El cliente requería una solución para mover láminas de gran formato entre dos estaciones de trabajo de forma continua. El movimiento manual provocaba retrasos en la línea de producción y riesgos de seguridad para los operarios debido al peso y los bordes cortantes del material.</p>
+
+        <h3>La Solución</h3>
+        <p>Se diseñó una cinta transportadora modular adaptada específicamente para materiales planos y ligeros pero de gran superficie. El enfoque principal fue la **modularidad** y la **facilidad de mantenimiento**.</p>
+        <ul class="feature-list">
+          <li><strong>Estructura Robusta:</strong> Chasis construido en perfilería de aluminio estructural para garantizar ligereza y resistencia.</li>
+          <li><strong>Tracción Motorizada:</strong> Sistema de motor eléctrico con reductora para un movimiento suave y controlado.</li>
+          <li><strong>Guías Ajustables:</strong> Permiten transportar láminas de diferentes anchos con un ajuste rápido y sencillo.</li>
+          <li><strong>Integración de Seguridad:</strong> Protecciones laterales y botones de parada de emergencia en puntos estratégicos.</li>
+        </ul>
+
+        <h3>Resultado</h3>
+        <p>La implementación del sistema eliminó por completo los cuellos de botella en la transición de materiales. Se mejoró la ergonomía de los puestos de trabajo y se garantizó un flujo constante de láminas hacia la zona de embalaje.</p>
+      </section>
+
+      <aside class="sidebar">
+        <div class="tech-sheet">
+          <div class="tech-item">
+            <span class="tech-label">Sector</span>
+            <div class="tech-value">Industrial / Logística</div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-label">Material Transportado</span>
+            <div class="tech-value">Láminas (Plástico / Metal ligero)</div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-label">Accionamiento</span>
+            <div class="tech-value">Motor Eléctrico Monofásico</div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-label">Tecnologías</span>
+            <div class="tech-value">Diseño CAD, Mecanizado, Montaje Industrial</div>
+          </div>
+          <div class="tech-item">
+            <span class="tech-label">Año</span>
+            <div class="tech-value">2025</div>
+          </div>
+          
+          <div class="cta-box">
+            <div style="font-weight:600; margin-bottom:6px; color:#1b6e3a;">¿Necesitas automatizar tu línea?</div>
+            <p style="font-size:13px; margin-bottom:12px; color:#555;">Diseñamos sistemas de transporte a medida para cualquier tipo de producto.</p>
+            <a href="/contacto.html" class="btn">Solicitar Información</a>
+          </div>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <div data-include="/footer.html"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded',async()=>{
+      for(const el of document.querySelectorAll('[data-include]')){
+        try{
+          const res = await fetch(el.getAttribute('data-include'));
+          if(res.ok) el.outerHTML = await res.text();
+        }catch(e){}
+      }
+    });
+  </script>
+</body>
+</html>
