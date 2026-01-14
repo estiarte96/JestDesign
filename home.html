@@ -27,13 +27,53 @@
     /* TIPOGRAFÍA INDUSTRIAL */
     h1, h2, h3, .title { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
 
-    /* HERO SECTION */
-    .hero { text-align:center; padding: 80px 20px; background: linear-gradient(to bottom, #fdfdfd, #f4f4f4); border-bottom: 1px solid var(--line); margin-bottom: 40px; }
-    .hero h1 { font-size: 48px; margin: 0 0 16px; color: #111; line-height: 1.1; }
-    .hero p { font-size: 18px; color: var(--muted); max-width: 600px; margin: 0 auto 30px; font-weight: 300; }
+    /* HERO SECTION CON IMAGEN DE FONDO */
+    .hero { 
+      position: relative;
+      text-align: center;
+      padding: 120px 20px; 
+      /* Capa de degradado sobre la imagen para legibilidad */
+      background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.95)), 
+                  url('assets/images/back.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed; /* Efecto Parallax opcional */
+      border-bottom: 1px solid var(--line); 
+      margin-bottom: 40px; 
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-content { 
+      position: relative;
+      z-index: 2; 
+      max-width: 800px;
+    }
+
+    .hero h1 { 
+      font-size: 56px; 
+      margin: 0 0 20px; 
+      color: #111; 
+      line-height: 1.1; 
+    }
+
+    .hero p { 
+      font-size: 20px; 
+      color: #333; 
+      margin: 0 auto 35px; 
+      font-weight: 400; 
+      max-width: 600px; 
+    }
+
+    .hero-btns { 
+      display: flex; 
+      gap: 15px; 
+      justify-content: center;
+    }
 
     /* BOTONES */
-    .btn { display:inline-block; padding:12px 28px; border-radius:50px; font-weight:600; font-size:14px; transition:all .2s; border:1px solid transparent; }
+    .btn { display:inline-block; padding:14px 32px; border-radius:50px; font-weight:600; font-size:14px; transition:all .2s; border:1px solid transparent; }
     .btn.primary { background:var(--primary); color:#fff; }
     .btn.primary:hover { background:#14522d; transform:translateY(-2px); box-shadow:0 5px 15px rgba(27,110,58,0.2); }
     .btn.outline { border-color:#ccc; color:var(--fg); background:#fff; }
@@ -55,6 +95,13 @@
     .cta-box .btn.primary { background: #fff; color: #111; }
     .cta-box .btn.primary:hover { background: var(--primary); color: #fff; }
 
+    /* Responsivo */
+    @media (max-width: 768px) {
+      .hero { padding: 80px 20px; }
+      .hero h1 { font-size: 38px; }
+      .hero p { font-size: 18px; }
+    }
+
     /* Animación */
     [data-reveal] { opacity:0; transform:translateY(20px); transition:.6s ease; }
     [data-reveal].in { opacity:1; transform:none; }
@@ -65,10 +112,10 @@
   <div data-include="header.html"></div>
 
   <section class="hero" data-reveal>
-    <div class="wrap">
-      <h1>Ingeniería & Fabricación Aditiva</h1>
+    <div class="hero-content">
+      <h1>Ingeniería & <br>Fabricación Aditiva</h1>
       <p>Transformamos ideas en piezas funcionales. Desde el diseño CAD hasta la impresión 3D industrial.</p>
-      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+      <div class="hero-btns">
         <a class="btn primary" href="proyectos.html">Ver Proyectos</a>
         <a class="btn outline" href="contacto.html">Contactar</a>
       </div>
@@ -129,5 +176,4 @@
     });
   </script>
 </body>
-
 </html>

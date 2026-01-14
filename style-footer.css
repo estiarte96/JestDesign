@@ -1,164 +1,73 @@
+/* --- CONFIGURACIÓN GENERAL --- */
+:root {
+  --primary: #1b6e3a;
+  --line: #222; /* Línea oscura para fondo negro */
+}
+
+/* --- FOOTER --- */
 #footer {
-  background-color: #111;
-  color: #fff;
-  padding: 20px 0;
+  background-color: #000000;
+  border-top: 1px solid #1a1a1a;
+  padding: 60px 0; /* Más aire para que no se vea junto */
+  margin-top: 50px;
   font-family: 'Montserrat', sans-serif;
+  color: #ffffff;
 }
 
 .footer-content {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-between; /* Empuja el texto a la izquierda y logo a la derecha */
   align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
   max-width: 1100px;
   margin: 0 auto;
   padding: 0 20px;
 }
 
 .footer-left p {
-  margin: 6px 0;
+  margin: 12px 0;
   font-size: 14px;
+  color: #cccccc; /* Gris claro para lectura suave */
+  display: flex;
+  align-items: center;
 }
 
 .footer-left a {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
+  transition: color 0.3s;
 }
 
 .footer-left a:hover {
+  color: var(--primary);
   text-decoration: underline;
 }
 
 .footer-logo {
-  max-width: 180px; /* tamaño máximo del logo */
-  height: auto;
-  opacity: 0.9;
-}
-.header-logo {
-  max-width: 180px; /* tamaño máximo del logo */
-  height: auto;
-  opacity: 0.9;
+  height: 65px; /* Tamaño consistente */
+  width: auto;
+  opacity: 1;
 }
 
-@media (max-width: 700px) {
+/* --- RESPONSIVE --- */
+@media (max-width: 768px) {
   .footer-content {
     flex-direction: column;
     text-align: center;
+    gap: 40px;
   }
-  .footer-logo {
-    margin-top: 10px;
+  .footer-left p {
+    justify-content: center;
   }
 }
 
-.hero-media {
+/* --- OTROS ESTILOS (Mantenidos del original) --- */
+.proj-img {
   width: 100%;
-  aspect-ratio: 4/3;
-  border-radius: 18px;
-  object-fit: cover;
-  background: #000;
+  aspect-ratio: 16/9;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  background: #fff;
+  border: 1px solid #eee;
+  transition: transform .3s;
 }
-
-.thumb {
-  width: 30%;           /* ocupa todo el ancho del contenedor */
-  height: auto;           /* mantiene proporción original */
-  aspect-ratio: 4 / 4;    /* puedes cambiarlo: 4/3, 16/9, 3/2... */
-  border-radius: 12px;
-  object-fit: cover;      /* recorta para llenar sin deformar */
-  background: #f6f6f6;
-}
-/* Alineación horizontal de imagen y texto */
-.card-content {
-  display: flex;
-  align-items: center;
-  gap: 16px;               /* separación entre imagen y texto */
-}
-
-/* Ajuste de la imagen dentro de la tarjeta */
-.card-content .thumb {
-  width: 80px;             /* 🔹 ajusta este tamaño a tu gusto */
-  height: 80px;
-  object-fit: cover;     /* mantiene proporciones sin recortar */
-  border-radius: 10px;
-  flex-shrink: 0;          /* evita que se deforme si el texto es largo */
-}
-
-/* El texto ocupa el resto del espacio */
-.card-text {
-  flex: 1;
-}
-
-#footer { background:#111; color:#fff; padding:20px 0; font-family: 'Montserrat', system-ui, sans-serif; }
-.footer-content { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:20px; max-width:1100px; margin:0 auto; padding:0 20px; }
-.footer-left p { margin:6px 0; font-size:14px; }
-.footer-left a { color:#fff; text-decoration:none; }
-.footer-left a:hover { text-decoration:underline; }
-.footer-logo { max-width:180px; height:auto; opacity:.9; }
-@media (max-width:700px){ .footer-content { flex-direction:column; text-align:center; } .footer-logo { margin-top:10px; } }
-
-
-.contact-form {
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:24px;        /* 🔹 Más espacio interior */
-  background:#fff;
-}
-
-.contact-form .form-control {
-  width:100%;
-  padding:10px 12px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  font:inherit;
-  background:#fff;
-  margin-bottom:14px;   /* 🔹 Añade separación entre todos los campos */
-}
-
-.contact-container {
-  max-width:1100px;
-  margin:0 auto;
-  padding:24px;
-  display:grid;
-  grid-template-columns: 0.8fr 1.2fr; /* formulario más ancho */
-  gap:32px;
-  align-items:start;                 /* alinear arriba */
-}
-.contact-info {
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:24px;
-  background:#fff;
-  align-self:start;
-}
-.contact-info h2,
-.contact-form h2 { margin:0 0 12px; }
-
-.contact-form .form-control {
-  width:100%;
-  padding:10px 12px;
-  border:1px solid var(--line);
-  border-radius:10px;
-  font:inherit;
-  background:#fff;
-  margin-bottom:14px;    /* separación vertical entre campos */
-}
-/* IMAGEN COMPLETA (SIN CORTES) */
-    .proj-img {
-      width: 100%;
-      aspect-ratio: 16/9;  /* Mantiene la caja fija rectangular */
-      
-      object-fit: contain; /* <--- EL CAMBIO CLAVE: Ajusta la imagen para que quepa ENTERA */
-      
-      display: block;
-      border-radius: 8px;
-      background: #fff; /* Fondo gris suave para rellenar los huecos si sobran */
-      border: 1px solid #eee; /* Un borde fino para enmarcarla */
-      transition: transform .3s;
-    }
-    
-    /* Efecto al pasar el ratón */
-    .project-row:hover .proj-img {
-      transform: scale(1.02);
-      background: #fff; /* El fondo se vuelve blanco al pasar el ratón */
-      border-color: #eee;
-    }

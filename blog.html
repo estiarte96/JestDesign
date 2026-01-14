@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Blog – EST Ingenieros | Actualidad en Impresión y Diseño 3D</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="stylesheet" href="/style-footer.css"> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+  
+  <style>
+    /* Estilos específicos para el feed del Blog */
+    .blog-header {
+      padding: 60px 20px;
+      text-align: center;
+      background: #f9f9f9;
+      margin-bottom: 40px;
+    }
+    .blog-header h1 { font-family: 'Oswald', sans-serif; font-size: 42px; text-transform: uppercase; }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+      margin-bottom: 80px;
+    }
+
+    .blog-card {
+      background: #fff;
+      border: 1px solid #eee;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    .blog-info { padding: 20px; flex-grow: 1; }
+    
+    .category-tag {
+      color: #1b6e3a; /* Tu color verde primary */
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .blog-info h3 { 
+      font-family: 'Oswald', sans-serif; 
+      margin: 10px 0; 
+      font-size: 22px; 
+      line-height: 1.3;
+    }
+
+    .blog-info p { color: #666; font-size: 15px; margin-bottom: 20px; }
+
+    /* Reutilizamos tu estilo de imagen del Portfolio */
+    .blog-img {
+      width: 100%;
+      aspect-ratio: 16/9;
+      object-fit: contain; /* Para que la pieza técnica se vea entera */
+      background: #fff;
+      border-bottom: 1px solid #eee;
+    }
+  </style>
+</head>
+<body>
+
+  <div data-include="header.html"></div>
+
+  <header class="blog-header">
+    <div class="wrap">
+      <h1>Blog de Ingeniería 3D</h1>
+      <p>Explora nuestros últimos proyectos, guías técnicas y avances en fabricación aditiva.</p>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="blog-grid">
+
+      <article class="blog-card">
+        <img src="assets/images/blog-escaneo.jpg" alt="Escaneo 3D Automoción" class="blog-img">
+        <div class="blog-info">
+          <span class="category-tag">Ingeniería Inversa</span>
+          <h3>Digitalización de piezas descatalogadas para clásicos</h3>
+          <p>Cómo logramos reconstruir un soporte de motor de 1975 mediante escaneo láser y rediseño CAD.</p>
+          <a href="/blog/pieza-clasico.html" class="link-arrow">Leer artículo →</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <img src="assets/images/blog-materiales.jpg" alt="Materiales impresión 3D" class="blog-img">
+        <div class="blog-info">
+          <span class="category-tag">Materiales</span>
+          <h3>PLA vs Nylon: ¿Cuál elegir para tu prototipo?</h3>
+          <p>Análisis de resistencia mecánica y térmica para aplicaciones industriales reales.</p>
+          <a href="/blog/guia-materiales.html" class="link-arrow">Leer artículo →</a>
+        </div>
+      </article>
+
+      <article class="blog-card">
+        <img src="assets/images/blog-diseno.jpg" alt="Diseño CAD" class="blog-img">
+        <div class="blog-info">
+          <span class="category-tag">Diseño 3D</span>
+          <h3>Optimización topológica en el diseño industrial</h3>
+          <p>Reduciendo peso sin perder resistencia: el futuro del diseño asistido por ordenador.</p>
+          <a href="/blog/optimizacion-topologica.html" class="link-arrow">Leer artículo →</a>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <div data-include="footer.html"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const slots = document.querySelectorAll('[data-include]');
+      for (const el of slots) {
+        try {
+          const res = await fetch(el.getAttribute('data-include'));
+          if (res.ok) el.outerHTML = await res.text();
+        } catch (e) {}
+      }
+    });
+  </script>
+</body>
+</html>
