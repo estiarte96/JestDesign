@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Transportador Sincronizado – EST Ingenieros</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Modernización de transporte de láminas serigrafiadas con sincronización por encoder y sistema de vacío.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root { --fg:#111; --muted:#555; --line:#e0e0e0; --bg:#fff; --primary:#1b6e3a; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: 'Montserrat', sans-serif; color:var(--fg); background:#fcfcfc; line-height:1.6; }
+    .wrap { max-width:1000px; margin:0 auto; padding:40px 20px; }
+
+    /* ENCABEZADO PROYECTO */
+    .project-header { margin-bottom: 40px; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .breadcrumb a { text-decoration: none; color: var(--muted); }
+    .breadcrumb a:hover { color: var(--primary); }
+    
+    h1, h3, .btn, .tech-label { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+    h1 { font-size: 38px; margin: 0 0 10px; letter-spacing: -0.5px; line-height: 1.2; }
+    .subtitle { font-size: 18px; color: var(--muted); font-weight: 500; font-family: 'Montserrat'; text-transform: none; }
+
+    /* LAYOUT PRINCIPAL */
+    .project-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; }
+
+    /* GALERÍA */
+    .gallery img { width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #eee; }
+
+    /* CONTENIDO TÉCNICO */
+    h3 { font-size: 22px; margin: 30px 0 10px; border-left: 4px solid var(--primary); padding-left: 12px; color: #222; }
+    p { color: #444; margin-bottom: 20px; text-align: justify; }
+    
+    .feature-list { list-style: none; padding: 0; margin-bottom: 20px; }
+    .feature-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+    .feature-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 0; }
+
+    /* CARRUSEL */
+    .carousel-container { position: relative; width: 100%; margin: 30px 0; overflow: hidden; border-radius: 8px; border: 1px solid #eee; background: #fff; aspect-ratio: 16/9; }
+    .carousel-slide { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; }
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 18px; z-index: 10; transition: 0.3s; }
+    .carousel-btn:hover { background: var(--primary); }
+    .carousel-btn.next { right: 0; }
+
+    /* SIDEBAR TÉCNICO */
+    .tech-sheet { background: #fff; border: 1px solid var(--line); padding: 24px; border-radius: 8px; height: fit-content; position: sticky; top: 100px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .tech-item { margin-bottom: 16px; border-bottom: 1px solid #f0f0f0; padding-bottom: 12px; }
+    .tech-label { display: block; font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .tech-value { font-size: 15px; font-weight: 600; color: #222; font-family: 'Montserrat'; text-transform: none; }
+
+    /* CTA FINAL */
+    .cta-box { margin-top: 30px; background: #eef7f2; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #cce3d4; }
+    .btn { display: inline-block; background: var(--fg); color: #fff; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 10px; transition: .2s; letter-spacing: 1px; }
+    .btn:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(27, 110, 58, 0.2); }
+
+    @media (max-width: 800px) { .project-grid { grid-template-columns: 1fr; } .tech-sheet { position: static; margin-bottom: 40px; } }
+  </style>
+</head>
+<body>
+
+  <div data-include="/header.html"></div>
+
+  <main class="wrap">
+    <header class="project-header">
+      <div class="breadcrumb"><a href="/proyectos.html">← Volver a Proyectos</a> / Artes Gráficas</div>
+      <h1>Transportador Sincronizado para Serigrafía</h1>
+      <div class="subtitle">Modernización de salida de túnel con control por encoder y succión</div>
+    </header>
+
+    <div class="project-grid">
+      <section class="content">
+        <div class="gallery">
+          <img src="/assets/Maquinas/Transportador/Images/ZRtransportador.png" alt="Módulo transportador de láminas">
+        </div>
+
+        <h3>El Reto: Superar la Tecnología de Levas</h3>
+        <p>El cliente necesitaba renovar un equipo de transporte con más de 30 años de servicio en una línea de impresión. El sistema original funcionaba mediante un accionamiento por leva conectado a un motor central único, lo que dificultaba el mantenimiento y limitaba la flexibilidad de la línea.</p>
+
+        <h3>La Solución: Integración de Precisión</h3>
+        <ul class="feature-list">
+          <li><strong>Sincronización por Encoder:</strong> Sustituimos la leva mecánica por un encoder de alta resolución para leer la posición de la línea y sincronizar electrónicamente el nuevo equipo.</li>
+          <li><strong>Sistema de Aspiración:</strong> Integración de una turbina de vacío para asegurar la adherencia total de las hojas de papel o plástico serigrafiadas durante el tránsito.</li>
+          <li><strong>Mesa Plegable Automática:</strong> Diseño abatible que permite despejar la zona de salida del túnel en segundos, optimizando las tareas de limpieza y mantenimiento.</li>
+          <li><strong>Automatización Completa:</strong> Control electrónico de tracción para un flujo continuo de material sin intervenciones manuales.</li>
+        </ul>
+
+        <div class="gallery">
+          <img src="/assets/Maquinas/Transportador/Images/ZRtransportador2.png" alt="Detalle sistema de transporte">
+        </div>
+
+        <h3>Resultado: Eficiencia y Seguridad</h3>
+        <p>Se logró una transición perfecta de una línea analógica a una digital. La eliminación del movimiento manual redujo drásticamente el riesgo de accidentes y garantizó que las hojas lleguen a la zona de embalaje en perfecto estado, sin desplazamientos que afecten la tinta fresca.</p>
+
+        <h3>Galería Detallada</h3>
+        <div class="carousel-container">
+          <div class="carousel-slide" id="carouselSlide"></div>
+          <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+          <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="tech-sheet">
+          <div class="tech-item"><span class="tech-label">Sector</span><div class="tech-value">Imprenta / Serigrafía Industrial</div></div>
+          <div class="tech-item"><span class="tech-label">Tecnología Clave</span><div class="tech-value">Sincronización por Encoder</div></div>
+          <div class="tech-item"><span class="tech-label">Adherencia</span><div class="tech-value">Equipo de aspiración por vacío</div></div>
+          <div class="tech-item"><span class="tech-label">Accesibilidad</span><div class="tech-value">Plegado automático de mesa</div></div>
+          <div class="tech-item"><span class="tech-label">Año Proyecto</span><div class="tech-value">2025</div></div>
+          
+          <div class="cta-box">
+            <div style="font-weight:600; margin-bottom:6px; color:#1b6e3a;">¿Necesitas modernizar tu equipo?</div>
+            <a href="/contacto.html" class="btn">Solicitar Información</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div data-include="/footer.html"></div>
+
+  <script>
+    // Cargar Header/Footer
+    document.addEventListener('DOMContentLoaded',async()=>{
+      for(const el of document.querySelectorAll('[data-include]')){
+        try{
+          const res = await fetch(el.getAttribute('data-include'));
+          if(res.ok) el.outerHTML = await res.text();
+        }catch(e){}
+      }
+    });
+
+    // Lógica del Carrusel (Corregida con tu ruta específica)
+    const slideContainer = document.getElementById('carouselSlide');
+    const folderPath = '/assets/Maquinas/Transportador/Images/CarruselZRtransportador/';
+    const totalImages = 9; 
+    let currentIndex = 0;
+
+    function loadCarousel() {
+      for (let i = 1; i <= totalImages; i++) {
+        const img = document.createElement('img');
+        img.src = `${folderPath}${i}.png`;
+        img.alt = `Detalle técnico transportador ${i}`;
+        slideContainer.appendChild(img);
+      }
+    }
+
+    function moveSlide(direction) {
+      const slides = document.querySelectorAll('.carousel-slide img');
+      if(slides.length === 0) return;
+      currentIndex += direction;
+      if (currentIndex >= slides.length) currentIndex = 0;
+      if (currentIndex < 0) currentIndex = slides.length - 1;
+      slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    loadCarousel();
+    setInterval(() => moveSlide(1), 5000); 
+  </script>
+</body>
+</html>

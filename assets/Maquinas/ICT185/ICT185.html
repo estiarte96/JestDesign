@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Termosoldadora Cilíndrica Textil – EST Ingenieros</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Máquina de termosoldado para telas en formato cilíndrico con control de parámetros y sistema de soplado térmico.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    :root { --fg:#111; --muted:#555; --line:#e0e0e0; --bg:#fff; --primary:#1b6e3a; }
+    * { box-sizing:border-box; }
+    body { margin:0; font-family: 'Montserrat', sans-serif; color:var(--fg); background:#fcfcfc; line-height:1.6; }
+    .wrap { max-width:1000px; margin:0 auto; padding:40px 20px; }
+
+    /* ENCABEZADO PROYECTO */
+    .project-header { margin-bottom: 40px; border-bottom: 1px solid var(--line); padding-bottom: 20px; }
+    .breadcrumb { font-size: 13px; color: var(--muted); margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px; }
+    .breadcrumb a { text-decoration: none; color: var(--muted); }
+    .breadcrumb a:hover { color: var(--primary); }
+    
+    h1, h3, .btn, .tech-label { font-family: 'Oswald', sans-serif; text-transform: uppercase; }
+    h1 { font-size: 38px; margin: 0 0 10px; letter-spacing: -0.5px; line-height: 1.2; }
+    .subtitle { font-size: 18px; color: var(--muted); font-weight: 500; font-family: 'Montserrat'; text-transform: none; }
+
+    /* LAYOUT PRINCIPAL */
+    .project-grid { display: grid; grid-template-columns: 2fr 1fr; gap: 50px; }
+
+    /* GALERÍA */
+    .gallery img { width: 100%; border-radius: 8px; margin-bottom: 20px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); border: 1px solid #eee; }
+
+    /* CONTENIDO TÉCNICO */
+    h3 { font-size: 22px; margin: 30px 0 10px; border-left: 4px solid var(--primary); padding-left: 12px; color: #222; }
+    p { color: #444; margin-bottom: 20px; text-align: justify; }
+    
+    .feature-list { list-style: none; padding: 0; margin-bottom: 20px; }
+    .feature-list li { margin-bottom: 15px; padding-left: 25px; position: relative; }
+    .feature-list li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary); position: absolute; left: 0; top: 0; }
+
+    /* CARRUSEL */
+    .carousel-container { position: relative; width: 100%; margin: 30px 0; overflow: hidden; border-radius: 8px; border: 1px solid #eee; background: #fff; aspect-ratio: 16/9; }
+    .carousel-slide { display: flex; transition: transform 0.5s ease-in-out; height: 100%; }
+    .carousel-slide img { width: 100%; height: 100%; object-fit: contain; flex-shrink: 0; }
+    .carousel-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(0,0,0,0.3); color: white; border: none; padding: 15px 10px; cursor: pointer; font-size: 18px; z-index: 10; transition: 0.3s; }
+    .carousel-btn:hover { background: var(--primary); }
+    .carousel-btn.next { right: 0; }
+
+    /* SIDEBAR TÉCNICO */
+    .tech-sheet { background: #fff; border: 1px solid var(--line); padding: 24px; border-radius: 8px; height: fit-content; position: sticky; top: 100px; box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+    .tech-item { margin-bottom: 16px; border-bottom: 1px solid #f0f0f0; padding-bottom: 12px; }
+    .tech-label { display: block; font-size: 11px; color: var(--muted); font-weight: 700; margin-bottom: 4px; letter-spacing: 0.5px; }
+    .tech-value { font-size: 15px; font-weight: 600; color: #222; font-family: 'Montserrat'; text-transform: none; }
+
+    /* CTA FINAL */
+    .cta-box { margin-top: 30px; background: #eef7f2; padding: 20px; border-radius: 8px; text-align: center; border: 1px solid #cce3d4; }
+    .btn { display: inline-block; background: var(--fg); color: #fff; padding: 12px 24px; border-radius: 50px; text-decoration: none; font-weight: 600; font-size: 14px; margin-top: 10px; transition: .2s; letter-spacing: 1px; }
+    .btn:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 4px 10px rgba(27, 110, 58, 0.2); }
+
+    @media (max-width: 800px) { .project-grid { grid-template-columns: 1fr; } .tech-sheet { position: static; margin-bottom: 40px; } }
+  </style>
+</head>
+<body>
+
+  <div data-include="/header.html"></div>
+
+  <main class="wrap">
+    <header class="project-header">
+      <div class="breadcrumb"><a href="/proyectos.html">← Volver a Proyectos</a> / Maquinaria Textil</div>
+      <h1>Termosoldadora Cilíndrica Industrial</h1>
+      <div class="subtitle">Soldadura térmica automatizada para tejidos técnicos y filtros</div>
+    </header>
+
+    <div class="project-grid">
+      <section class="content">
+        <div class="gallery">
+          <img src="Images\ICT185-3.png" alt="Máquina Termosoldadora Cilíndrica">
+        </div>
+
+        <h3>El Reto: Soldadura de Alta Precisión</h3>
+        <p>El proyecto consistió en el diseño de una unidad de termosoldado capaz de procesar telas en formato cilíndrico, asegurando una unión estanca y uniforme. El sistema requería un control absoluto de la velocidad de giro y la temperatura de aplicación para evitar daños en el material textil.</p>
+
+        <h3>La Solución: Control y Estabilidad Térmica</h3>
+        <ul class="feature-list">
+          <li><strong>Tracción Motorizada:</strong> Sistema equipado con un motor de 220V que gestiona el giro del eje principal, permitiendo una soldadura continua y sin saltos.</li>
+          <li><strong>Soplado Térmico por Resistencia:</strong> Integración de una resistencia de alta eficiencia combinada con un soplador neumático para la fusión precisa del tejido.</li>
+          <li><strong>Interfaz de Usuario (HMI):</strong> Pantalla de control dedicada para la monitorización y ajuste en tiempo real de temperatura, velocidad y tiempos de ciclo.</li>
+          <li><strong>Pulmón de Aire Integrado:</strong> Sistema de reserva de aire (pulmón) que garantiza una presión constante y estable, vital para el correcto funcionamiento del soplado y los actuadores.</li>
+        </ul>
+
+        <div class="gallery">
+          <img src="Images\ICT185-2.png" alt="Detalle sistema de soplado y eje">
+        </div>
+
+        <h3>Resultado: Producción Optimizada</h3>
+        <p>Gracias al sistema de control centralizado y la estabilidad del flujo de aire, se logró una máquina versátil que permite trabajar con diferentes diámetros de cilindros textiles, garantizando una repetibilidad perfecta en cada proceso de soldadura.</p>
+        <div class="gallery">
+          <img src="Images\ICT185-1.png" alt="Detalle sistema de soplado y eje">
+        </div>
+        <h3>Galería Técnica</h3>
+        <div class="carousel-container">
+          <div class="carousel-slide" id="carouselSlide"></div>
+          <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+          <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+      </section>
+
+      <aside class="sidebar">
+        <div class="tech-sheet">
+          <div class="tech-item"><span class="tech-label">Sector</span><div class="tech-value">Textil Industrial / Filtración</div></div>
+          <div class="tech-item"><span class="tech-label">Motorización</span><div class="tech-value">220V AC </div></div>
+          <div class="tech-item"><span class="tech-label">Sistema Térmico</span><div class="tech-value">Resistencia thermica con soplador</div></div>
+          <div class="tech-item"><span class="tech-label">Alimentación</span><div class="tech-value">Pulmón de aire de presión constante</div></div>
+          <div class="tech-item"><span class="tech-label">Interfaz</span><div class="tech-value">Pantalla de control táctil</div></div>
+          
+          <div class="cta-box">
+            <div style="font-weight:600; margin-bottom:6px; color:#1b6e3a;">¿Necesitas una solución textil?</div>
+            <a href="/contacto.html" class="btn">Solicitar Información</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div data-include="/footer.html"></div>
+
+  <script>
+    // Cargar Header/Footer y Activar Menú Móvil
+    document.addEventListener('DOMContentLoaded', async () => {
+      const includes = document.querySelectorAll('[data-include]');
+      for (const el of includes) {
+        try {
+          const res = await fetch(el.getAttribute('data-include'));
+          if (res.ok) {
+            el.outerHTML = await res.text();
+            // Re-vincular lógica de menú si es el header
+            if (el.getAttribute('data-include').includes('header.html')) {
+               // Aquí iría la función toggleMenu si no está inline
+            }
+          }
+        } catch (e) {}
+      }
+      loadCarousel();
+    });
+
+    // Lógica del Carrusel (Ajustar ruta de carpeta)
+    const slideContainer = document.getElementById('carouselSlide');
+    const folderPath = 'Images/CarruselICT185/'; // Nombre de tu carpeta de carrusel
+    const totalImages = 4; // Ajusta según la cantidad de fotos que tengas
+    let currentIndex = 0;
+
+    function loadCarousel() {
+      for (let i = 1; i <= totalImages; i++) {
+        const img = document.createElement('img');
+        img.src = `${folderPath}${i}.png`;
+        img.alt = `Vista técnica termosoldadora ${i}`;
+        img.onerror = function() { this.style.display='none'; };
+        slideContainer.appendChild(img);
+      }
+    }
+
+    function moveSlide(direction) {
+      const slides = slideContainer.querySelectorAll('img');
+      const activeSlides = Array.from(slides).filter(img => img.style.display !== 'none');
+      if(activeSlides.length === 0) return;
+      
+      currentIndex = (currentIndex + direction + activeSlides.length) % activeSlides.length;
+      slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    setInterval(() => moveSlide(1), 5000); 
+  </script>
+</body>
+</html>
