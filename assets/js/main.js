@@ -1,0 +1,37 @@
+document.addEventListener("DOMContentLoaded", async () => {
+    // 1. CARGA DINÁMICA DE COMPONENTES (Header/Footer)
+    const includes = document.querySelectorAll('[data-include]');
+    for (const el of includes) {
+        const file = el.getAttribute('data-include');
+        try {
+            const res = await fetch(file);
+            if (res.ok) {
+                el.outerHTML = await res.text();
+                // Si acabamos de cargar el header, activamos los links
+                if (file.includes('header')) markActiveLink();
+            }
+        } catch (err) {
+            console.error("Error cargando:", file, err);
+        }
+    }
+
+    // 2. ANIMACIÓN REVEAL AL HACER SCROLL
+    const revealObserver = new IntersectionObserver(entries => {
+        entries.forEach(e => {
+            if (e.isIntersecting) e.target.classList.add('in');
+        });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('[data-reveal]').forEach(el => revealObserver.observe(el));
+});
+
+// Función para marcar el link activo según la URL
+function markActiveLink() {
+    const currentPath = window.location.pathname.split("/").pop() || "home.html";
+    document.querySelectorAll(".nav-link").forEach(link => {
+        const href = link.getAttribute("href").split("/").pop();
+        if (href === currentPath) {
+            link.classList.add("active");
+        }
+    });
+}
