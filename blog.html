@@ -2,70 +2,81 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Blog – EST Ingenieros | Actualidad en Impresión y Diseño 3D</title>
+  <title>Blog – EST Ingenieros</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <link rel="stylesheet" href="/style-footer.css"> <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
-  
+  <meta name="description" content="Artículos sobre ingeniería inversa, diseño CAD y fabricación aditiva industrial.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
   <style>
-    /* Estilos específicos para el feed del Blog */
-    .blog-header {
-      padding: 60px 20px;
-      text-align: center;
-      background: #f9f9f9;
-      margin-bottom: 40px;
+    /* --- VARIABLES (Igual que tu web) --- */
+    :root { 
+      --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; 
     }
-    .blog-header h1 { font-family: 'Oswald', sans-serif; font-size: 42px; text-transform: uppercase; }
+    * { box-sizing: border-box; }
+    body { margin:0; font-family: 'Montserrat', sans-serif; color:var(--fg); background:var(--bg); line-height: 1.6; }
+    a { color:inherit; text-decoration:none; transition: color 0.2s; }
+    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
 
-    .blog-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 30px;
-      margin-bottom: 80px;
-    }
-
-    .blog-card {
-      background: #fff;
-      border: 1px solid #eee;
-      border-radius: 12px;
-      overflow: hidden;
-      transition: transform 0.3s, box-shadow 0.3s;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .blog-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-    }
-
-    .blog-info { padding: 20px; flex-grow: 1; }
+    /* --- ESTILOS ESPECÍFICOS DEL BLOG --- */
     
-    .category-tag {
-      color: #1b6e3a; /* Tu color verde primary */
-      font-size: 12px;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      margin-bottom: 10px;
-      display: block;
+    /* Cabecera Título */
+    .page-header { text-align: center; padding: 60px 20px 40px; }
+    .page-header h1 { font-family: 'Oswald', sans-serif; font-size: 48px; text-transform: uppercase; margin: 0 0 10px; letter-spacing: 1px; }
+    .page-header p { color: var(--muted); font-size: 18px; max-width: 600px; margin: 0 auto; }
+
+    /* Filtros */
+    .categories { display: flex; justify-content: center; gap: 10px; margin-bottom: 50px; flex-wrap: wrap; }
+    .cat-btn { padding: 8px 24px; border-radius: 50px; border: 1px solid var(--line); font-size: 13px; font-weight: 600; color: var(--muted); background: #fff; cursor: pointer; transition: all 0.3s; font-family: 'Montserrat', sans-serif; }
+    .cat-btn:hover, .cat-btn.active { border-color: var(--primary); color: var(--primary); background: rgba(27,110,58,0.05); }
+
+    /* Artículo Destacado */
+    .featured-post { 
+      display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 0; 
+      background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; margin-bottom: 60px; box-shadow: 0 10px 30px rgba(0,0,0,0.05); transition: transform 0.3s;
     }
+    .feat-img { height: 100%; min-height: 400px; overflow: hidden; display: block; }
+    .feat-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .featured-post:hover .feat-img img { transform: scale(1.03); }
+    .feat-content { padding: 60px; display: flex; flex-direction: column; justify-content: center; }
+    .feat-tag { color: var(--primary); font-weight: 700; text-transform: uppercase; font-size: 12px; letter-spacing: 1px; margin-bottom: 15px; }
+    .feat-title { font-family: 'Oswald', sans-serif; font-size: 32px; line-height: 1.2; margin: 0 0 20px; color: #111; }
+    .read-more { font-weight: 700; color: var(--primary); display: inline-flex; align-items: center; gap: 8px; font-size: 14px; }
 
-    .blog-info h3 { 
-      font-family: 'Oswald', sans-serif; 
-      margin: 10px 0; 
-      font-size: 22px; 
-      line-height: 1.3;
+    /* Grid de Artículos */
+    .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 80px; }
+    .blog-card { 
+      background: #fff; border: 1px solid var(--line); border-radius: 4px; overflow: hidden; 
+      transition: transform 0.3s ease, box-shadow 0.3s ease; display: flex; flex-direction: column;
     }
+    .blog-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px rgba(0,0,0,0.08); border-color: var(--primary); }
+    .card-img { height: 220px; overflow: hidden; position: relative; display: block; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+    .blog-card:hover .card-img img { transform: scale(1.05); }
+    .card-body { padding: 25px; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-tag { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; margin-bottom: 10px; }
+    .card-title { font-size: 20px; font-weight: 600; margin: 0 0 10px; line-height: 1.3; color: var(--fg); display: block; }
+    .card-excerpt { font-size: 14px; color: var(--muted); margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .card-meta { margin-top: auto; padding-top: 15px; border-top: 1px solid #f0f0f0; font-size: 12px; color: #999; display: flex; justify-content: space-between; }
 
-    .blog-info p { color: #666; font-size: 15px; margin-bottom: 20px; }
+    /* Newsletter */
+    .newsletter { background: #111; padding: 60px 20px; text-align: center; color: #fff; border-radius: 8px; margin-bottom: 60px; }
+    .newsletter h3 { font-family: 'Oswald', sans-serif; font-size: 28px; margin-bottom: 10px; color: #fff; }
+    .newsletter p { color: #aaa; margin-bottom: 30px; }
+    .news-form { display: flex; gap: 10px; max-width: 500px; width: 100%; margin: 0 auto; }
+    .news-input { flex: 1; padding: 12px 20px; border-radius: 4px; border: none; font-family: inherit; }
+    .news-btn { background: var(--primary); color: #fff; border: none; padding: 12px 30px; border-radius: 4px; font-weight: 600; cursor: pointer; transition: 0.3s; }
+    .news-btn:hover { background: #14522d; }
 
-    /* Reutilizamos tu estilo de imagen del Portfolio */
-    .blog-img {
-      width: 100%;
-      aspect-ratio: 16/9;
-      object-fit: contain; /* Para que la pieza técnica se vea entera */
-      background: #fff;
-      border-bottom: 1px solid #eee;
+    /* Responsive */
+    @media (max-width: 768px) {
+      .featured-post { grid-template-columns: 1fr; }
+      .feat-img { min-height: 250px; }
+      .feat-content { padding: 30px; }
+      .page-header h1 { font-size: 36px; }
+      .news-form { flex-direction: column; }
     }
   </style>
 </head>
@@ -73,60 +84,139 @@
 
   <div data-include="header.html"></div>
 
-  <header class="blog-header">
-    <div class="wrap">
-      <h1>Blog de Ingeniería 3D</h1>
-      <p>Explora nuestros últimos proyectos, guías técnicas y avances en fabricación aditiva.</p>
-    </div>
-  </header>
-
   <main class="wrap">
-    <div class="blog-grid">
+    
+    <header class="page-header">
+      <h1>Blog Técnico</h1>
+      <p>Innovación, guías de diseño y casos de éxito en ingeniería industrial.</p>
+    </header>
 
-      <article class="blog-card">
-        <img src="assets/images/blog-escaneo.jpg" alt="Escaneo 3D Automoción" class="blog-img">
-        <div class="blog-info">
-          <span class="category-tag">Ingeniería Inversa</span>
-          <h3>Digitalización de piezas descatalogadas para clásicos</h3>
-          <p>Cómo logramos reconstruir un soporte de motor de 1975 mediante escaneo láser y rediseño CAD.</p>
-          <a href="/blog/pieza-clasico.html" class="link-arrow">Leer artículo →</a>
+    <nav class="categories">
+      <button class="cat-btn active" data-filter="all">Todos</button>
+      <button class="cat-btn" data-filter="casos">Casos de Éxito</button>
+      <button class="cat-btn" data-filter="ingenieria">Ingeniería Inversa</button>
+      <button class="cat-btn" data-filter="taller">Taller</button>
+      <button class="cat-btn" data-filter="materiales">Materiales</button>
+    </nav>
+
+    <article class="blog-card" data-category="taller" style="max-width: auto; margin: 0 auto 60px;">
+
+      <a href="blog-roscas.html" class="card-img" style="height: auto;">
+        <img class="hero-media" src="assets/images/blog-roscas.png" alt="Guía Roscas">
+      </a>
+      <div class="card-body">
+        <span class="card-tag">Taller</span>
+        <h3 class="card-title"><a href="blog-roscas.html">Tabla: Qué broca usar para cada rosca</a></h3>
+        <p class="card-excerpt">Guía rápida de diámetros de taladro para roscas Métricas y Gas (BSP).</p>
+        <div class="card-meta">
+          <span><i class="far fa-clock"></i> 2 min</span>
+          <span>22 Ene, 2026</span>
+        </div>
+      </div>
+    </article>
+
+    <section class="blog-grid">
+      
+      <article class="blog-card" data-category="Taller">
+        <a href="blog-din912.html" class="card-img">
+          <img src="assets\images\din912.png" alt="din912">
+        </a>
+        <div class="card-body">
+          <span class="card-tag">Taller</span>
+          <h3 class="card-title"><a href="blog-din912.html">Dimensiones DIN 912: Tabla para diseño de alojamientos (Allen)</a></h3>
+          <p class="card-excerpt">Nunca diseñes el agujero con la medida exacta de la tabla. Los tornillos tienen tolerancias y las máquinas también.</p>
+          <div class="card-meta">
+            <span><i class="far fa-clock"></i> 3 min</span>
+            <span>08 Ene, 2026</span>
+          </div>
         </div>
       </article>
-
-      <article class="blog-card">
-        <img src="assets/images/blog-materiales.jpg" alt="Materiales impresión 3D" class="blog-img">
-        <div class="blog-info">
-          <span class="category-tag">Materiales</span>
-          <h3>PLA vs Nylon: ¿Cuál elegir para tu prototipo?</h3>
-          <p>Análisis de resistencia mecánica y térmica para aplicaciones industriales reales.</p>
-          <a href="/blog/guia-materiales.html" class="link-arrow">Leer artículo →</a>
+    </section>
+  
+    <!--
+    <section class="blog-grid">
+      
+      <article class="blog-card" data-category="casos">
+        <a href="blog-din912.html" class="card-img">
+          <img src="assets\images\din912.png" alt="din912">
+        </a>
+        <div class="card-body">
+          <span class="card-tag">Casos de Éxito</span>
+          <h3 class="card-title"><a href="blog-din912.html">Recuperación de Engranaje Descatalogado</a></h3>
+          <p class="card-excerpt">Cómo salvamos una línea de producción parada en 48 horas gracias a la ingeniería inversa.</p>
+          <div class="card-meta">
+            <span><i class="far fa-clock"></i> 3 min</span>
+            <span>15 Ene, 2026</span>
+          </div>
         </div>
       </article>
+    </section>
+    -->
 
-      <article class="blog-card">
-        <img src="assets/images/blog-diseno.jpg" alt="Diseño CAD" class="blog-img">
-        <div class="blog-info">
-          <span class="category-tag">Diseño 3D</span>
-          <h3>Optimización topológica en el diseño industrial</h3>
-          <p>Reduciendo peso sin perder resistencia: el futuro del diseño asistido por ordenador.</p>
-          <a href="/blog/optimizacion-topologica.html" class="link-arrow">Leer artículo →</a>
-        </div>
-      </article>
+    <section class="newsletter">
+      <h3>Recibe nuestras guías técnicas</h3>
+      <p>Te enviaremos consejos de diseño y casos de éxito una vez al mes.</p>
+      <form class="news-form">
+        <input type="email" placeholder="Tu email corporativo" class="news-input" required>
+        <button type="submit" class="news-btn">Suscribirme</button>
+      </form>
+    </section>
 
-    </div>
   </main>
 
   <div data-include="footer.html"></div>
 
   <script>
+    // 1. Script para Cargar Header/Footer (El mismo de tu página de Diseño 3D)
     document.addEventListener('DOMContentLoaded', async () => {
       const slots = document.querySelectorAll('[data-include]');
       for (const el of slots) {
+        const file = el.getAttribute('data-include');
         try {
-          const res = await fetch(el.getAttribute('data-include'));
-          if (res.ok) el.outerHTML = await res.text();
-        } catch (e) {}
+          const res = await fetch(file);
+          if (!res.ok) throw new Error(res.status);
+          el.outerHTML = await res.text();
+        } catch (err) {
+          console.error('Error cargando include:', file, err);
+        }
       }
+    });
+
+    // 2. Script para los Filtros del Blog
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.cat-btn');
+      const articles = document.querySelectorAll('.blog-card');
+      const featuredPost = document.querySelector('.featured-post');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          // Actualizar botón activo
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+
+          // Filtrar artículos
+          articles.forEach(article => {
+            const articleCat = article.getAttribute('data-category');
+            if (filterValue === 'all' || filterValue === articleCat) {
+              article.style.display = 'flex';
+            } else {
+              article.style.display = 'none';
+            }
+          });
+
+          // (Opcional) Filtrar también el destacado
+          if (featuredPost) {
+            const featCat = featuredPost.getAttribute('data-category');
+            if (filterValue === 'all' || filterValue === featCat) {
+              featuredPost.style.display = 'grid';
+            } else {
+              featuredPost.style.display = 'none';
+            }
+          }
+        });
+      });
     });
   </script>
 </body>
