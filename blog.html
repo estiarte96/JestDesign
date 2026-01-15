@@ -49,7 +49,7 @@
       <button class="cat-btn" data-filter="materiales">Materiales</button>
     </nav>
 
-    <section class="blog-card">
+    <section class="blog-grid">
       
       <article class="card-item blog-card" data-category="taller">
         <a href="blog-roscas.html">
@@ -73,3 +73,64 @@
         <div class="card-body">
           <span class="card-tag">Taller</span>
           <h3 class="card-title"><a href="blog-din912.html">Dimensiones DIN 912: Tabla para alojamientos</a></h3>
+          <p class="card-excerpt">Optimiza tus diseños CAD con las tolerancias correctas para tornillería Allen cilíndrica.</p>
+          <div class="card-meta">
+            <span><i class="far fa-clock"></i> 3 min</span>
+            <span>08 Ene, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <!--<article class="card-item blog-card" data-category="casos">
+        <a href="blog-single.html">
+          <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a78e?auto=format&fit=crop&w=800&q=80" alt="Engranaje" style="width:100%; border-radius:4px; margin-bottom:15px;">
+        </a>
+        <div class="card-body">
+          <span class="card-tag">Casos de Éxito</span>
+          <h3 class="card-title"><a href="blog-single.html">Recuperación de Engranaje Descatalogado</a></h3>
+          <p class="card-excerpt">Cómo salvamos una línea de producción parada en 48 horas mediante ingeniería inversa.</p>
+          <div class="card-meta">
+            <span><i class="far fa-clock"></i> 3 min</span>
+            <span>15 Ene, 2026</span>
+          </div>
+        </div>
+      </article>-->
+
+    </section>
+
+    <section class="newsletter">
+      <h3>Recibe nuestras guías técnicas</h3>
+      <p>Te enviaremos consejos de diseño y casos de éxito una vez al mes.</p>
+      <form class="news-form" action="https://formspree.io/f/xkoogvdb" method="POST">
+        <input type="email" name="email" placeholder="Tu email" class="news-input" required>
+        <button type="submit" class="news-btn">Suscribirme</button>
+      </form>
+    </section>
+
+  </main>
+
+  <div data-include="footer.html"></div>
+
+  <script src="assets/js/main.js" defer></script>
+  <script>
+    // Script local de respaldo para filtrado (hasta que lo muevas a main.js)
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.cat-btn');
+      const articles = document.querySelectorAll('.blog-card');
+
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+
+          const filterValue = btn.getAttribute('data-filter');
+          articles.forEach(article => {
+            const articleCat = article.getAttribute('data-category');
+            article.style.display = (filterValue === 'all' || filterValue === articleCat) ? 'flex' : 'none';
+          });
+        });
+      });
+    });
+  </script>
+</body>
+</html>
