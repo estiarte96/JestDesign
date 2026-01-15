@@ -2,99 +2,40 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Tabla de Dimensiones DIN 912 (Allen Cilíndrico) – EST Ingenieros</title>
+  <title>Dimensiones DIN 912: Guía de Diseño – EST Ingenieros</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Tabla de medidas para tornillos DIN 912 / ISO 4762. Consulta diámetros de cabeza y llaves Allen para diseñar alojamientos (counterbores) correctos.">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-  <style>
-    /* --- VARIABLES (Igual que tu web) --- */
-    :root { --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: 'Montserrat', sans-serif; color:var(--fg); background:var(--bg); line-height: 1.8; }
-    a { color:inherit; text-decoration:none; transition: color 0.2s; }
-    
-    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
-    .wrap-narrow { max-width: 800px; margin: 0 auto; padding: 20px; } 
-
-    /* --- ESTILOS ARTÍCULO --- */
-    .article-header { text-align: center; padding: 60px 20px 40px; }
-    .article-meta { font-size: 13px; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block;}
-    .article-title { font-family: 'Oswald', sans-serif; font-size: 42px; line-height: 1.2; margin: 0 0 20px; color: #111; }
-    .article-date { color: var(--muted); font-size: 14px; }
-
-    /* Hero Image */
-    .article-hero { width: 100%; height: auto; margin-bottom: 60px; border-radius: 4px; overflow: hidden; }
-    .article-hero img { width: 100%; height: auto; display: block; }
-
-    .content { font-size: 18px; color: #333; }
-    .content h2 { font-family: 'Oswald', sans-serif; margin-top: 50px; margin-bottom: 20px; font-size: 28px; color: #000; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; }
-    .content p { margin-bottom: 20px; }
-    
-    /* Tabla Técnica */
-    .table-container { overflow-x: auto; margin: 30px 0; border-radius: 6px; border: 1px solid var(--line); }
-    table { width: 100%; border-collapse: collapse; min-width: 500px; }
-    th { background: #f4f4f4; text-align: left; padding: 15px; font-family: 'Oswald', sans-serif; font-weight: 500; border-bottom: 2px solid #ddd; }
-    td { padding: 15px; border-bottom: 1px solid #eee; font-size: 16px; }
-    tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) { background: #fafafa; }
-    td strong { color: var(--primary); }
-
-    /* Diagrama SVG simple para explicar las cotas */
-    .blueprint-box { background: #0d2b45; color: #fff; padding: 30px; border-radius: 6px; margin: 40px 0; text-align: center; }
-    .blueprint-title { font-family: 'Oswald', sans-serif; margin-bottom: 15px; opacity: 0.8; letter-spacing: 1px; }
-
-    /* Tip Box */
-    .highlight-box { background: #f4f8f5; border-left: 4px solid var(--primary); padding: 30px; margin: 40px 0; border-radius: 0 4px 4px 0; }
-    .highlight-box h3 { margin-top: 0; color: var(--primary); font-family: 'Oswald', sans-serif; }
-
-    /* CTA */
-    .article-cta { background: #111; color: #fff; padding: 50px; text-align: center; border-radius: 8px; margin-top: 80px; }
-    .btn { display:inline-block; padding:14px 32px; border-radius:50px; background: var(--primary); color: #fff; font-weight: 600; margin-top: 20px; }
-    .btn:hover { background: #14522d; }
-
-    @media (max-width: 768px) {
-      .article-title { font-size: 32px; }
-    }
-  </style>
+  
+  <link rel="stylesheet" href="assets/css/global.css">
 </head>
 <body>
 
   <div data-include="header.html"></div>
 
-  <article>
-    <header class="article-header wrap-narrow">
+  <article class="wrap">
+    <header class="article-header">
       <span class="article-meta">Oficina Técnica • Diseño Mecánico</span>
       <h1 class="article-title">Dimensiones DIN 912: Tabla para diseño de alojamientos (Allen)</h1>
-      <div class="article-date">Publicado el 20 Febrero, 2026 • 2 min de lectura</div>
+      <div class="article-date">Publicado el 20 Febrero, 2026 • 3 min de lectura</div>
     </header>
 
-    <div class="wrap">
-      <div class="article-hero">
-        <img src="assets\images\din912-2.png" alt="Tornillos Allen DIN 912">
-      </div>
+    <div class="article-hero">
+      <img src="assets/images/din912-2.png" alt="Tornillos Allen Industriales">
     </div>
 
-    <div class="wrap-narrow content">
-      
-      <p>El tornillo <strong>DIN 912</strong> (o ISO 4762) es el rey de la maquinaria industrial. Su cabeza cilíndrica con hexágono interior permite aplicar pares de apriete altos en espacios reducidos.</p>
-      <p>Sin embargo, el error número uno al diseñar piezas en CAD (ya sea para mecanizado o impresión 3D) es hacer el agujero para la cabeza demasiado justo.</p>
+    <div class="content wrap-narrow">
+      <p>El tornillo <strong>DIN 912</strong> (ISO 4762) es el estándar en maquinaria industrial. Su cabeza cilíndrica permite grandes pares de apriete, pero requiere un diseño preciso del alojamiento o <em>counterbore</em>.</p>
 
-      <h2>El Plano: ¿Qué significan las letras?</h2>
-      <p>Antes de mirar la tabla, identifica las cotas clave para tu diseño:</p>
+      <h2>Identificación de cotas</h2>
+      <p>Para diseñar correctamente, debemos fijarnos en el diámetro de la cabeza (dk) y su altura (k).</p>
 
       <div class="article-hero">
-        <img src="assets\images\din912.png" alt="Tornillos Allen DIN 912">
+        <img src="assets/images/din912.png" alt="Tornillos Allen Industriales">
       </div>
 
-      <h2>Tabla de Dimensiones (DIN 912 / ISO 4762)</h2>
-      <p>Medidas estándar en milímetros. Utiliza la columna <strong>"dk"</strong> para saber cuánto ocupa la cabeza, y añade la holgura necesaria.</p>
-      
-      
-
+      <h2>Tabla de Dimensiones (ISO 4762)</h2>
       <div class="table-container">
         <table>
           <thead>
@@ -113,46 +54,29 @@
             <tr><td>M8</td><td>13.0 mm</td><td>8.0 mm</td><td>6</td></tr>
             <tr><td>M10</td><td>16.0 mm</td><td>10.0 mm</td><td>8</td></tr>
             <tr><td>M12</td><td>18.0 mm</td><td>12.0 mm</td><td>10</td></tr>
-            <tr><td>M14</td><td>21.0 mm</td><td>14.0 mm</td><td>12</td></tr>
-            <tr><td>M16</td><td>24.0 mm</td><td>16.0 mm</td><td>14</td></tr>
-            <tr><td>M20</td><td>30.0 mm</td><td>20.0 mm</td><td>17</td></tr>
           </tbody>
         </table>
       </div>
 
       <div class="highlight-box">
-        <h3>💡 Consejo de Diseño: El "Counterbore"</h3>
-        <p>Nunca diseñes el agujero con la medida exacta de la tabla. Los tornillos tienen tolerancias y las máquinas también.</p>
-        <p>Para hacer un avellanado cilíndrico (esconder la cabeza) perfecto, usa esta regla:</p>
+        <h3>💡 El Consejo del Ingeniero</h3>
+        <p>No diseñes el agujero al tamaño justo de la tabla. Aplica siempre una holgura de seguridad:</p>
         <ul>
-          <li><strong>Impresión 3D:</strong> dk + 0.6mm (para compensar la expansión del plástico).</li>
-          <li><strong>Mecanizado CNC:</strong> dk + 1.0mm (si necesitas meter un vaso de tubo, necesitarás mucho más).</li>
+          <li><strong>Impresión 3D:</strong> dk + 0.6mm mínimo.</li>
+          <li><strong>Mecanizado:</strong> dk + 1.0mm para permitir la entrada de la herramienta.</li>
         </ul>
-        <p><em>Ejemplo para M6: Cabeza de 10mm -> Diseña el hueco de <strong>11mm</strong>.</em></p>
       </div>
 
       <div class="article-cta">
-        <h3>¿Necesitas ayuda con el diseño CAD?</h3>
-        <p>Optimizamos tus archivos para asegurar que todas las tolerancias y ensamblajes funcionen a la primera.</p>
-        <a href="contacto.html" class="btn">Pedir Revisión de Diseño</a>
+        <h3>¿Necesitas optimizar tus diseños CAD?</h3>
+        <p>Revisamos tus tolerancias para asegurar un montaje perfecto.</p>
+        <a href="contacto.html" class="btn-primary" style="background:white; color:black;">Consultar con un experto</a>
       </div>
-
     </div>
   </article>
 
   <div data-include="footer.html"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const slots = document.querySelectorAll('[data-include]');
-      for (const el of slots) {
-        try {
-          const res = await fetch(el.getAttribute('data-include'));
-          if (res.ok) el.outerHTML = await res.text();
-        } catch (e) {}
-      } 
-    });
-  </script>
-
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>

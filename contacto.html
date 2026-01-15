@@ -10,55 +10,15 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <style>
-    :root { --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--fg); background: #fdfdfd; line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .wrap { max-width: 1100px; margin: 0 auto; padding: 40px 20px; }
-
-    h1, h2, h3 { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    /* LAYOUT 2 COLUMNAS */
-    .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; margin-top: 40px; }
-
-    /* INFO IZQUIERDA */
-    .contact-info h1 { font-size: 42px; margin-bottom: 20px; line-height: 1.1; }
-    .contact-info p.lead { font-size: 18px; color: var(--muted); margin-bottom: 40px; font-weight: 300; }
-    
-    .info-item { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 24px; }
-    .info-item i { font-size: 22px; color: var(--primary); margin-top: 4px; }
-    .info-item h4 { margin: 0; font-size: 16px; font-weight: 600; font-family: 'Montserrat', sans-serif; } /* Título pequeño en Montserrat */
-    .info-item p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
-    .info-item a:hover { color: var(--primary); text-decoration: underline; }
-
-    /* FORMULARIO DERECHA */
-    .contact-form { background: #fff; padding: 40px; border-radius: 12px; border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0,0,0,0.03); }
-    .form-group { margin-bottom: 20px; }
-    .form-label { display: block; margin-bottom: 8px; font-weight: 600; font-size: 13px; text-transform: uppercase; color: var(--muted); }
-    
-    .form-control { 
-      width: 100%; padding: 12px 16px; border: 1px solid var(--line); border-radius: 8px; 
-      font-family: inherit; font-size: 15px; background: #fafafa; transition: .2s; 
-    }
-    .form-control:focus { outline: none; border-color: var(--primary); background: #fff; }
-    
-    textarea.form-control { resize: vertical; min-height: 120px; }
-
-    .btn-submit { 
-      width: 100%; padding: 14px; background: var(--fg); color: #fff; border: none; 
-      border-radius: 50px; font-weight: 600; font-size: 16px; cursor: pointer; transition: .2s; margin-top: 10px;
-    }
-    .btn-submit:hover { background: var(--primary); transform: translateY(-2px); box-shadow: 0 5px 15px rgba(27,110,58,0.2); }
-
-    @media (max-width: 800px) { .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
-  </style>
+  <link rel="stylesheet" href="assets/css/global.css">
 </head>
-<body>
+<body style="background: #fdfdfd;">
+
   <div data-include="header.html"></div>
 
   <main class="wrap">
     <div class="contact-grid">
+      
       <div class="contact-info">
         <h1>Hablemos de tu Proyecto</h1>
         <p class="lead">¿Tienes una idea técnica o necesitas un repuesto? Estamos listos para ayudarte.</p>
@@ -70,60 +30,73 @@
             <p>+34 639 709 440</p>
           </div>
         </div>
+        
         <div class="info-item">
           <i class="fa-brands fa-whatsapp"></i>
           <div>
             <h4>WhatsApp</h4>
-            <p><a href="https://wa.me/34639709440" target="_blank">Iniciar chat directo</a></p>
+            <p><a href="https://wa.me/34639709440" target="_blank" style="color:var(--primary); font-weight:600;">Iniciar chat directo</a></p>
           </div>
         </div>
+        
         <div class="info-item">
           <i class="fa fa-envelope"></i>
           <div>
             <h4>Email</h4>
-            <p><a href="mailto:p.estiarte@gmail.com">p.estiarte@gmail.com</a></p>
+            <p><a href="mailto:p.estiarte@gmail.com" style="color:var(--primary); font-weight:600;">p.estiarte@gmail.com</a></p>
           </div>
         </div>
       </div>
 
       <div class="contact-form">
         <form action="https://formspree.io/f/mlggezql" method="POST"> 
-  <div class="form-group">
-    <label class="form-label">Nombre</label>
-    <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
-  </div>
-  
-  <div class="form-group">
-    <label class="form-label">Email</label>
-    <input type="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
-  </div>
-  
-  <div class="form-group">
-    <label class="form-label">Asunto</label>
-    <select name="asunto" class="form-control">
-      <option value="General">Información General</option>
-      <option value="Presupuesto-3D">Solicitar Presupuesto (Diseño 3D)</option>
-      <option value="Presupuesto-Maquinaria">Solicitar Presupuesto (Maquinaria)</option>
-      <option value="Tienda">Duda sobre Tienda</option>
-    </select>
-  </div>
-  
-  <div class="form-group">
-    <label class="form-label">Mensaje</label>
-    <textarea name="mensaje" class="form-control" placeholder="Cuéntanos los detalles..." required></textarea>
-  </div>
+          <div class="form-group">
+            <label class="form-label">Nombre</label>
+            <input type="text" name="nombre" class="form-control" placeholder="Tu nombre" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Email</label>
+            <input type="email" name="email" class="form-control" placeholder="tucorreo@ejemplo.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Asunto</label>
+            <select name="asunto" class="form-control">
+              <option value="General">Información General</option>
+              <option value="Presupuesto-3D">Solicitar Presupuesto (Diseño 3D)</option>
+              <option value="Presupuesto-Maquinaria">Solicitar Presupuesto (Maquinaria)</option>
+              <option value="Tienda">Duda sobre Tienda</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label class="form-label">Mensaje</label>
+            <textarea name="mensaje" class="form-control" placeholder="Cuéntanos los detalles..." required></textarea>
+          </div>
 
-  <div style="margin-bottom: 15px; font-size: 13px; color: var(--muted);">
-    <label><input type="checkbox" required> Acepto la política de privacidad</label>
-  </div>
+          <div style="margin-bottom: 15px; font-size: 13px; color: var(--muted);">
+            <label><input type="checkbox" required> Acepto la política de privacidad</label>
+          </div>
 
-  <button type="submit" class="btn-submit">Enviar Mensaje</button>
-</form>
+          <button type="submit" class="btn-submit">Enviar Mensaje</button>
+        </form>
       </div>
     </div>
   </main>
 
   <div data-include="footer.html"></div>
-  <script>document.addEventListener('DOMContentLoaded',async()=>{document.querySelectorAll('[data-include]').forEach(async el=>{try{el.outerHTML=await(await fetch(el.getAttribute('data-include'))).text()}catch(e){}})});</script>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      const slots = document.querySelectorAll('[data-include]');
+      for (const el of slots) {
+        try {
+          const res = await fetch(el.getAttribute('data-include'));
+          if (res.ok) el.outerHTML = await res.text();
+        } catch (e) { console.error("Error en include", e); }
+      }
+    });
+  </script>
 </body>
 </html>

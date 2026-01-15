@@ -4,70 +4,38 @@
   <meta charset="utf-8" />
   <title>Ingeniería inversa y escaneo 3D – EST Ingenieros</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Digitalizamos tu pieza y la convertimos en un modelo CAD STEP listo para fabricar o imprimir. Automoción, industrial y prototipos.">
+  <meta name="description" content="Digitalizamos tu pieza y la convertimos en un modelo CAD STEP listo para fabricar o imprimir.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+  <link rel="stylesheet" href="assets/css/global.css">
+  
   <style>
-    :root { --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; }
-    * { box-sizing: border-box; }
-    body { margin: 0; font-family: 'Montserrat', sans-serif; color: var(--fg); background: var(--bg); line-height: 1.6; }
-    a { text-decoration: none; color: inherit; }
-    .wrap { max-width: 1000px; margin: 0 auto; padding: 0 20px; }
-
-    /* 🔹 Títulos con fuente Oswald */
-    .h1, .h2, h3, .price { 
-      font-family: 'Oswald', sans-serif; 
-      text-transform: uppercase; 
-      letter-spacing: 0.5px; 
-    }
-
-    .section { padding: 40px 0; border-bottom: 1px solid #f0f0f0; }
+    /* Estilos específicos que no están en el global aún */
+    .section { padding: 60px 0; border-bottom: 1px solid var(--line); }
     .section:last-of-type { border-bottom: none; }
     
-    .h1 { font-size: 42px; margin: 0 0 20px; font-weight: 500; line-height: 1.1; }
-    .h2 { font-size: 28px; margin: 0 0 15px; font-weight: 500; }
-    .h2.no-margin { margin: 0; }
-    .lead { color: var(--muted); font-size: 18px; margin: 0 0 20px; font-weight: 300; }
-
-    /* Hero */
-    .hero { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 60px 0; }
-    .hero-media { width: 100%; aspect-ratio: 16/9; border-radius: 12px; object-fit: cover; background: #000; border: 1px solid #eee; }
-    .actions { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 10px; }
+    /* Hero personalizado para servicios */
+    .hero-service { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 80px 0; }
+    .hero-service img { width: 100%; aspect-ratio: 16/9; border-radius: 12px; object-fit: cover; border: 1px solid var(--line); }
     
-    .btn { display: inline-block; padding: 12px 28px; border: 1px solid var(--line); border-radius: 50px; font-weight: 600; font-size: 14px; transition: all .2s ease; }
-    .btn:hover { background: #f6f6f6; transform: translateY(-2px); }
-    .btn.primary { background: var(--fg); color: #fff; border-color: var(--fg); }
-    .btn.primary:hover { background: var(--primary); border-color: var(--primary); color: #fff; }
-
-    /* Paso a paso */
-    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; }
+    /* Pasos del proceso */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
     .step { border: 1px solid var(--line); border-radius: 12px; padding: 24px; background: #fdfdfd; }
-    .step .n { display: inline-block; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--primary); color: var(--primary); text-align: center; line-height: 30px; margin-bottom: 12px; font-weight: 700; font-family: 'Oswald'; }
-    .step h3 { font-size: 18px; margin-bottom: 8px; }
-
-    /* Tarjetas */
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
-    .card { border: 1px solid var(--line); border-radius: 12px; padding: 24px; background: #fff; }
-    .card h3 { margin: 0 0 10px; font-size: 20px; color: var(--primary); }
-    .list { margin: 0; padding-left: 20px; color: var(--muted); }
-    .price { font-weight: 700; font-size: 24px; color: var(--fg); display: block; margin-bottom: 5px; }
-
-    /* CTA final */
-    .cta { border: 1px solid var(--line); border-radius: 12px; padding: 40px; display: grid; grid-template-columns: 1fr auto; gap: 20px; align-items: center; background: #f9f9f9; }
-
-    /* Animación suave */
-    [data-reveal] { opacity: 0; transform: translateY(15px); transition: opacity .6s ease, transform .6s ease; }
-    [data-reveal].in { opacity: 1; transform: none; }
+    .step .n { display: inline-block; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--primary); color: var(--primary); text-align: center; line-height: 30px; margin-bottom: 12px; font-weight: 700; font-family: var(--font-title); }
+    
+    /* Grid de tarjetas técnicas/precios */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px; }
+    .price-tag { font-family: var(--font-title); font-weight: 700; font-size: 24px; color: var(--fg); display: block; margin-bottom: 5px; }
+    
+    .list-bullets { margin: 20px 0; padding-left: 20px; color: var(--muted); }
+    .list-bullets li { margin-bottom: 10px; }
 
     @media (max-width: 880px) {
-      .hero { grid-template-columns: 1fr; padding: 40px 0; }
-      .cta { grid-template-columns: 1fr; text-align: center; }
-      .actions { justify-content: center; }
-      .h1 { font-size: 34px; }
+      .hero-service { grid-template-columns: 1fr; text-align: center; }
+      .hero-btns { justify-content: center; }
     }
   </style>
 </head>
@@ -77,22 +45,23 @@
 
   <main class="wrap">
 
-    <section class="hero" data-reveal>
+    <section class="hero-service" data-reveal>
       <div>
         <h1 class="h1">Ingeniería inversa y escaneo 3D profesional</h1>
         <p class="lead">Digitalizamos tu pieza física y la convertimos en un modelo CAD listo para fabricar o imprimir. Ideal para automoción, maquinaria y prototipos.</p>
-        <div class="actions">
-          <a class="btn primary" href="contacto.html?tipo=escaneo">Solicitar presupuesto</a>
+        <div class="hero-btns">
+          <a class="btn-primary" href="contacto.html?tipo=escaneo">Solicitar presupuesto</a>
         </div>
       </div>
-      <img class="hero-media" src="assets/images/Scanner.jpg" alt="Escaneo 3D de pieza">
+      <img src="assets/images/Scanner.jpg" alt="Escaneo 3D de pieza">
     </section>
 
     <section class="section" data-reveal>
       <h2 class="h2">Qué hacemos</h2>
       <p>Convertimos piezas reales en modelos 3D precisos. Partimos de la pieza física y, mediante escaneo 3D y medición, reconstruimos su geometría en CAD paramétrico para poder modificarla, optimizarla o fabricarla de nuevo.</p>
+      
       <p>Trabajamos para <strong>automoción</strong> (soportes, carcasas, adaptadores), <strong>maquinaria industrial</strong> (protectores, útiles, recambios descatalogados) y <strong>prototipos</strong>.</p>
-      <ul class="list">
+      <ul class="list-bullets">
         <li>Piezas rotas o descatalogadas</li>
         <li>Adaptadores y soportes específicos</li>
         <li>Carcasas y cubiertas técnicas</li>
@@ -103,106 +72,84 @@
     <section class="section" data-reveal>
       <h2 class="h2">Proceso</h2>
       <div class="steps">
-        <div class="step"><div class="n">1</div><h3>Brief & validación</h3><p class="muted">Fotos/medidas, uso de la pieza y requisitos.</p></div>
-        <div class="step"><div class="n">2</div><h3>Escaneo/medición</h3><p class="muted">Luz estructurada, fotogrametría o medición manual.</p></div>
+        <div class="step"><div class="n">1</div><h3>Brief & validación</h3><p class="muted">Fotos/medidas y requisitos.</p></div>
+        <div class="step"><div class="n">2</div><h3>Escaneo/medición</h3><p class="muted">Luz estructurada o fotogrametría.</p></div>
         <div class="step"><div class="n">3</div><h3>Reconstrucción CAD</h3><p class="muted">Modelo paramétrico editable.</p></div>
-        <div class="step"><div class="n">4</div><h3>Revisión</h3><p class="muted">Ajustes y versiones contigo.</p></div>
-        <div class="step"><div class="n">5</div><h3>Entrega</h3><p class="muted">Archivo CAD + malla si la necesitas.</p></div>
+        <div class="step"><div class="n">4</div><h3>Revisión</h3><p class="muted">Ajustes finales contigo.</p></div>
+        <div class="step"><div class="n">5</div><h3>Entrega</h3><p class="muted">Archivo CAD STEP + malla.</p></div>
         <div class="step"><div class="n">6</div><h3>Opcional</h3><p class="muted">Impresión 3D o fabricación.</p></div>
       </div>
     </section>
 
     <section class="section" data-reveal>
       <h2 class="h2">Entrega y formatos</h2>
-      <div class="cards">
-        <article class="card">
+      <div class="cards-grid">
+        <div class="card-item">
           <h3>CAD</h3>
-          <p class="muted">Formato: <strong>STEP (.step/.stp)</strong>.</p>
-        </article>
-        <article class="card">
+          <p class="muted">Formato estándar: <strong>STEP (.step/.stp)</strong>.</p>
+        </div>
+        <div class="card-item">
           <h3>Malla</h3>
-          <p class="muted">STL u OBJ (si se requiere para impresión o visualización).</p>
-        </article>
-        <article class="card">
-          <h3>Planos (opcional)</h3>
-          <p class="muted">PDF con cotas principales, si lo pides.</p>
-        </article>
+          <p class="muted">STL u OBJ para impresión o visualización.</p>
+        </div>
+        <div class="card-item">
+          <h3>Planos</h3>
+          <p class="muted">PDF con cotas principales (bajo pedido).</p>
+        </div>
       </div>
-    </section>
-
-    <section class="section" data-reveal>
-      <h2 class="h2">Compatibilidades y tecnologías</h2>
-      <p>Seleccionamos la metodología según la pieza: <strong>escáner de luz estructurada</strong>, <strong>fotogrametría</strong> con calibración y <strong>medición manual</strong> con calibres/profundímetros para cotas clave. Combinamos nubes de puntos y reconstrucción paramétrica para obtener un modelo fiable y editable.</p>
     </section>
 
     <section class="section" data-reveal>
       <h2 class="h2">Precios orientativos</h2>
-      <div class="cards">
-        <article class="card">
-          <span class="price">desde 60–120 €</span>
+      <div class="cards-grid">
+        <div class="card-item">
+          <span class="price-tag">desde 60–120 €</span>
           <h3>Básico</h3>
-          <p class="muted">Pieza simple, 1–2 cotas clave.</p>
-        </article>
-        <article class="card">
-          <span class="price">desde 180–350 €</span>
+          <p class="muted">Pieza simple, pocas cotas clave.</p>
+        </div>
+        <div class="card-item">
+          <span class="price-tag">desde 180–350 €</span>
           <h3>Medio</h3>
-          <p class="muted">Geometría mixta, encajes.</p>
-        </article>
-        <article class="card">
-          <span class="price">desde 450–900 €</span>
+          <p class="muted">Geometría mixta y encajes técnicos.</p>
+        </div>
+        <div class="card-item">
+          <span class="price-tag">desde 450–900 €</span>
           <h3>Avanzado</h3>
-          <p class="muted">Carcasa compleja/forma orgánica.</p>
-        </article>
+          <p class="muted">Carcasa compleja o forma orgánica.</p>
+        </div>
       </div>
-      <p class="muted" style="margin-top:15px; font-size: 13px;">Incluye escaneo/medición y entrega CAD STEP + malla si la necesitas. La impresión 3D es opcional (presupuesto aparte).</p>
+      <p class="muted" style="margin-top:20px; font-size: 13px;">* Precios sujetos a complejidad técnica. No incluyen impresión 3D.</p>
     </section>
 
     <section class="section" data-reveal>
-      <h2 class="h2">Antes de empezar</h2>
-      <ul class="list">
-        <li>Fotos de la pieza (frente/lateral/detalle de encajes).</li>
-        <li>Medidas principales (largo/ancho/alto y diámetros).</li>
-        <li>Uso previsto (temperatura, esfuerzo, interior/exterior).</li>
-        <li>Si hay pieza espejo o rota, adjunta ambas.</li>
-        <li>Material deseado (PLA, PETG, ABS, Nylon, CF, etc.).</li>
-      </ul>
-    </section>
-
-    <section class="section" data-reveal>
-      <div class="cta">
-        <div>
-          <h2 class="h2 no-margin">¿Empezamos con tu pieza?</h2>
-          <p class="muted">Envíanos fotos y medidas o cuéntanos el uso; te damos presupuesto rápido.</p>
-        </div>
-        <div class="actions">
-          <a class="btn primary" href="contacto.html?tipo=escaneo">Pedir presupuesto</a>
-        </div>
+      <div class="cta-box">
+        <h2>¿Empezamos con tu pieza?</h2>
+        <p>Envíanos fotos y medidas; te damos presupuesto rápido y sin compromiso.</p>
+        <a class="btn-primary" style="background:white; color:black;" href="contacto.html?tipo=escaneo">Pedir presupuesto</a>
       </div>
     </section>
+
   </main>
 
   <div data-include="footer.html"></div>
 
   <script>
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
-    }, {threshold: 0.1});
-    document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
-
     document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Carga componentes
       const slots = document.querySelectorAll('[data-include]');
       for (const el of slots) {
-        const file = el.getAttribute('data-include');
         try {
-          const res = await fetch(file, { cache: 'no-store' });
-          if (!res.ok) throw new Error(res.status + ' ' + res.statusText);
-          el.outerHTML = await res.text();
-        } catch (err) {
-          console.error('Include error en', file, err);
-        }
+          const res = await fetch(el.getAttribute('data-include'));
+          if (res.ok) el.outerHTML = await res.text();
+        } catch (e) {}
       }
+
+      // 2. Animaciones Reveal
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+      }, {threshold: 0.1});
+      document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
     });
   </script>
 </body>
-
 </html>

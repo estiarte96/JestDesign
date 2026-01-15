@@ -4,108 +4,13 @@
   <meta charset="utf-8" />
   <title>EST Ingenieros – Impresión, Diseño y Escaneo 3D</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Impresión 3D profesional, diseño a medida y escaneo 3D (ingeniería inversa). Soluciones técnicas para industria y automoción.">
+  <meta name="description" content="Impresión 3D profesional, diseño a medida y escaneo 3D.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
-  <style>
-    :root { 
-      --fg: #1a1a1a; 
-      --muted: #666; 
-      --line: #e5e5e5; 
-      --bg: #fff; 
-      --primary: #1b6e3a; 
-    }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: 'Montserrat', sans-serif; color:var(--fg); background:var(--bg); line-height: 1.6; }
-    a { color:inherit; text-decoration:none; }
-    
-    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
-
-    /* TIPOGRAFÍA INDUSTRIAL */
-    h1, h2, h3, .title { font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 0.5px; }
-
-    /* HERO SECTION CON IMAGEN DE FONDO */
-    .hero { 
-      position: relative;
-      text-align: center;
-      padding: 120px 20px; 
-      /* Capa de degradado sobre la imagen para legibilidad */
-      background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.95)), 
-                  url('assets/images/back.jpg'); 
-      background-size: cover;
-      background-position: center;
-      background-attachment: fixed; /* Efecto Parallax opcional */
-      border-bottom: 1px solid var(--line); 
-      margin-bottom: 40px; 
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-content { 
-      position: relative;
-      z-index: 2; 
-      max-width: 800px;
-    }
-
-    .hero h1 { 
-      font-size: 56px; 
-      margin: 0 0 20px; 
-      color: #111; 
-      line-height: 1.1; 
-    }
-
-    .hero p { 
-      font-size: 20px; 
-      color: #333; 
-      margin: 0 auto 35px; 
-      font-weight: 400; 
-      max-width: 600px; 
-    }
-
-    .hero-btns { 
-      display: flex; 
-      gap: 15px; 
-      justify-content: center;
-    }
-
-    /* BOTONES */
-    .btn { display:inline-block; padding:14px 32px; border-radius:50px; font-weight:600; font-size:14px; transition:all .2s; border:1px solid transparent; }
-    .btn.primary { background:var(--primary); color:#fff; }
-    .btn.primary:hover { background:#14522d; transform:translateY(-2px); box-shadow:0 5px 15px rgba(27,110,58,0.2); }
-    .btn.outline { border-color:#ccc; color:var(--fg); background:#fff; }
-    .btn.outline:hover { border-color:var(--fg); background:#f9f9f9; }
-
-    /* GRID DE SERVICIOS */
-    .grid-home { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 60px 0; }
-    .card-home { padding: 30px; border: 1px solid var(--line); border-radius: 8px; transition: .3s; background: #fff; display:block; }
-    .card-home:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.05); border-color: var(--primary); }
-    .card-home i { font-size: 32px; color: var(--primary); margin-bottom: 20px; }
-    .card-home h3 { font-size: 24px; margin: 0 0 10px; color: var(--fg); }
-    .card-home p { color: var(--muted); font-size: 15px; margin-bottom: 20px; }
-    .link-arrow { font-weight: 600; color: var(--primary); font-size: 14px; }
-
-    /* CTA FINAL */
-    .cta-box { background: #111; color: #fff; padding: 50px; border-radius: 12px; text-align: center; margin: 60px 0; }
-    .cta-box h2 { color: #fff; font-size: 32px; margin-bottom: 10px; }
-    .cta-box p { color: #aaa; margin-bottom: 30px; font-size: 18px; font-weight: 300; }
-    .cta-box .btn.primary { background: #fff; color: #111; }
-    .cta-box .btn.primary:hover { background: var(--primary); color: #fff; }
-
-    /* Responsivo */
-    @media (max-width: 768px) {
-      .hero { padding: 80px 20px; }
-      .hero h1 { font-size: 38px; }
-      .hero p { font-size: 18px; }
-    }
-
-    /* Animación */
-    [data-reveal] { opacity:0; transform:translateY(20px); transition:.6s ease; }
-    [data-reveal].in { opacity:1; transform:none; }
-  </style>
+  <link rel="stylesheet" href="assets/css/global.css">
 </head>
 <body>
 
@@ -116,8 +21,8 @@
       <h1>Ingeniería & <br>Fabricación Aditiva</h1>
       <p>Transformamos ideas en piezas funcionales. Desde el diseño CAD hasta la impresión 3D industrial.</p>
       <div class="hero-btns">
-        <a class="btn primary" href="proyectos.html">Ver Proyectos</a>
-        <a class="btn outline" href="contacto.html">Contactar</a>
+        <a class="btn-primary" href="proyectos.html">Ver Proyectos</a>
+        <a class="btn-primary" style="background:white; color:black; border:1px solid #ccc;" href="contacto.html">Contactar</a>
       </div>
     </div>
   </section>
@@ -129,28 +34,28 @@
         <i class="fa fa-pen-ruler"></i>
         <h3>Diseño CAD</h3>
         <p>Modelado paramétrico de piezas mecánicas, ensamblajes y optimización para fabricación.</p>
-        <span class="link-arrow">Saber más →</span>
+        <span class="link-arrow" style="color:var(--primary); font-weight:700;">Saber más →</span>
       </a>
       
       <a href="escaneo3d.html" class="card-home">
         <i class="fa fa-cube"></i>
         <h3>Ingeniería Inversa</h3>
         <p>Escaneo 3D de alta precisión para replicar piezas descatalogadas o rotas.</p>
-        <span class="link-arrow">Saber más →</span>
+        <span class="link-arrow" style="color:var(--primary); font-weight:700;">Saber más →</span>
       </a>
 
       <a href="proyectos.html" class="card-home">
         <i class="fa fa-industry"></i>
         <h3>Maquinaria a Medida</h3>
         <p>Desarrollo de soluciones industriales y automatización de procesos.</p>
-        <span class="link-arrow">Ver Casos de Éxito →</span>
+        <span class="link-arrow" style="color:var(--primary); font-weight:700;">Ver Casos de Éxito →</span>
       </a>
     </section>
 
     <section class="cta-box" data-reveal>
       <h2>¿Tienes un proyecto en mente?</h2>
       <p>Cuéntanos qué necesitas y lo haremos realidad.</p>
-      <a class="btn primary" href="contacto.html">Pedir Presupuesto</a>
+      <a class="btn-primary" style="background:white; color:black;" href="contacto.html">Pedir Presupuesto</a>
     </section>
 
   </main>
@@ -158,22 +63,21 @@
   <div data-include="footer.html"></div>
 
   <script>
-    // Reveal Scroll
-    const io = new IntersectionObserver(entries=>{
-      entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('in'); });
-    }, {threshold: 0.1});
-    document.querySelectorAll('[data-reveal]').forEach(el=>io.observe(el));
-
-    // Include Header/Footer
+    // 1. Carga de Header/Footer
     document.addEventListener('DOMContentLoaded', async () => {
-      const slots = document.querySelectorAll('[data-include]');
-      for (const el of slots) {
+      document.querySelectorAll('[data-include]').forEach(async el => {
         try {
           const res = await fetch(el.getAttribute('data-include'));
           if (res.ok) el.outerHTML = await res.text();
         } catch (e) {}
-      } 
+      });
     });
+
+    // 2. Animación al hacer Scroll (Reveal)
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+    }, {threshold: 0.1});
+    document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
   </script>
 </body>
 </html>

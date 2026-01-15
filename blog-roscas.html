@@ -2,105 +2,44 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>Guía de Roscas: Qué broca usar (Tabla Métrica y Gas) – EST Ingenieros</title>
+  <title>Guía de Roscas: Qué broca usar – EST Ingenieros</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Tabla de referencia rápida para taller: diámetros de broca para roscas Métricas e ISO y roscas Gas (BSP). Evita romper machos.">
-
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
-  <style>
-    /* --- VARIABLES Y BASE (Igual que el resto de la web) --- */
-    :root { --fg: #1a1a1a; --muted: #666; --line: #e5e5e5; --bg: #fff; --primary: #1b6e3a; }
-    * { box-sizing: border-box; }
-    body { margin:0; font-family: 'Montserrat', sans-serif; color:var(--fg); background:var(--bg); line-height: 1.8; }
-    a { color:inherit; text-decoration:none; transition: color 0.2s; }
-    
-    .wrap { max-width:1100px; margin:0 auto; padding:20px; }
-    .wrap-narrow { max-width: 800px; margin: 0 auto; padding: 20px; } 
-
-    /* --- ESTILOS GENERALES DEL ARTÍCULO --- */
-    .article-header { text-align: center; padding: 60px 20px 40px; }
-    .article-meta { font-size: 13px; font-weight: 600; color: var(--primary); text-transform: uppercase; letter-spacing: 1px; margin-bottom: 15px; display: block;}
-    .article-title { font-family: 'Oswald', sans-serif; font-size: 42px; line-height: 1.2; margin: 0 0 20px; color: #111; }
-    .article-date { color: var(--muted); font-size: 14px; }
-
-    .article-hero { width: 100%; height: auto; margin-bottom: 60px; border-radius: 4px; overflow: hidden; }
-    .article-hero img { width: 100%; height: auto; display: block; }
-
-    .content { font-size: 18px; color: #333; }
-    .content h2 { font-family: 'Oswald', sans-serif; margin-top: 50px; margin-bottom: 20px; font-size: 28px; color: #000; border-bottom: 2px solid var(--primary); display: inline-block; padding-bottom: 5px; }
-    .content p { margin-bottom: 20px; }
-    .content ul, .content ol { margin-bottom: 30px; padding-left: 20px; }
-    .content li { margin-bottom: 10px; }
-    
-    /* Highlight box (Fórmula) */
-    .highlight-box { background: #f4f8f5; border-left: 4px solid var(--primary); padding: 30px; margin: 40px 0; border-radius: 0 4px 4px 0; }
-    .highlight-box h3 { margin-top: 0; color: var(--primary); font-family: 'Oswald', sans-serif; margin-bottom: 10px; }
-    .formula { font-size: 22px; font-weight: 700; color: #111; font-family: 'Courier New', monospace; }
-
-    /* --- ESTILOS DE LAS TABLAS (NUEVO) --- */
-    .table-container { overflow-x: auto; margin: 30px 0; border-radius: 6px; border: 1px solid var(--line); }
-    table { width: 100%; border-collapse: collapse; min-width: 500px; }
-    th { background: #f4f4f4; text-align: left; padding: 15px; font-family: 'Oswald', sans-serif; font-weight: 500; border-bottom: 2px solid #ddd; }
-    td { padding: 15px; border-bottom: 1px solid #eee; font-size: 16px; }
-    tr:last-child td { border-bottom: none; }
-    tr:nth-child(even) { background: #fafafa; } /* Filas alternas */
-    td strong { color: var(--primary); }
-
-    /* CTA FINAL */
-    .article-cta { background: #111; color: #fff; padding: 50px; text-align: center; border-radius: 8px; margin-top: 80px; }
-    .article-cta h3 { font-family: 'Oswald', sans-serif; font-size: 24px; margin-bottom: 10px; color: #fff; }
-    .btn { display:inline-block; padding:14px 32px; border-radius:50px; background: var(--primary); color: #fff; font-weight: 600; margin-top: 20px; }
-    .btn:hover { background: #14522d; }
-
-    @media (max-width: 768px) {
-      .article-title { font-size: 32px; }
-      .article-hero { height: 250px; }
-    }
-  </style>
+  
+  <link rel="stylesheet" href="assets/css/global.css">
 </head>
 <body>
 
   <div data-include="header.html"></div>
 
-  <article>
-    <header class="article-header wrap-narrow">
+  <article class="wrap">
+    <header class="article-header">
       <span class="article-meta">Taller • Mecanizado</span>
       <h1 class="article-title">Guía Rápida: Qué broca usar para cada rosca (Métrica y Gas)</h1>
       <div class="article-date">Publicado el 22 Enero, 2026 • 2 min de lectura</div>
     </header>
 
-    <div class="wrap">
-      <div class="article-hero">
-        <img class="hero-media" src="assets\images\blog-roscas.png" alt="Brocas De Matal">
-      </div>
+    <div class="article-hero">
+      <img src="assets/images/blog-roscas.png" alt="Tabla de roscas y brocas">
     </div>
 
-    <div class="wrap-narrow content">
-      
+    <div class="content wrap-narrow">
       <p>No hay nada peor que romper un macho de roscar dentro de una pieza casi terminada o dejar una rosca con poca "chicha" que se pasa de vuelta al apretar.</p>
-      <p>En <strong>EST Ingenieros</strong>, tanto si diseñamos para impresión 3D como para mecanizado CNC, seguimos una regla de oro para garantizar la tolerancia perfecta. Hoy compartimos contigo nuestra tabla de referencia rápida para las roscas más comunes en la industria europea: <strong>Métrica (ISO)</strong> y <strong>Gas (BSP)</strong>.</p>
-
+      
       <div class="highlight-box">
         <h3>📏 La Regla de Oro</h3>
-        <p>Si alguna vez no tienes la tabla a mano, recuerda esta sencilla fórmula para roscas Métricas estándar:</p>
+        <p>Recuerda esta sencilla fórmula para roscas Métricas estándar:</p>
         <p class="formula">Ø Broca = Ø Nominal - Paso</p>
         <p style="font-size: 14px; margin-top: 10px;"><em>Ejemplo M6 (Paso 1mm): 6mm - 1mm = <strong>Broca de 5mm</strong>.</em></p>
       </div>
 
       <h2>1. Tabla de Roscas Métricas (ISO)</h2>
-      <p>Medidas para paso grueso estándar. Ideales para tornillería comercial habitual.</p>
-      
       <div class="table-container">
         <table>
           <thead>
-            <tr>
-              <th>Rosca (M)</th>
-              <th>Paso (mm)</th>
-              <th>Broca a usar (mm)</th>
-            </tr>
+            <tr><th>Rosca (M)</th><th>Paso (mm)</th><th>Broca (mm)</th></tr>
           </thead>
           <tbody>
             <tr><td>M3</td><td>0.5</td><td><strong>2.50</strong></td></tr>
@@ -110,23 +49,15 @@
             <tr><td>M8</td><td>1.25</td><td><strong>6.80</strong></td></tr>
             <tr><td>M10</td><td>1.5</td><td><strong>8.50</strong></td></tr>
             <tr><td>M12</td><td>1.75</td><td><strong>10.20</strong></td></tr>
-            <tr><td>M16</td><td>2.0</td><td><strong>14.00</strong></td></tr>
           </tbody>
         </table>
       </div>
-      <p style="font-size: 14px; color: #666; font-style: italic;">Nota: Si no tienes brocas decimales (ej. 3.3mm), usa la medida entera inferior (3mm) con cuidado o la superior (3.5mm) asumiendo menor resistencia.</p>
 
       <h2>2. Tabla de Roscas Gas (BSP / G)</h2>
-      <p>Estándar para racores de neumática, hidráulica y fontanería.</p>
-
       <div class="table-container">
         <table>
           <thead>
-            <tr>
-              <th>Rosca (G)</th>
-              <th>Hilos por pulgada</th>
-              <th>Broca a usar (mm)</th>
-            </tr>
+            <tr><th>Rosca (G)</th><th>Hilos/Pulgada</th><th>Broca (mm)</th></tr>
           </thead>
           <tbody>
             <tr><td>G 1/8"</td><td>28</td><td><strong>8.80</strong></td></tr>
@@ -137,35 +68,23 @@
         </table>
       </div>
 
-      <h2>💡 3 Consejos para un roscado perfecto</h2>
-      <ol>
-        <li><strong>Avellana antes de roscar:</strong> Pasa una broca de avellanar (90º) justo después de taladrar. Esto guía la entrada del macho y evita rebabas cortantes. </li>
-        <li><strong>Lubricación obligatoria:</strong> En acero usa aceite de corte o taladrina. En aluminio, el alcohol o WD-40 evitan que el material se suelde al filo.</li>
-        <li><strong>Diseño para Impresión 3D:</strong> Si vas a imprimir una pieza para roscarla después, diseña el agujero con la medida de la <em>broca</em> (no del tornillo) y añade 3 o 4 perímetros de pared extra.</li>
-      </ol>
+      <h2>💡 Consejos de experto</h2>
+      <p>Para un acabado profesional:</p>
+      <ul>
+        <li><strong>Avellana:</strong> Facilita la entrada del macho y evita rebabas.</li>
+        <li><strong>Lubrica:</strong> Aceite para acero, alcohol para aluminio.</li>
+      </ul>
 
       <div class="article-cta">
         <h3>¿Necesitas piezas mecanizadas de precisión?</h3>
-        <p>Entregamos piezas funcionales listas para montaje, ya sea mediante CNC o fabricación aditiva.</p>
-        <a href="contacto.html" class="btn">Pedir Presupuesto</a>
+        <p>Diseñamos y fabricamos soluciones listas para montaje.</p>
+        <a href="contacto.html" class="btn-primary" style="background:white; color:black;">Pedir Presupuesto</a>
       </div>
-
     </div>
   </article>
 
   <div data-include="footer.html"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      const slots = document.querySelectorAll('[data-include]');
-      for (const el of slots) {
-        try {
-          const res = await fetch(el.getAttribute('data-include'));
-          if (res.ok) el.outerHTML = await res.text();
-        } catch (e) {}
-      } 
-    });
-  </script>
-
+  <script src="assets/js/main.js" defer></script>
 </body>
 </html>
