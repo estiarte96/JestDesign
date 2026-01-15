@@ -35,3 +35,9 @@ function markActiveLink() {
         }
     });
 }
+// Limpiar .html e index.html de la barra de direcciones
+if (window.location.pathname.endsWith('/index.html')) {
+    window.history.replaceState(null, '', window.location.pathname.replace('/index.html', '/'));
+} else if (window.location.pathname.endsWith('.html')) {
+    window.history.replaceState(null, '', window.location.pathname.replace('.html', ''));
+}
