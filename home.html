@@ -2,14 +2,13 @@
 <html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>EST Ingenieros – Impresión, Diseño y Escaneo 3D</title>
+  <title>EST Ingenieros | Diseño 3D de Prototipos y Maquinaria a Medida</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Impresión 3D profesional, diseño a medida y escaneo 3D.">
+  <meta name="description" content="Especialistas en diseño 3D de prototipos, ingeniería CAD y fabricación de maquinaria a medida. Soluciones industriales de alta precisión. ¡Pide presupuesto!">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
   <link rel="stylesheet" href="assets/css/global.css">
 </head>
 <body>
@@ -18,8 +17,8 @@
 
   <section class="hero" data-reveal>
     <div class="hero-content">
-      <h1>Ingeniería & <br>Fabricación Aditiva</h1>
-      <p>Transformamos ideas en piezas funcionales. Desde el diseño CAD hasta la impresión 3D industrial.</p>
+      <h1>Ingeniería & <br>Diseño 3D CAD</h1>
+      <p>Transformamos ideas en piezas funcionales. Desde el diseño 3D de prototipos hasta el desarrollo de maquinaria a medida.</p>
       <div class="hero-btns">
         <a class="btn-primary" href="proyectos.html">Ver Proyectos</a>
         <a class="btn-primary" style="background:white; color:black; border:1px solid #ccc;" href="contacto.html">Contactar</a>
@@ -29,33 +28,38 @@
 
   <main class="wrap">
     
+    <section class="intro-seo" data-reveal style="padding: 40px 0; text-align: center; max-width: 800px; margin: 0 auto;">
+      <h2>Soluciones avanzadas en Diseño Industrial</h2>
+      <p>En <strong>EST Ingenieros</strong> ayudamos a empresas a externalizar su <strong>oficina técnica</strong>. Nos especializamos en el <strong>desarrollo de prototipos industriales</strong> y el <strong>modelado CAD paramétrico</strong>, garantizando diseños optimizados para fabricación (DFM) y soluciones de ingeniería mecánica de alta complejidad.</p>
+    </section>
+
     <section class="grid-home" data-reveal>
       <a href="diseno3d.html" class="card-home">
         <i class="fa fa-pen-ruler"></i>
-        <h3>Diseño CAD</h3>
-        <p>Modelado paramétrico de piezas mecánicas, ensamblajes y optimización para fabricación.</p>
-        <span class="link-arrow" style="color:var(--primary); font-weight:700;">Saber más →</span>
-      </a>
-      
-      <a href="escaneo3d.html" class="card-home">
-        <i class="fa fa-cube"></i>
-        <h3>Ingeniería Inversa</h3>
-        <p>Escaneo 3D de alta precisión para replicar piezas descatalogadas o rotas.</p>
+        <h3>Diseño 3D y Prototipado</h3>
+        <p>Modelado paramétrico de piezas, conjuntos mecánicos y prototipos optimizados para fabricación.</p>
         <span class="link-arrow" style="color:var(--primary); font-weight:700;">Saber más →</span>
       </a>
 
       <a href="proyectos.html" class="card-home">
         <i class="fa fa-industry"></i>
         <h3>Maquinaria a Medida</h3>
-        <p>Desarrollo de soluciones industriales y automatización de procesos.</p>
+        <p>Ingeniería de detalle para soluciones industriales, automatización y equipos especiales.</p>
         <span class="link-arrow" style="color:var(--primary); font-weight:700;">Ver Casos de Éxito →</span>
+      </a>
+      
+      <a href="escaneo3d.html" class="card-home">
+        <i class="fa fa-cube"></i>
+        <h3>Escaneo 3D e Ing. Inversa</h3>
+        <p>Digitalización de alta precisión para replicar o mejorar piezas existentes y descatalogadas.</p>
+        <span class="link-arrow" style="color:var(--primary); font-weight:700;">Saber más →</span>
       </a>
     </section>
 
     <section class="cta-box" data-reveal>
-      <h2>¿Tienes un proyecto en mente?</h2>
-      <p>Cuéntanos qué necesitas y lo haremos realidad.</p>
-      <a class="btn-primary" style="background:white; color:black;" href="contacto.html">Pedir Presupuesto</a>
+      <h2>¿Tienes un proyecto de ingeniería en mente?</h2>
+      <p>Cuéntanos tus requisitos técnicos y diseñaremos la solución más eficiente.</p>
+      <a class="btn-primary" style="background:white; color:black;" href="contacto.html">Solicitar Presupuesto</a>
     </section>
 
   </main>
@@ -63,7 +67,6 @@
   <div data-include="footer.html"></div>
 
   <script>
-    // 1. Carga de Header/Footer
     document.addEventListener('DOMContentLoaded', async () => {
       document.querySelectorAll('[data-include]').forEach(async el => {
         try {
@@ -73,7 +76,6 @@
       });
     });
 
-    // 2. Animación al hacer Scroll (Reveal)
     const io = new IntersectionObserver(entries => {
       entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
     }, {threshold: 0.1});

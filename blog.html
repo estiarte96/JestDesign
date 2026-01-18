@@ -1,37 +1,38 @@
 <!doctype html>
 <html lang="es">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   
+  <title>Blog de Ingeniería Industrial y Diseño CAD | EST Ingenieros</title>
+  <meta name="description" content="Recursos técnicos para ingeniería: guías de diseño CAD, tablas de roscas, tolerancias DIN y casos de éxito en fabricación aditiva e ingeniería inversa.">
+
+  <meta property="og:title" content="Blog Técnico de Ingeniería y Diseño 3D | EST Ingenieros">
+  <meta property="og:description" content="Guías, tablas técnicas y artículos sobre innovación en el sector industrial.">
+  <meta property="og:image" content="https://estingenieros.com/assets/images/blog-roscas.png">
+
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
-
     gtag('config', 'G-TBZK1N6QGS');
   </script>
+
   <link rel="icon" type="image/png" href="/assets/images/favicon.png">
   <meta name="theme-color" content="#1b6e3a">
-  <meta charset="utf-8" />
-  <title>Blog Técnico – EST Ingenieros</title>
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <meta name="description" content="Artículos sobre ingeniería inversa, diseño CAD y fabricación aditiva industrial.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Oswald:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/global.css">
+  
   <style>
-    /* Estilos extra específicos para las miniaturas del blog que no están en el global */
     .blog-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; margin-bottom: 80px; }
     .card-excerpt { font-size: 14px; color: var(--muted); margin-bottom: 20px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .card-meta { margin-top: auto; padding-top: 15px; border-top: 1px solid #f0f0f0; font-size: 12px; color: #999; display: flex; justify-content: space-between; }
-    
-    /* Categorías */
     .categories { display: flex; justify-content: center; gap: 10px; margin-bottom: 50px; flex-wrap: wrap; }
     .cat-btn { padding: 8px 24px; border-radius: 50px; border: 1px solid var(--line); font-size: 13px; font-weight: 600; background: #fff; cursor: pointer; transition: 0.3s; font-family: 'Montserrat'; }
     .cat-btn.active { border-color: var(--primary); color: var(--primary); background: rgba(27,110,58,0.05); }
-
-    /* Newsletter */
     .newsletter { background: #111; padding: 60px 20px; text-align: center; color: #fff; border-radius: 12px; margin-bottom: 60px; }
     .news-form { display: flex; gap: 10px; max-width: 500px; margin: 20px auto 0; }
     .news-input { flex: 1; padding: 12px 20px; border-radius: 50px; border: none; }
@@ -45,45 +46,37 @@
   <main class="wrap">
     
     <header class="page-header" style="text-align: center; padding: 60px 0;">
-      <h1 class="h1">Blog Técnico</h1>
-      <p class="lead">Innovación, guías de diseño y casos de éxito en ingeniería industrial.</p>
+      <h1 class="h1">Recursos y Blog Técnico</h1>
+      <p class="lead">Artículos de ingeniería, guías de <strong>diseño industrial</strong> y normativa técnica para profesionales.</p>
     </header>
 
-    <nav class="categories">
-      <button class="cat-btn active" data-filter="all">Todos</button>
-      <button class="cat-btn" data-filter="casos">Casos de Éxito</button>
-      <button class="cat-btn" data-filter="ingenieria">Ingeniería Inversa</button>
-      <button class="cat-btn" data-filter="taller">Taller</button>
-      <button class="cat-btn" data-filter="materiales">Materiales</button>
-    </nav>
-    <section class="blog-card">
-     <article class="card-item blog-card" data-category="taller">
+    
+
+    <section class="blog-grid">
+      
+      <article class="card-item blog-card" data-category="taller">
         <a href="blog-roscas.html">
-          <img src="assets/images/blog-roscas.png" alt="Guía Roscas" style="width:100%; border-radius:4px; margin-bottom:15px;">
+          <img src="assets/images/blog-roscas.png" alt="Tabla de diámetros de brocas para roscas métricas y gas - Guía técnica de taller" style="width:100%; border-radius:4px; margin-bottom:15px;">
         </a>
         <div class="card-body">
           <span class="card-tag">Taller</span>
-          <h3 class="card-title"><a href="blog-roscas.html">Tabla: Qué broca usar para cada rosca</a></h3>
-          <p class="card-excerpt">Guía rápida de diámetros de taladro para roscas Métricas y Gas (BSP).</p>
+          <h3 class="card-title"><a href="blog-roscas.html">Tabla de Roscas: Qué broca usar para cada macho</a></h3>
+          <p class="card-excerpt">Optimiza tu proceso de mecanizado con nuestra guía rápida de diámetros de taladro para roscas Métricas e ISO (BSP/Gas).</p>
           <div class="card-meta">
             <span><i class="far fa-clock"></i> 2 min</span>
             <span>22 Ene, 2026</span>
           </div>
         </div>
       </article>
-    </section>
-    <section class="blog-grid">
-      
-     
 
       <article class="card-item blog-card" data-category="taller">
         <a href="blog-din912.html">
-          <img src="assets/images/din912.png" alt="din912" style="width:100%; border-radius:4px; margin-bottom:15px;">
+          <img src="assets/images/din912.png" alt="Dimensiones tornillería Allen DIN 912 para diseño CAD" style="width:100%; border-radius:4px; margin-bottom:15px;">
         </a>
         <div class="card-body">
           <span class="card-tag">Taller</span>
-          <h3 class="card-title"><a href="blog-din912.html">Dimensiones DIN 912: Tabla para alojamientos</a></h3>
-          <p class="card-excerpt">Optimiza tus diseños CAD con las tolerancias correctas para tornillería Allen cilíndrica.</p>
+          <h3 class="card-title"><a href="blog-din912.html">Dimensiones DIN 912: Tabla técnica para alojamientos</a></h3>
+          <p class="card-excerpt">Estandariza tus diseños CAD con las tolerancias y dimensiones correctas para tornillería de cabeza cilíndrica (Allen).</p>
           <div class="card-meta">
             <span><i class="far fa-clock"></i> 3 min</span>
             <span>08 Ene, 2026</span>
@@ -91,28 +84,13 @@
         </div>
       </article>
 
-      <!--<article class="card-item blog-card" data-category="casos">
-        <a href="blog-single.html">
-          <img src="https://images.unsplash.com/photo-1581092921461-eab62e97a78e?auto=format&fit=crop&w=800&q=80" alt="Engranaje" style="width:100%; border-radius:4px; margin-bottom:15px;">
-        </a>
-        <div class="card-body">
-          <span class="card-tag">Casos de Éxito</span>
-          <h3 class="card-title"><a href="blog-single.html">Recuperación de Engranaje Descatalogado</a></h3>
-          <p class="card-excerpt">Cómo salvamos una línea de producción parada en 48 horas mediante ingeniería inversa.</p>
-          <div class="card-meta">
-            <span><i class="far fa-clock"></i> 3 min</span>
-            <span>15 Ene, 2026</span>
-          </div>
-        </div>
-      </article>-->
-
     </section>
 
     <section class="newsletter">
-      <h3>Recibe nuestras guías técnicas</h3>
-      <p>Te enviaremos consejos de diseño y casos de éxito una vez al mes.</p>
+      <h3>Newsletter de Ingeniería Industrial</h3>
+      <p>Suscríbete para recibir guías de diseño, tablas técnicas y novedades en fabricación aditiva directamente en tu email.</p>
       <form class="news-form" action="https://formspree.io/f/xkoogvdb" method="POST">
-        <input type="email" name="email" placeholder="Tu email" class="news-input" required>
+        <input type="email" name="email" placeholder="Correo corporativo" class="news-input" required>
         <button type="submit" class="news-btn">Suscribirme</button>
       </form>
     </section>
@@ -123,7 +101,6 @@
 
   <script src="assets/js/main.js" defer></script>
   <script>
-    // Script local de respaldo para filtrado (hasta que lo muevas a main.js)
     document.addEventListener('DOMContentLoaded', () => {
       const filterBtns = document.querySelectorAll('.cat-btn');
       const articles = document.querySelectorAll('.blog-card');
