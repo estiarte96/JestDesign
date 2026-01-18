@@ -33,7 +33,7 @@ body {
   background-color: var(--bg);
   line-height: 1.6;
   /* Fondo general opcional si lo deseas en toda la web */
-  background-image: url('../images/bg.jpg');
+  background-image: url('../images/bg.webp');
   background-size: cover;
   background-position: center;
   background-attachment: fixed;
@@ -266,7 +266,7 @@ main {
     text-align: center;
     padding: 120px 20px; 
     background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.95)), 
-                url('../images/back.jpg'); 
+                url('../images/back.webp'); 
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
