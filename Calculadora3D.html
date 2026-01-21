@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora de Precio Impresión 3D Online | EST Ingenieros</title>
+    <meta name="description" content="Calcula al instante el precio de impresión 3D para tus archivos STL. Fabricación profesional en PLA, ABS y PETG con revisión de ingenieros.">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/STLExporter.js"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/global.css">
+
+    <style>
+        /* Ajustes para integrar la calculadora en el layout de la web */
+        body, html { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
+        
+        .main-tool-container {
+            display: flex;
+            flex: 1; /* Ocupa el espacio entre header y footer */
+            overflow: hidden;
+            border-top: 1px solid var(--line);
+        }
+
+        #sidebar { 
+            width: 380px; height: 100%; padding: 25px; 
+            background: #fdfdfd; border-right: 1px solid var(--line); 
+            display: flex; flex-direction: column; box-sizing: border-box;
+            z-index: 10;
+        }
+
+        .options-scroll { flex: 1; overflow-y: auto; padding-right: 5px; }
+
+        h3 { 
+            font-family: 'Oswald', sans-serif; font-size: 0.85rem; color: var(--primary); 
+            text-transform: uppercase; margin: 15px 0 10px 0; border-bottom: 1px solid var(--line); padding-bottom: 5px;
+        }
+
+        .card { 
+            background: white; padding: 15px; border-radius: 8px; margin-bottom: 12px; 
+            border: 1px solid var(--line); box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+        }
+
+        label { display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; color: var(--muted); text-transform: uppercase; }
+
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; margin-bottom: 10px; }
+        .opt-btn input { display: none; }
+        .opt-btn label { 
+            display: block; background: white; border: 1px solid var(--line); padding: 10px 4px; 
+            text-align: center; border-radius: 4px; cursor: pointer; transition: 0.2s; 
+            font-size: 0.8rem; font-weight: 500;
+        }
+        .opt-btn input:checked + label { background: var(--primary); border-color: var(--primary); color: white; }
+
+        .upload-btn { 
+            display: block; padding: 14px; background: var(--primary); 
+            color: white; text-align: center; border-radius: 4px; cursor: pointer; 
+            font-weight: 600; transition: 0.3s; margin-bottom: 10px; font-size: 0.9rem;
+            text-transform: uppercase; font-family: 'Oswald';
+        }
+
+        .price-container { border-top: 2px solid var(--line); padding-top: 15px; }
+        .total-price { 
+            font-family: 'Oswald', sans-serif; font-size: 3rem; color: var(--primary); 
+            text-align: center; font-weight: 700; line-height: 1; margin: 5px 0;
+        }
+        .iva-tag { font-size: 0.7rem; color: #999; text-align: center; display: block; margin-bottom: 10px; }
+
+        #viewer { flex: 1; height: 100%; position: relative; background: #f1f1f1; }
+
+        .btn-action { 
+            background: var(--fg); color: white; border: none; padding: 16px; 
+            width: 100%; border-radius: 4px; font-family: 'Oswald', sans-serif; 
+            font-size: 1.1rem; cursor: pointer; transition: 0.3s; text-transform: uppercase;
+            font-weight: 700;
+        }
+        .btn-action:hover { background: var(--primary); }
+        .btn-action:disabled { background: #ccc; cursor: not-allowed; }
+
+        /* MODAL */
+        .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
+        .modal-content { background: white; padding: 30px; border-radius: 8px; width: 450px; font-family: 'Montserrat'; }
+        .summary-box { background: #f8f9fa; padding: 12px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 15px; border-left: 4px solid var(--primary); }
+    </style>
+</head>
+<body>
+
+    <div data-include="header.html"></div>
+
+    <main class="main-tool-container">
+        <div id="sidebar">
+            <h1 style="font-family: 'Oswald'; font-size: 1.2rem; margin: 0 0 15px 0; text-transform: uppercase;">Precio de impresión 3D</h1>
+            
+            <label class="upload-btn">
+                <i class="fa fa-upload"></i> Subir archivo STL
+                <input type="file" id="fileInput" accept=".stl" style="display:none">
+            </label>
+            <div id="file-name" style="font-size: 0.7rem; color: var(--muted); text-align: center; margin-bottom: 10px;">Ningún archivo seleccionado</div>
+
+            <div class="options-scroll">
+                <h3>Configuración Técnica</h3>
+                <div class="card">
+                    <label>Material</label>
+                    <div class="grid-options">
+                        <div class="opt-btn"><input type="radio" id="m_pla" name="material" value="PLA" checked onchange="runSlicer()"><label for="m_pla">PLA</label></div>
+                        <div class="opt-btn"><input type="radio" id="m_abs" name="material" value="ABS" onchange="runSlicer()"><label for="m_abs">ABS</label></div>
+                        <div class="opt-btn"><input type="radio" id="m_petg" name="material" value="PETG" onchange="runSlicer()"><label for="m_petg">PETG</label></div>
+                    </div>
+
+                    <label style="margin-top:15px">Resolución (Capa)</label>
+                    <div class="grid-options">
+                        <div class="opt-btn"><input type="radio" id="h15" name="layer" value="0.15" onchange="runSlicer()"><label for="h15">Alta</label></div>
+                        <div class="opt-btn"><input type="radio" id="h20" name="layer" value="0.20" checked onchange="runSlicer()"><label for="h20">Media</label></div>
+                        <div class="opt-btn"><input type="radio" id="h30" name="layer" value="0.30" onchange="runSlicer()"><label for="h30">Baja</label></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="price-container">
+                <div style="display:flex; justify-content: space-between; font-size: 0.75rem; color: #666; margin-bottom: 5px;">
+                    <span>Envío nacional:</span>
+                    <span>5.50 € Aprox.</span>
+                </div>
+                <div class="total-price" id="res-price">0.00 €</div>
+                <span class="iva-tag">* IVA y envío incluidos</span>
+                <button class="btn-action" id="orderBtn" onclick="openModal()" disabled>Solicitar Fabricación</button>
+            </div>
+        </div>
+
+        <div id="viewer"></div>
+    </main>
+
+    <div id="orderModal" class="modal">
+        <div class="modal-content">
+            <h2 style="font-family:'Oswald'; color:var(--primary); margin-top:0;">VERIFICAR VIABILIDAD</h2>
+            <p style="font-size:0.8rem; margin-bottom:15px;">Nuestros ingenieros revisarán el diseño. Te contactaremos por email para confirmar y gestionar el pago (Bizum/Transferencia).</p>
+            <div id="summary" class="summary-box"></div>
+            
+            <form id="fs-form" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
+                <input type="hidden" name="Archivo" id="in-file">
+                <input type="hidden" name="Precio" id="in-price">
+                <input type="text" name="Nombre" placeholder="Tu nombre" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
+                <input type="email" name="Email" placeholder="Tu email" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
+                <button type="submit" class="btn-action">Enviar para revisión</button>
+            </form>
+            <button onclick="closeModal()" style="background:none; border:none; color:red; cursor:pointer; width:100%; margin-top:10px;">Cancelar</button>
+        </div>
+    </div>
+
+    <script>
+        let scene, camera, renderer, controls, currentMesh, currentFileName = "";
+        const ENVIO = 5.50;
+        const MATS = {
+            'PLA':  { dens: 1.24, p: 0.03, col: 0x1b6e3a },
+            'ABS':  { dens: 1.04, p: 0.035, col: 0x444444 },
+            'PETG': { dens: 1.27, p: 0.025, col: 0x0055aa }
+        };
+
+        // Incluir componentes
+        document.addEventListener('DOMContentLoaded', async () => {
+            const el = document.querySelector('[data-include]');
+            try {
+                const res = await fetch(el.getAttribute('data-include'));
+                if (res.ok) el.outerHTML = await res.text();
+            } catch (e) {}
+            initThree();
+        });
+
+        function initThree() {
+            const container = document.getElementById('viewer');
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xf1f1f1);
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 5000);
+            camera.position.set(200, 200, 200);
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            container.appendChild(renderer.domElement);
+            scene.add(new THREE.GridHelper(250, 20, 0xcccccc, 0xdddddd));
+            scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+            const light = new THREE.DirectionalLight(0xffffff, 0.5);
+            light.position.set(1, 1, 1);
+            scene.add(light);
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+            document.getElementById('fileInput').addEventListener('change', handleFile);
+            animate();
+        }
+
+        function handleFile(e) {
+            const file = e.target.files[0];
+            if(!file) return;
+            currentFileName = file.name;
+            document.getElementById('file-name').innerText = file.name;
+            document.getElementById('orderBtn').disabled = false;
+
+            const reader = new FileReader();
+            reader.onload = (ev) => {
+                const geom = new THREE.STLLoader().parse(ev.target.result);
+                if(currentMesh) scene.remove(currentMesh);
+                geom.center();
+                geom.computeBoundingBox();
+                const m = document.querySelector('input[name="material"]:checked').value;
+                currentMesh = new THREE.Mesh(geom, new THREE.MeshStandardMaterial({ color: MATS[m].col, roughness: 0.5 }));
+                const size = new THREE.Vector3(); geom.boundingBox.getSize(size);
+                currentMesh.position.y = size.y / 2;
+                scene.add(currentMesh);
+                runSlicer();
+                const max = Math.max(size.x, size.y, size.z);
+                camera.position.set(max*1.5, max*1.5, max*1.5);
+                controls.target.set(0, size.y/2, 0); controls.update();
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function runSlicer() {
+            if(!currentMesh) return;
+            const m = document.querySelector('input[name="material"]:checked').value;
+            const h = document.querySelector('input[name="layer"]:checked').value;
+            currentMesh.material.color.setHex(MATS[m].col);
+
+            const vol = getVol(currentMesh.geometry) / 1000;
+            const peso = (vol * 0.40) * MATS[m].dens; // Infill sim 40%
+            let mult = (h == "0.15") ? 0.6 : (h == "0.30" ? 1.6 : 1.0);
+            const horas = (vol * 1000 / (12 * mult)) / 3600 * 4.5;
+            
+            const total = (3.50 + (peso * MATS[m].p) + (horas * 1.50) + ENVIO) * 1.21;
+            document.getElementById('res-price').innerText = total.toFixed(2) + " €";
+        }
+
+        function getVol(g) {
+            const p = g.attributes.position; let s = 0;
+            for (let i = 0; i < p.count; i += 3) {
+                const v1 = new THREE.Vector3().fromBufferAttribute(p, i);
+                const v2 = new THREE.Vector3().fromBufferAttribute(p, i+1);
+                const v3 = new THREE.Vector3().fromBufferAttribute(p, i+2);
+                s += v1.dot(v2.cross(v3)) / 6.0;
+            }
+            return Math.abs(s);
+        }
+
+        function openModal() {
+            const p = document.getElementById('res-price').innerText;
+            const m = document.querySelector('input[name="material"]:checked').value;
+            document.getElementById('summary').innerHTML = `Pieza: ${currentFileName}<br>Material: ${m}<br>Total: ${p}`;
+            document.getElementById('in-file').value = currentFileName;
+            document.getElementById('in-price').value = p;
+            document.getElementById('orderModal').style.display = 'flex';
+        }
+        function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
+        function animate() { requestAnimationFrame(animate); renderer.render(scene, camera); }
+        
+        // Enviar Formspree
+        document.getElementById("fs-form").addEventListener("submit", async (e) => {
+            e.preventDefault();
+            const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: {'Accept': 'application/json'} });
+            if(res.ok) { alert("¡Enviado! Te contactaremos pronto."); closeModal(); }
+        });
+    </script>
+</body>
+</html>
