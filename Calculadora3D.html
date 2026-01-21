@@ -2,8 +2,8 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Calculadora de Precio Impresión 3D Online | EST Ingenieros</title>
-    <meta name="description" content="Calcula al instante el precio de impresión 3D para tus archivos STL. Fabricación profesional en PLA, ABS y PETG con revisión de ingenieros.">
+    <title>Precio Impresión 3D Online | EST Ingenieros</title>
+    <meta name="description" content="Calcula el precio de tu impresión 3D al instante. Sube tu archivo STL, elige material y obtén un presupuesto de ingeniería profesional.">
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
@@ -15,20 +15,33 @@
     <link rel="stylesheet" href="assets/css/global.css">
 
     <style>
-        /* Ajustes para integrar la calculadora en el layout de la web */
-        body, html { height: 100vh; overflow: hidden; display: flex; flex-direction: column; }
-        
-        .main-tool-container {
-            display: flex;
-            flex: 1; /* Ocupa el espacio entre header y footer */
-            overflow: hidden;
-            border-top: 1px solid var(--line);
+        /* Ajuste de estructura para Header fijo */
+        body, html { 
+            height: 100vh; 
+            margin: 0; 
+            display: flex; 
+            flex-direction: column; 
+            overflow: hidden; 
         }
 
+        /* Contenedor que separa el Header de la herramienta */
+        .tool-wrapper {
+            display: flex;
+            flex: 1; /* Ocupa todo el alto restante */
+            overflow: hidden;
+            background: #fff;
+        }
+
+        /* SIDEBAR */
         #sidebar { 
-            width: 380px; height: 100%; padding: 25px; 
-            background: #fdfdfd; border-right: 1px solid var(--line); 
-            display: flex; flex-direction: column; box-sizing: border-box;
+            width: 380px; 
+            height: 100%; 
+            padding: 25px; 
+            background: #fdfdfd; 
+            border-right: 1px solid var(--line); 
+            display: flex; 
+            flex-direction: column; 
+            box-sizing: border-box;
             z-index: 10;
         }
 
@@ -46,7 +59,7 @@
 
         label { display: block; font-size: 0.75rem; font-weight: 600; margin-bottom: 8px; color: var(--muted); text-transform: uppercase; }
 
-        .grid-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; margin-bottom: 10px; }
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; }
         .opt-btn input { display: none; }
         .opt-btn label { 
             display: block; background: white; border: 1px solid var(--line); padding: 10px 4px; 
@@ -62,6 +75,7 @@
             text-transform: uppercase; font-family: 'Oswald';
         }
 
+        /* PRECIO */
         .price-container { border-top: 2px solid var(--line); padding-top: 15px; }
         .total-price { 
             font-family: 'Oswald', sans-serif; font-size: 3rem; color: var(--primary); 
@@ -69,7 +83,7 @@
         }
         .iva-tag { font-size: 0.7rem; color: #999; text-align: center; display: block; margin-bottom: 10px; }
 
-        #viewer { flex: 1; height: 100%; position: relative; background: #f1f1f1; }
+        #viewer { flex: 1; height: 100%; position: relative; background: #f4f4f4; }
 
         .btn-action { 
             background: var(--fg); color: white; border: none; padding: 16px; 
@@ -83,34 +97,35 @@
         /* MODAL */
         .modal { display: none; position: fixed; z-index: 9999; left: 0; top: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); justify-content: center; align-items: center; }
         .modal-content { background: white; padding: 30px; border-radius: 8px; width: 450px; font-family: 'Montserrat'; }
-        .summary-box { background: #f8f9fa; padding: 12px; border-radius: 4px; font-size: 0.8rem; margin-bottom: 15px; border-left: 4px solid var(--primary); }
     </style>
 </head>
 <body>
 
     <div data-include="header.html"></div>
 
-    <main class="main-tool-container">
+    <main class="tool-wrapper">
         <div id="sidebar">
-            <h1 style="font-family: 'Oswald'; font-size: 1.2rem; margin: 0 0 15px 0; text-transform: uppercase;">Precio de impresión 3D</h1>
+            <h1 style="font-family: 'Oswald'; font-size: 1.1rem; margin: 0 0 15px 0; text-transform: uppercase; color: var(--fg);">Presupuesto Impresión 3D</h1>
             
             <label class="upload-btn">
-                <i class="fa fa-upload"></i> Subir archivo STL
+                <i class="fa fa-file-export"></i> Subir Archivo STL
                 <input type="file" id="fileInput" accept=".stl" style="display:none">
             </label>
-            <div id="file-name" style="font-size: 0.7rem; color: var(--muted); text-align: center; margin-bottom: 10px;">Ningún archivo seleccionado</div>
+            <div id="file-name" style="font-size: 0.65rem; color: var(--muted); text-align: center; margin-bottom: 10px; font-weight: 600;">Esperando archivo...</div>
 
             <div class="options-scroll">
-                <h3>Configuración Técnica</h3>
+                <h3>1. Material</h3>
                 <div class="card">
-                    <label>Material</label>
                     <div class="grid-options">
                         <div class="opt-btn"><input type="radio" id="m_pla" name="material" value="PLA" checked onchange="runSlicer()"><label for="m_pla">PLA</label></div>
                         <div class="opt-btn"><input type="radio" id="m_abs" name="material" value="ABS" onchange="runSlicer()"><label for="m_abs">ABS</label></div>
                         <div class="opt-btn"><input type="radio" id="m_petg" name="material" value="PETG" onchange="runSlicer()"><label for="m_petg">PETG</label></div>
                     </div>
+                </div>
 
-                    <label style="margin-top:15px">Resolución (Capa)</label>
+                <h3>2. Calidad</h3>
+                <div class="card">
+                    <label>Resolución de Capa</label>
                     <div class="grid-options">
                         <div class="opt-btn"><input type="radio" id="h15" name="layer" value="0.15" onchange="runSlicer()"><label for="h15">Alta</label></div>
                         <div class="opt-btn"><input type="radio" id="h20" name="layer" value="0.20" checked onchange="runSlicer()"><label for="h20">Media</label></div>
@@ -121,12 +136,12 @@
 
             <div class="price-container">
                 <div style="display:flex; justify-content: space-between; font-size: 0.75rem; color: #666; margin-bottom: 5px;">
-                    <span>Envío nacional:</span>
-                    <span>5.50 € Aprox.</span>
+                    <span>Envío Nacional:</span>
+                    <span>5.50 €</span>
                 </div>
                 <div class="total-price" id="res-price">0.00 €</div>
-                <span class="iva-tag">* IVA y envío incluidos</span>
-                <button class="btn-action" id="orderBtn" onclick="openModal()" disabled>Solicitar Fabricación</button>
+                <span class="iva-tag">* IVA e impresión incluidos</span>
+                <button class="btn-action" id="orderBtn" onclick="openModal()" disabled>Solicitar Revisión</button>
             </div>
         </div>
 
@@ -135,18 +150,19 @@
 
     <div id="orderModal" class="modal">
         <div class="modal-content">
-            <h2 style="font-family:'Oswald'; color:var(--primary); margin-top:0;">VERIFICAR VIABILIDAD</h2>
-            <p style="font-size:0.8rem; margin-bottom:15px;">Nuestros ingenieros revisarán el diseño. Te contactaremos por email para confirmar y gestionar el pago (Bizum/Transferencia).</p>
-            <div id="summary" class="summary-box"></div>
+            <h2 style="font-family:'Oswald'; color:var(--primary); margin-top:0;">REVISIÓN DE VIABILIDAD</h2>
+            <p style="font-size:0.8rem; margin-bottom:15px; line-height: 1.4;">Un ingeniero revisará tu diseño. Te enviaremos un email para confirmar la fabricación y gestionar el pago (Bizum/Transferencia).</p>
+            <div id="summary" style="background:#f8f9fa; padding:12px; border-radius:4px; font-size:0.8rem; margin-bottom:15px; border-left:4px solid var(--primary);"></div>
             
             <form id="fs-form" action="https://formspree.io/f/TU_ID_AQUI" method="POST">
                 <input type="hidden" name="Archivo" id="in-file">
+                <input type="hidden" name="Material" id="in-mat">
                 <input type="hidden" name="Precio" id="in-price">
-                <input type="text" name="Nombre" placeholder="Tu nombre" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
-                <input type="email" name="Email" placeholder="Tu email" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd;">
-                <button type="submit" class="btn-action">Enviar para revisión</button>
+                <input type="text" name="Nombre" placeholder="Tu Nombre" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; font-family: 'Montserrat';">
+                <input type="email" name="Email" placeholder="Tu Email" required style="width:100%; padding:10px; margin-bottom:10px; border:1px solid #ddd; font-family: 'Montserrat';">
+                <button type="submit" class="btn-action">Enviar Pedido</button>
             </form>
-            <button onclick="closeModal()" style="background:none; border:none; color:red; cursor:pointer; width:100%; margin-top:10px;">Cancelar</button>
+            <button onclick="closeModal()" style="background:none; border:none; color:red; cursor:pointer; width:100%; margin-top:10px; font-family: 'Montserrat'; font-size: 0.7rem;">Cancelar y volver</button>
         </div>
     </div>
 
@@ -159,13 +175,15 @@
             'PETG': { dens: 1.27, p: 0.025, col: 0x0055aa }
         };
 
-        // Incluir componentes
+        // CARGA DE COMPONENTES (Header)
         document.addEventListener('DOMContentLoaded', async () => {
-            const el = document.querySelector('[data-include]');
-            try {
-                const res = await fetch(el.getAttribute('data-include'));
-                if (res.ok) el.outerHTML = await res.text();
-            } catch (e) {}
+            const includes = document.querySelectorAll('[data-include]');
+            for (const el of includes) {
+                try {
+                    const res = await fetch(el.getAttribute('data-include'));
+                    if (res.ok) el.outerHTML = await res.text();
+                } catch (e) {}
+            }
             initThree();
         });
 
@@ -185,6 +203,11 @@
             scene.add(light);
             controls = new THREE.OrbitControls(camera, renderer.domElement);
             document.getElementById('fileInput').addEventListener('change', handleFile);
+            window.addEventListener('resize', () => {
+                camera.aspect = container.clientWidth / container.clientHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(container.clientWidth, container.clientHeight);
+            });
             animate();
         }
 
@@ -199,8 +222,7 @@
             reader.onload = (ev) => {
                 const geom = new THREE.STLLoader().parse(ev.target.result);
                 if(currentMesh) scene.remove(currentMesh);
-                geom.center();
-                geom.computeBoundingBox();
+                geom.center(); geom.computeBoundingBox();
                 const m = document.querySelector('input[name="material"]:checked').value;
                 currentMesh = new THREE.Mesh(geom, new THREE.MeshStandardMaterial({ color: MATS[m].col, roughness: 0.5 }));
                 const size = new THREE.Vector3(); geom.boundingBox.getSize(size);
@@ -221,7 +243,7 @@
             currentMesh.material.color.setHex(MATS[m].col);
 
             const vol = getVol(currentMesh.geometry) / 1000;
-            const peso = (vol * 0.40) * MATS[m].dens; // Infill sim 40%
+            const peso = (vol * 0.40) * MATS[m].dens; // Infill 40%
             let mult = (h == "0.15") ? 0.6 : (h == "0.30" ? 1.6 : 1.0);
             const horas = (vol * 1000 / (12 * mult)) / 3600 * 4.5;
             
@@ -243,19 +265,29 @@
         function openModal() {
             const p = document.getElementById('res-price').innerText;
             const m = document.querySelector('input[name="material"]:checked').value;
-            document.getElementById('summary').innerHTML = `Pieza: ${currentFileName}<br>Material: ${m}<br>Total: ${p}`;
+            document.getElementById('summary').innerHTML = `<strong>Pieza:</strong> ${currentFileName}<br><strong>Material:</strong> ${m}<br><strong>Presupuesto:</strong> ${p}`;
             document.getElementById('in-file').value = currentFileName;
+            document.getElementById('in-mat').value = m;
             document.getElementById('in-price').value = p;
             document.getElementById('orderModal').style.display = 'flex';
         }
         function closeModal() { document.getElementById('orderModal').style.display = 'none'; }
         function animate() { requestAnimationFrame(animate); renderer.render(scene, camera); }
         
-        // Enviar Formspree
         document.getElementById("fs-form").addEventListener("submit", async (e) => {
             e.preventDefault();
+            const btn = e.target.querySelector('button');
+            btn.disabled = true; btn.innerText = "Enviando...";
             const res = await fetch(e.target.action, { method: 'POST', body: new FormData(e.target), headers: {'Accept': 'application/json'} });
-            if(res.ok) { alert("¡Enviado! Te contactaremos pronto."); closeModal(); }
+            if(res.ok) { 
+                alert("¡Pedido enviado! Revisaremos tu diseño y te contactaremos muy pronto."); 
+                closeModal();
+                // Descarga automática del STL para que el cliente lo tenga de referencia
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(new Blob([new THREE.STLExporter().parse(currentMesh)], {type: 'text/plain'}));
+                link.download = 'PEDIDO_EST_' + currentFileName;
+                link.click();
+            }
         });
     </script>
 </body>
