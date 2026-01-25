@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,12 +9,20 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/exporters/STLExporter.js"></script>
 
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-TBZK1N6QGS');
+    </script>
+
     <style>
-        body { 
-            margin: 0; 
-            overflow: hidden; 
-            font-family: 'Segoe UI', sans-serif; 
-            display: flex; 
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: 'Segoe UI', sans-serif;
+            display: flex;
             height: 100vh;
             color: #333;
         }
@@ -27,30 +36,43 @@
             flex-direction: column;
             border-right: 1px solid #ddd;
             overflow-y: auto;
-            box-shadow: 2px 0 10px rgba(0,0,0,0.1);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             z-index: 10;
         }
 
-        h2 { 
-            font-size: 1.2rem; 
-            color: #0056b3; 
-            border-bottom: 2px solid #0056b3; 
-            padding-bottom: 10px; 
+        h2 {
+            font-size: 1.2rem;
+            color: #0056b3;
+            border-bottom: 2px solid #0056b3;
+            padding-bottom: 10px;
             margin-top: 0;
         }
 
-        .input-group { margin-bottom: 15px; }
-        label { display: block; font-weight: 600; font-size: 0.9rem; margin-bottom: 5px; }
-        input { 
-            width: 100%; 
-            padding: 8px; 
-            border: 1px solid #ccc; 
-            border-radius: 4px; 
-            box-sizing: border-box; 
+        .input-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
             font-size: 1rem;
         }
-        
-        .info-text { font-size: 0.8rem; color: #666; margin-top: 4px; }
+
+        .info-text {
+            font-size: 0.8rem;
+            color: #666;
+            margin-top: 4px;
+        }
 
         button {
             width: 100%;
@@ -64,11 +86,25 @@
             transition: 0.3s;
         }
 
-        #btn-update { background-color: #0056b3; color: white; margin-top: auto; }
-        #btn-update:hover { background-color: #004494; }
+        #btn-update {
+            background-color: #0056b3;
+            color: white;
+            margin-top: auto;
+        }
 
-        #btn-download { background-color: #28a745; color: white; margin-bottom: 20px;}
-        #btn-download:hover { background-color: #218838; }
+        #btn-update:hover {
+            background-color: #004494;
+        }
+
+        #btn-download {
+            background-color: #28a745;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        #btn-download:hover {
+            background-color: #218838;
+        }
 
         /* VISOR 3D */
         #viewer-container {
@@ -78,236 +114,238 @@
         }
     </style>
 </head>
+
 <body>
 
-<div id="sidebar">
-    <h2>⚙️ Parámetros de Diseño</h2>
-    <p class="info-text">Basado en metodología de Tesis UCI (Ec. Paramétricas)</p>
+    <div id="sidebar">
+        <h2>⚙️ Parámetros de Diseño</h2>
+        <p class="info-text">Basado en metodología de Tesis UCI (Ec. Paramétricas)</p>
 
-    <div class="input-group">
-        <label>Módulo (M)</label>
-        <input type="number" id="modulo" value="3" step="0.1" onchange="generarEngranaje()">
+        <div class="input-group">
+            <label>Módulo (M)</label>
+            <input type="number" id="modulo" value="3" step="0.1" onchange="generarEngranaje()">
+        </div>
+
+        <div class="input-group">
+            <label>Número de Dientes (Z)</label>
+            <input type="number" id="dientes" value="20" step="1" onchange="generarEngranaje()">
+        </div>
+
+        <div class="input-group">
+            <label>Ángulo de Presión (Grados)</label>
+            <input type="number" id="presion" value="20" step="0.5" onchange="generarEngranaje()">
+            <div class="info-text">Estándar ISO: 20°</div>
+        </div>
+
+        <div class="input-group">
+            <label>Ancho de Cara / Espesor (mm)</label>
+            <input type="number" id="espesor" value="10" step="1" onchange="generarEngranaje()">
+        </div>
+
+        <div class="input-group">
+            <label>Diámetro del Eje (mm)</label>
+            <input type="number" id="eje" value="10" step="0.5" onchange="generarEngranaje()">
+        </div>
+
+        <button id="btn-download" onclick="descargarSTL()">⬇️ Descargar STL</button>
     </div>
 
-    <div class="input-group">
-        <label>Número de Dientes (Z)</label>
-        <input type="number" id="dientes" value="20" step="1" onchange="generarEngranaje()">
-    </div>
+    <div id="viewer-container"></div>
 
-    <div class="input-group">
-        <label>Ángulo de Presión (Grados)</label>
-        <input type="number" id="presion" value="20" step="0.5" onchange="generarEngranaje()">
-        <div class="info-text">Estándar ISO: 20°</div>
-    </div>
+    <script>
+        let scene, camera, renderer, controls, meshEngranaje;
 
-    <div class="input-group">
-        <label>Ancho de Cara / Espesor (mm)</label>
-        <input type="number" id="espesor" value="10" step="1" onchange="generarEngranaje()">
-    </div>
+        init();
+        generarEngranaje();
 
-    <div class="input-group">
-        <label>Diámetro del Eje (mm)</label>
-        <input type="number" id="eje" value="10" step="0.5" onchange="generarEngranaje()">
-    </div>
+        function init() {
+            const container = document.getElementById('viewer-container');
+            scene = new THREE.Scene();
+            scene.background = new THREE.Color(0xe0e0e0);
 
-    <button id="btn-download" onclick="descargarSTL()">⬇️ Descargar STL</button>
-</div>
+            // Grid y Ejes
+            scene.add(new THREE.GridHelper(200, 50, 0x888888, 0xbbbbbb));
+            scene.add(new THREE.AxesHelper(20));
 
-<div id="viewer-container"></div>
+            camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
+            camera.position.set(0, 0, 150); // Vista superior para ver el relleno
 
-<script>
-    let scene, camera, renderer, controls, meshEngranaje;
+            renderer = new THREE.WebGLRenderer({ antialias: true });
+            renderer.setSize(container.clientWidth, container.clientHeight);
+            renderer.setPixelRatio(window.devicePixelRatio);
+            container.appendChild(renderer.domElement);
 
-    init();
-    generarEngranaje();
+            // Iluminación mejorada para notar el volumen
+            const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+            scene.add(ambientLight);
+            const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
+            dirLight.position.set(50, 50, 100);
+            scene.add(dirLight);
 
-    function init() {
-        const container = document.getElementById('viewer-container');
-        scene = new THREE.Scene();
-        scene.background = new THREE.Color(0xe0e0e0); 
-        
-        // Grid y Ejes
-        scene.add(new THREE.GridHelper(200, 50, 0x888888, 0xbbbbbb));
-        scene.add(new THREE.AxesHelper(20));
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
 
-        camera = new THREE.PerspectiveCamera(45, container.clientWidth / container.clientHeight, 0.1, 1000);
-        camera.position.set(0, 0, 150); // Vista superior para ver el relleno
+            window.addEventListener('resize', onWindowResize, false);
+            animate();
+        }
 
-        renderer = new THREE.WebGLRenderer({ antialias: true });
-        renderer.setSize(container.clientWidth, container.clientHeight);
-        renderer.setPixelRatio(window.devicePixelRatio);
-        container.appendChild(renderer.domElement);
+        function generarEngranaje() {
+            if (meshEngranaje) scene.remove(meshEngranaje);
 
-        // Iluminación mejorada para notar el volumen
-        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
-        scene.add(ambientLight);
-        const dirLight = new THREE.DirectionalLight(0xffffff, 0.8);
-        dirLight.position.set(50, 50, 100);
-        scene.add(dirLight);
+            const M = parseFloat(document.getElementById('modulo').value);
+            const Z = parseInt(document.getElementById('dientes').value);
+            const alphaDeg = parseFloat(document.getElementById('presion').value);
+            const B = parseFloat(document.getElementById('espesor').value);
+            const diamEje = parseFloat(document.getElementById('eje').value);
 
-        controls = new THREE.OrbitControls(camera, renderer.domElement);
-        
-        window.addEventListener('resize', onWindowResize, false);
-        animate();
-    }
+            if (M <= 0 || Z < 3) return;
 
-    function generarEngranaje() {
-        if (meshEngranaje) scene.remove(meshEngranaje);
+            // --- CÁLCULOS MATEMÁTICOS ---
+            const alpha = alphaDeg * (Math.PI / 180);
+            const Rp = (M * Z) / 2;
+            const Rb = Rp * Math.cos(alpha);
+            const Rext = Rp + M;
+            const Rroot = Rp - (1.25 * M);
 
-        const M = parseFloat(document.getElementById('modulo').value);
-        const Z = parseInt(document.getElementById('dientes').value);
-        const alphaDeg = parseFloat(document.getElementById('presion').value);
-        const B = parseFloat(document.getElementById('espesor').value);
-        const diamEje = parseFloat(document.getElementById('eje').value);
+            const gearShape = new THREE.Shape();
 
-        if (M <= 0 || Z < 3) return;
+            // Lógica de involuta
+            const invAlpha = Math.tan(alpha) - alpha;
+            // Medio ángulo del diente en la base
+            const halfToothBase = (Math.PI / (2 * Z)) + invAlpha;
 
-        // --- CÁLCULOS MATEMÁTICOS ---
-        const alpha = alphaDeg * (Math.PI / 180);
-        const Rp = (M * Z) / 2;
-        const Rb = Rp * Math.cos(alpha);
-        const Rext = Rp + M;
-        const Rroot = Rp - (1.25 * M);
+            const resolucion = 10;
+            const puntosDiente = [];
 
-        const gearShape = new THREE.Shape();
-        
-        // Lógica de involuta
-        const invAlpha = Math.tan(alpha) - alpha;
-        // Medio ángulo del diente en la base
-        const halfToothBase = (Math.PI / (2 * Z)) + invAlpha; 
-        
-        const resolucion = 10;
-        const puntosDiente = [];
+            // --- GENERAR PERFIL DE UN DIENTE (SENTIDO ANTI-HORARIO CCW) ---
+            // Orden correcto:
+            // 1. Flanco Derecho (De Raíz a Punta)
+            // 2. Flanco Izquierdo (De Punta a Raíz)
+            // NOTA: Para que sea CCW, los ángulos deben ir CRECIENDO.
 
-        // --- GENERAR PERFIL DE UN DIENTE (SENTIDO ANTI-HORARIO CCW) ---
-        // Orden correcto:
-        // 1. Flanco Derecho (De Raíz a Punta)
-        // 2. Flanco Izquierdo (De Punta a Raíz)
-        // NOTA: Para que sea CCW, los ángulos deben ir CRECIENDO.
-        
-        // Parte 1: Flanco Derecho (Ángulos negativos -> creciendo hacia 0)
-        for (let i = 0; i <= resolucion; i++) {
-            const r = Rroot + (i / resolucion) * (Rext - Rroot);
-            let thetaLocal = 0;
-            
-            if (r < Rb) {
-                thetaLocal = -halfToothBase; // Recto en la base
-            } else {
-                const phi_r = Math.acos(Rb / r);
-                const inv_phi = Math.tan(phi_r) - phi_r;
-                // En el lado derecho, el ángulo es negativo
-                thetaLocal = -(halfToothBase - inv_phi);
+            // Parte 1: Flanco Derecho (Ángulos negativos -> creciendo hacia 0)
+            for (let i = 0; i <= resolucion; i++) {
+                const r = Rroot + (i / resolucion) * (Rext - Rroot);
+                let thetaLocal = 0;
+
+                if (r < Rb) {
+                    thetaLocal = -halfToothBase; // Recto en la base
+                } else {
+                    const phi_r = Math.acos(Rb / r);
+                    const inv_phi = Math.tan(phi_r) - phi_r;
+                    // En el lado derecho, el ángulo es negativo
+                    thetaLocal = -(halfToothBase - inv_phi);
+                }
+                puntosDiente.push({ r: r, theta: thetaLocal });
             }
-            puntosDiente.push({ r: r, theta: thetaLocal });
-        }
 
-        // Parte 2: Flanco Izquierdo (De Punta a Raíz)
-        // Ángulos positivos -> decreciendo? NO. 
-        // Si vamos de Punta a Raíz en el lado izquierdo, el ángulo crece (se aleja del centro del diente).
-        // Espera, para CCW global, debemos recorrer el perímetro en sentido contrario a las agujas del reloj.
-        // Centro del diente es angulo 0.
-        // Derecha es negativo. Izquierda es positivo.
-        // Secuencia CCW: Derecha (Neg) -> Centro -> Izquierda (Pos).
-        
-        // Así que:
-        // - Subimos por Flanco Derecho (De raiz a punta). Puntos ok.
-        // - Bajamos por Flanco Izquierdo (De punta a raiz).
-        
-        for (let i = resolucion; i >= 0; i--) { // De punta a raiz
-            const r = Rroot + (i / resolucion) * (Rext - Rroot);
-            let thetaLocal = 0;
-            
-            if (r < Rb) {
-                thetaLocal = halfToothBase;
-            } else {
-                const phi_r = Math.acos(Rb / r);
-                const inv_phi = Math.tan(phi_r) - phi_r;
-                thetaLocal = halfToothBase - inv_phi;
+            // Parte 2: Flanco Izquierdo (De Punta a Raíz)
+            // Ángulos positivos -> decreciendo? NO. 
+            // Si vamos de Punta a Raíz en el lado izquierdo, el ángulo crece (se aleja del centro del diente).
+            // Espera, para CCW global, debemos recorrer el perímetro en sentido contrario a las agujas del reloj.
+            // Centro del diente es angulo 0.
+            // Derecha es negativo. Izquierda es positivo.
+            // Secuencia CCW: Derecha (Neg) -> Centro -> Izquierda (Pos).
+
+            // Así que:
+            // - Subimos por Flanco Derecho (De raiz a punta). Puntos ok.
+            // - Bajamos por Flanco Izquierdo (De punta a raiz).
+
+            for (let i = resolucion; i >= 0; i--) { // De punta a raiz
+                const r = Rroot + (i / resolucion) * (Rext - Rroot);
+                let thetaLocal = 0;
+
+                if (r < Rb) {
+                    thetaLocal = halfToothBase;
+                } else {
+                    const phi_r = Math.acos(Rb / r);
+                    const inv_phi = Math.tan(phi_r) - phi_r;
+                    thetaLocal = halfToothBase - inv_phi;
+                }
+                puntosDiente.push({ r: r, theta: thetaLocal });
             }
-            puntosDiente.push({ r: r, theta: thetaLocal });
-        }
 
-        // --- DIBUJAR EL SHAPE (BUCLE Z VECES) ---
-        
-        // Mover al primer punto del primer diente
-        const pStart = polar(puntosDiente[0].r, puntosDiente[0].theta);
-        gearShape.moveTo(pStart.x, pStart.y);
+            // --- DIBUJAR EL SHAPE (BUCLE Z VECES) ---
 
-        for (let k = 0; k < Z; k++) {
-            const angleOffset = (k * 2 * Math.PI) / Z; // Rotación de cada diente
+            // Mover al primer punto del primer diente
+            const pStart = polar(puntosDiente[0].r, puntosDiente[0].theta);
+            gearShape.moveTo(pStart.x, pStart.y);
 
-            // Dibujar líneas del diente actual
-            for (let j = 0; j < puntosDiente.length; j++) {
-                const p = puntosDiente[j];
-                // Coordenada final = angulo local + rotación diente
-                const pt = polar(p.r, p.theta + angleOffset);
-                gearShape.lineTo(pt.x, pt.y);
+            for (let k = 0; k < Z; k++) {
+                const angleOffset = (k * 2 * Math.PI) / Z; // Rotación de cada diente
+
+                // Dibujar líneas del diente actual
+                for (let j = 0; j < puntosDiente.length; j++) {
+                    const p = puntosDiente[j];
+                    // Coordenada final = angulo local + rotación diente
+                    const pt = polar(p.r, p.theta + angleOffset);
+                    gearShape.lineTo(pt.x, pt.y);
+                }
             }
+
+            gearShape.closePath(); // CERRAR MANUALMENTE EL BUCLE
+
+            // --- AGUJERO (SENTIDO HORARIO CW) ---
+            if (diamEje > 0) {
+                const holePath = new THREE.Path();
+                // absarc(x, y, radius, start, end, clockwise) -> true es CW
+                holePath.absarc(0, 0, diamEje / 2, 0, Math.PI * 2, true);
+                gearShape.holes.push(holePath);
+            }
+
+            // --- EXTRUSIÓN ---
+            const extrudeSettings = {
+                depth: B,
+                bevelEnabled: false,
+                steps: 1
+            };
+            const geometry = new THREE.ExtrudeGeometry(gearShape, extrudeSettings);
+
+            const material = new THREE.MeshStandardMaterial({
+                color: 0x0066cc,
+                roughness: 0.5,
+                metalness: 0.1,
+                side: THREE.DoubleSide // Asegura que se vea por dentro y por fuera
+            });
+
+            meshEngranaje = new THREE.Mesh(geometry, material);
+            meshEngranaje.rotation.x = -Math.PI / 2; // Acostar
+            scene.add(meshEngranaje);
         }
-        
-        gearShape.closePath(); // CERRAR MANUALMENTE EL BUCLE
 
-        // --- AGUJERO (SENTIDO HORARIO CW) ---
-        if (diamEje > 0) {
-            const holePath = new THREE.Path();
-            // absarc(x, y, radius, start, end, clockwise) -> true es CW
-            holePath.absarc(0, 0, diamEje / 2, 0, Math.PI * 2, true);
-            gearShape.holes.push(holePath);
+        // Auxiliar: Polar a Cartesiano
+        function polar(r, theta) {
+            return {
+                x: r * Math.cos(theta),
+                y: r * Math.sin(theta)
+            };
         }
 
-        // --- EXTRUSIÓN ---
-        const extrudeSettings = { 
-            depth: B, 
-            bevelEnabled: false, 
-            steps: 1 
-        };
-        const geometry = new THREE.ExtrudeGeometry(gearShape, extrudeSettings);
+        function descargarSTL() {
+            const exporter = new THREE.STLExporter();
+            const stlString = exporter.parse(meshEngranaje);
+            const blob = new Blob([stlString], { type: 'text/plain' });
+            const link = document.createElement('a');
+            const M = document.getElementById('modulo').value;
+            const Z = document.getElementById('dientes').value;
+            link.href = URL.createObjectURL(blob);
+            link.download = `EST_Engranaje_M${M}_Z${Z}.stl`;
+            link.click();
+        }
 
-        const material = new THREE.MeshStandardMaterial({ 
-            color: 0x0066cc, 
-            roughness: 0.5, 
-            metalness: 0.1,
-            side: THREE.DoubleSide // Asegura que se vea por dentro y por fuera
-        });
-        
-        meshEngranaje = new THREE.Mesh(geometry, material);
-        meshEngranaje.rotation.x = -Math.PI / 2; // Acostar
-        scene.add(meshEngranaje);
-    }
+        function onWindowResize() {
+            const c = document.getElementById('viewer-container');
+            camera.aspect = c.clientWidth / c.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(c.clientWidth, c.clientHeight);
+        }
 
-    // Auxiliar: Polar a Cartesiano
-    function polar(r, theta) {
-        return {
-            x: r * Math.cos(theta),
-            y: r * Math.sin(theta)
-        };
-    }
-
-    function descargarSTL() {
-        const exporter = new THREE.STLExporter();
-        const stlString = exporter.parse(meshEngranaje);
-        const blob = new Blob([stlString], { type: 'text/plain' });
-        const link = document.createElement('a');
-        const M = document.getElementById('modulo').value;
-        const Z = document.getElementById('dientes').value;
-        link.href = URL.createObjectURL(blob);
-        link.download = `EST_Engranaje_M${M}_Z${Z}.stl`;
-        link.click();
-    }
-
-    function onWindowResize() {
-        const c = document.getElementById('viewer-container');
-        camera.aspect = c.clientWidth / c.clientHeight;
-        camera.updateProjectionMatrix();
-        renderer.setSize(c.clientWidth, c.clientHeight);
-    }
-
-    function animate() {
-        requestAnimationFrame(animate);
-        controls.update();
-        renderer.render(scene, camera);
-    }
-</script>
+        function animate() {
+            requestAnimationFrame(animate);
+            controls.update();
+            renderer.render(scene, camera);
+        }
+    </script>
 
 </body>
+
 </html>

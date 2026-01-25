@@ -1,12 +1,15 @@
 <!doctype html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  
+
   <title>EST Ingenieros | Diseño 3D de Prototipos y Maquinaria a Medida</title>
-  <meta name="description" content="Diseño 3D de prototipos y desarrollo de maquinaria industrial a medida. Especialistas en ingeniería CAD y fabricación aditiva de piezas funcionales. ¡Consúltanos!">
-  <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-ruleset-id="XSUUEySygQkHKz" async></script>
+  <meta name="description"
+    content="Diseño 3D de prototipos y desarrollo de maquinaria industrial a medida. Especialistas en ingeniería CAD y fabricación aditiva de piezas funcionales. ¡Consúltanos!">
+  <script id="usercentrics-cmp" src="https://web.cmp.usercentrics.eu/ui/loader.js" data-ruleset-id="XSUUEySygQkHKz"
+    async></script>
   <link rel="icon" href="/assets/images/favicon.webp">
   <link rel="icon" type="image/webp" href="/assets/images/favicon.webp">
   <meta name="theme-color" content="#1b6e3a">
@@ -14,22 +17,27 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
     gtag('config', 'G-TBZK1N6QGS');
   </script>
 
   <meta property="og:title" content="EST Ingenieros | Diseño 3D y Maquinaria a Medida">
-  <meta property="og:description" content="Diseño 3D de prototipos, ingeniería CAD y soluciones de maquinaria a medida para la industria.">
+  <meta property="og:description"
+    content="Diseño 3D de prototipos, ingeniería CAD y soluciones de maquinaria a medida para la industria.">
   <meta property="og:image" content="https://estingenieros.com/assets/images/og-image.webp">
   <meta property="og:url" content="https://estingenieros.com/">
   <meta property="og:type" content="website">
+  <link rel="canonical" href="https://estingenieros.com/">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
   <link rel="stylesheet" href="assets/css/global.css">
 </head>
+
 <body>
 
   <div data-include="header.html"></div>
@@ -40,13 +48,14 @@
       <p>Transformamos ideas en piezas funcionales. Desde el diseño 3D de prototipos hasta la maquinaria a medida.</p>
       <div class="hero-btns">
         <a class="btn-primary" href="proyectos.html">Ver Proyectos</a>
-        <a class="btn-primary" style="background:white; color:black; border:1px solid #ccc;" href="contacto.html">Contactar</a>
+        <a class="btn-primary" style="background:white; color:black; border:1px solid #ccc;"
+          href="contacto.html">Contactar</a>
       </div>
     </div>
   </section>
 
   <main class="wrap">
-    
+
     <section class="grid-home" data-reveal>
       <a href="diseno3d.html" class="card-home">
         <i class="fa fa-pen-ruler"></i>
@@ -54,7 +63,7 @@
         <p>Modelado de prototipos, piezas mecánicas y optimización para fabricación industrial.</p>
         <span class="link-arrow" style="color:var(--primary); font-weight:700;">Saber más →</span>
       </a>
-      
+
       <a href="proyectos.html" class="card-home">
         <i class="fa fa-industry"></i>
         <h3>Maquinaria a Medida</h3>
@@ -87,15 +96,16 @@
         try {
           const res = await fetch(el.getAttribute('data-include'));
           if (res.ok) el.outerHTML = await res.text();
-        } catch (e) {}
+        } catch (e) { }
       });
     });
 
     // 2. Animación al hacer Scroll (Reveal)
     const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
-    }, {threshold: 0.1});
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
+    }, { threshold: 0.1 });
     document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
   </script>
 </body>
+
 </html>

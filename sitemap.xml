@@ -59,4 +59,24 @@
 </url>
 
 
+<url>
+  <loc>https://estingenieros.com/blog.html</loc>
+  <lastmod>2026-01-25T12:00:00+00:00</lastmod>
+  <priority>0.90</priority>
+</url>
+<url>
+  <loc>https://estingenieros.com/blog-tolerancias.html</loc>
+  <lastmod>2026-01-25T12:00:00+00:00</lastmod>
+  <priority>0.85</priority>
+</url>
+<url>
+  <loc>https://estingenieros.com/blog-roscas.html</loc>
+  <lastmod>2026-01-25T12:00:00+00:00</lastmod>
+  <priority>0.85</priority>
+</url>
+<url>
+  <loc>https://estingenieros.com/blog-din912.html</loc>
+  <lastmod>2026-01-25T12:00:00+00:00</lastmod>
+  <priority>0.85</priority>
+</url>
 </urlset>
