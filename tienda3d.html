@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Tienda 3D | EST Ingenieros</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/STLLoader.js"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #1b6e3a;
+            --primary-dark: #14522d;
+            --fg: #1a1a1a;
+            --muted: #666;
+            --line: #e5e5e5;
+            --bg-sidebar: #f8f9fa;
+        }
+
+        body, html { margin: 0; padding: 0; height: 100vh; width: 100vw; overflow: hidden; font-family: 'Montserrat', sans-serif; }
+        .main-container { display: flex; height: 100%; width: 100%; }
+
+        #sidebar { 
+            width: 380px; height: 100%; padding: 25px; 
+            background: var(--bg-sidebar); border-right: 1px solid var(--line); 
+            display: flex; flex-direction: column; box-sizing: border-box;
+        }
+
+        .brand { margin-bottom: 20px; text-align: center; }
+        .brand img { max-width: 180px; }
+
+        .options-scroll { flex: 1; overflow-y: auto; padding-right: 5px; }
+        
+        h3 { font-family: 'Oswald', sans-serif; font-size: 0.85rem; color: var(--primary); text-transform: uppercase; margin: 15px 0 10px 0; border-bottom: 1px solid var(--line); padding-bottom: 5px; }
+
+        .card { background: white; padding: 15px; border-radius: 4px; margin-bottom: 12px; border: 1px solid var(--line); }
+        label { display: block; font-size: 0.7rem; font-weight: 700; margin-bottom: 8px; color: var(--muted); text-transform: uppercase; }
+
+        .grid-options { display: grid; grid-template-columns: repeat(auto-fit, minmax(60px, 1fr)); gap: 8px; }
+        .opt-btn input { display: none; }
+        .opt-btn label { display: block; background: white; border: 1px solid var(--line); padding: 10px 4px; text-align: center; border-radius: 4px; cursor: pointer; transition: 0.2s; font-size: 0.8rem; }
+        .opt-btn input:checked + label { background: var(--primary); border-color: var(--primary); color: white; }
+
+        .upload-btn { display: block; padding: 14px; background: white; border: 2px dashed var(--primary); color: var(--primary); text-align: center; border-radius: 4px; cursor: pointer; font-weight: 600; margin-bottom: 5px; font-size: 0.85rem; }
+
+        .price-container { border-top: 2px solid var(--line); padding-top: 15px; }
+        .total-price { font-family: 'Oswald', sans-serif; font-size: 3.2rem; color: var(--primary); text-align: center; font-weight: 700; line-height: 1; }
+        .iva-tag { font-size: 0.7rem; color: #999; text-align: center; display: block; margin-bottom: 10px; }
+
+        .btn-checkout { 
+            background: #635bff; /* Color oficial de Stripe */
+            color: white; border: none; padding: 16px; width: 100%; border-radius: 4px; 
+            font-family: 'Oswald', sans-serif; font-size: 1.1rem; cursor: pointer; 
+            transition: 0.3s; text-transform: uppercase; font-weight: 700;
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .btn-checkout:hover { background: #4339ca; }
+        .btn-checkout:disabled { background: #ccc; cursor: not-allowed; }
+
+        #viewer { flex: 1; height: 100%; background: #ececec; position: relative; }
+        #file-info { font-size: 0.65rem; color: var(--primary); text-align: center; margin-bottom: 10px; font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<div class="main-container">
+    <div id="sidebar">
+        <div class="brand">
+            <img src="assets/images/bg-logo.webp" alt="EST Ingenieros">
+        </div>
+        
+        <label class="upload-btn">
+            <i class="fa fa-cloud-upload"></i> SUBIR MODELO 3D
+            <input type="file" id="fileInput" accept=".stl" style="display:none">
+        </label>
+        <div id="file-info"></div>
+
+        <div class="options-scroll">
+            <h3>1. Material</h3>
+            <div class="card">
+                <div class="grid-options">
+                    <div class="opt-btn"><input type="radio" id="m_pla" name="material" value="PLA" checked onchange="runSlicer()"><label for="m_pla">PLA</label></div>
+                    <div class="opt-btn"><input type="radio" id="m_abs" name="material" value="ABS" onchange="runSlicer()"><label for="m_abs">ABS</label></div>
+                    <div class="opt-btn"><input type="radio" id="m_petg" name="material" value="PETG" onchange="runSlicer()"><label for="m_petg">PETG</label></div>
+                </div>
+            </div>
+
+            <h3>2. Calidad técnica</h3>
+            <div class="card">
+                <label>Resolución</label>
+                <div class="grid-options">
+                    <div class="opt-btn"><input type="radio" id="h15" name="layer" value="0.15" onchange="runSlicer()"><label for="h15">Alta</label></div>
+                    <div class="opt-btn"><input type="radio" id="h20" name="layer" value="0.20" checked onchange="runSlicer()"><label for="h20">Media</label></div>
+                    <div class="opt-btn"><input type="radio" id="h30" name="layer" value="0.30" onchange="runSlicer()"><label for="h30">Baja</label></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="price-container">
+            <div class="total-price" id="res-price">0.00 €</div>
+            <span class="iva-tag">Pago seguro procesado por Stripe</span>
+            <button class="btn-checkout" id="stripeBtn" onclick="handleStripePayment()" disabled>
+                <i class="fa-brands fa-stripe"></i> COMPRAR AHORA
+            </button>
+        </div>
+    </div>
+
+    <div id="viewer"></div>
+</div>
+
+<script>
+    // --- CONFIGURACIÓN STRIPE ---
+    // Sustituye con tu Clave Pública de Stripe (pk_test_...)
+    const stripe = Stripe('tu_clave_publica_aqui'); 
+    
+    let scene, camera, renderer, controls, currentMesh, currentOrder = {};
+
+    const MATERIALS_CONFIG = {
+        'PLA':  { densidad: 1.24, precioG: 0.03, color: 0x1b6e3a },
+        'ABS':  { densidad: 1.04, precioG: 0.035, color: 0x444444 },
+        'PETG': { densidad: 1.27, precioG: 0.025, color: 0x0055aa }
+    };
+
+    init();
+
+    function init() {
+        const container = document.getElementById('viewer');
+        scene = new THREE.Scene();
+        scene.background = new THREE.Color(0xeeeeee);
+        camera = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 5000);
+        camera.position.set(200, 200, 200);
+        renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(container.clientWidth, container.clientHeight);
+        container.appendChild(renderer.domElement);
+        scene.add(new THREE.GridHelper(250, 20, 0xcccccc, 0xdddddd));
+        scene.add(new THREE.AmbientLight(0xffffff, 0.8));
+        const light = new THREE.DirectionalLight(0xffffff, 0.5);
+        light.position.set(1, 1, 1);
+        scene.add(light);
+        controls = new THREE.OrbitControls(camera, renderer.domElement);
+        document.getElementById('fileInput').addEventListener('change', handleFile);
+        animate();
+    }
+
+    function handleFile(e) {
+        const file = e.target.files[0];
+        if(!file) return;
+        currentOrder.fileName = file.name;
+        document.getElementById('file-info').innerText = "Seleccionado: " + file.name;
+        document.getElementById('stripeBtn').disabled = false;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            const geometry = new THREE.STLLoader().parse(event.target.result);
+            if (currentMesh) scene.remove(currentMesh);
+            geometry.center();
+            geometry.computeBoundingBox();
+            
+            const matType = document.querySelector('input[name="material"]:checked').value;
+            currentMesh = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({ 
+                color: MATERIALS_CONFIG[matType].color, 
+                roughness: 0.5 
+            }));
+            
+            const size = new THREE.Vector3();
+            geometry.boundingBox.getSize(size);
+            currentMesh.position.y = size.y / 2;
+            scene.add(currentMesh);
+            runSlicer();
+
+            // Zoom automático
+            const maxDim = Math.max(size.x, size.y, size.z);
+            camera.position.set(maxDim * 1.5, maxDim * 1.5, maxDim * 1.5);
+            controls.target.set(0, size.y/2, 0);
+            controls.update();
+        };
+        reader.readAsArrayBuffer(file);
+    }
+
+    function runSlicer() {
+        if (!currentMesh) return;
+        const mat = document.querySelector('input[name="material"]:checked').value;
+        const layer = document.querySelector('input[name="layer"]:checked').value;
+        const config = MATERIALS_CONFIG[mat];
+
+        currentMesh.material.color.setHex(config.color);
+
+        const volTotal = getVolume(currentMesh.geometry) / 1000; 
+        const volReal = (volTotal * 0.25 + (volTotal * 0.75 * 0.20)) * 0.98; // Infill fijo 20%
+        const peso = volReal * config.densidad;
+
+        let multVel = (layer == "0.15") ? 0.6 : (layer == "0.30" ? 1.6 : 1.0);
+        const horas = ((volReal * 1000) / (12 * multVel)) / 3600 * 4.5;
+
+        const total = (4.00 + (peso * config.precioG) + (horas * 1.50)) * 1.21;
+        
+        currentOrder.priceCents = Math.round(total * 100); // Stripe usa céntimos
+        currentOrder.material = mat;
+        currentOrder.layer = layer;
+
+        document.getElementById('res-price').innerText = total.toFixed(2) + " €";
+    }
+
+    // --- FUNCIÓN DE PAGO ---
+    async function handleStripePayment() {
+        const btn = document.getElementById('stripeBtn');
+        btn.disabled = true;
+        btn.innerHTML = '<i class="fa fa-spinner fa-spin"></i> PROCESANDO...';
+
+        try {
+            // Aquí llamarías a tu servidor para crear una Session de Checkout
+            // fetch('/create-checkout-session', { method: 'POST', body: JSON.stringify(currentOrder) })
+            
+            console.log("Datos del pedido listos para Stripe:", currentOrder);
+            
+            // Para una tienda real, el backend de Stripe crearía una URL a la que rediriges
+            alert("Redirigiendo a Stripe...\n(Nota: Se requiere una pequeña función de servidor para generar el ID de sesión seguro)");
+            
+        } catch (error) {
+            console.error("Error en pago:", error);
+            btn.disabled = false;
+            btn.innerText = "REINTENTAR COMPRA";
+        }
+    }
+
+    function getVolume(geometry) {
+        const pos = geometry.attributes.position;
+        let sum = 0;
+        const p1 = new THREE.Vector3(), p2 = new THREE.Vector3(), p3 = new THREE.Vector3();
+        for (let i = 0; i < pos.count; i += 3) {
+            p1.fromBufferAttribute(pos, i); p2.fromBufferAttribute(pos, i+1); p3.fromBufferAttribute(pos, i+2);
+            sum += p1.dot(p2.cross(p3)) / 6.0;
+        }
+        return Math.abs(sum);
+    }
+
+    function animate() { requestAnimationFrame(animate); renderer.render(scene, camera); }
+</script>
+</body>
+</html>

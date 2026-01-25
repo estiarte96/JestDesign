@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="es">
+<head>
+  
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-TBZK1N6QGS');
+  </script>
+  <link rel="icon" type="image/png" href="/assets/images/favicon.webp">
+  <meta name="theme-color" content="#1b6e3a">
+  <meta charset="utf-8" />
+  <title>Ingeniería inversa y escaneo 3D – EST Ingenieros</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description" content="Digitalizamos tu pieza y la convertimos en un modelo CAD STEP listo para fabricar o imprimir.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <link rel="stylesheet" href="assets/css/global.css">
+  
+  <style>
+    /* Estilos específicos que no están en el global aún */
+    .section { padding: 60px 0; border-bottom: 1px solid var(--line); }
+    .section:last-of-type { border-bottom: none; }
+    
+    /* Hero personalizado para servicios */
+    .hero-service { display: grid; grid-template-columns: 1.1fr .9fr; gap: 40px; align-items: center; padding: 80px 0; }
+    .hero-service img { width: 100%; aspect-ratio: 16/9; border-radius: 12px; object-fit: cover; border: 1px solid var(--line); }
+    
+    /* Pasos del proceso */
+    .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 20px; margin-top: 30px; }
+    .step { border: 1px solid var(--line); border-radius: 12px; padding: 24px; background: #fdfdfd; }
+    .step .n { display: inline-block; width: 32px; height: 32px; border-radius: 50%; border: 1px solid var(--primary); color: var(--primary); text-align: center; line-height: 30px; margin-bottom: 12px; font-weight: 700; font-family: var(--font-title); }
+    
+    /* Grid de tarjetas técnicas/precios */
+    .cards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; margin-top: 30px; }
+    .price-tag { font-family: var(--font-title); font-weight: 700; font-size: 24px; color: var(--fg); display: block; margin-bottom: 5px; }
+    
+    .list-bullets { margin: 20px 0; padding-left: 20px; color: var(--muted); }
+    .list-bullets li { margin-bottom: 10px; }
+
+    @media (max-width: 880px) {
+      .hero-service { grid-template-columns: 1fr; text-align: center; }
+      .hero-btns { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <div data-include="header.html"></div>
+
+  <main class="wrap">
+
+    <section class="hero-service" data-reveal>
+      <div>
+        <h1 class="h1">Ingeniería inversa y escaneo 3D profesional</h1>
+        <p class="lead">Digitalizamos tu pieza física y la convertimos en un modelo CAD listo para fabricar o imprimir. Ideal para automoción, maquinaria y prototipos.</p>
+        <div class="hero-btns">
+          <a class="btn-primary" href="contacto.html?tipo=escaneo">Solicitar presupuesto</a>
+        </div>
+      </div>
+      <img src="assets/images/Scanner.webp" alt="Escaneo 3D de pieza">
+    </section>
+
+    <section class="section" data-reveal>
+      <h2 class="h2">Qué hacemos</h2>
+      <p>Convertimos piezas reales en modelos 3D precisos. Partimos de la pieza física y, mediante escaneo 3D y medición, reconstruimos su geometría en CAD paramétrico para poder modificarla, optimizarla o fabricarla de nuevo.</p>
+      
+      <p>Trabajamos para <strong>automoción</strong> (soportes, carcasas, adaptadores), <strong>maquinaria industrial</strong> (protectores, útiles, recambios descatalogados) y <strong>prototipos</strong>.</p>
+      <ul class="list-bullets">
+        <li>Piezas rotas o descatalogadas</li>
+        <li>Adaptadores y soportes específicos</li>
+        <li>Carcasas y cubiertas técnicas</li>
+        <li>Prototipos funcionales y ajustes por interferencias</li>
+      </ul>
+    </section>
+
+    <section class="section" data-reveal>
+      <h2 class="h2">Proceso</h2>
+      <div class="steps">
+        <div class="step"><div class="n">1</div><h3>Brief & validación</h3><p class="muted">Fotos/medidas y requisitos.</p></div>
+        <div class="step"><div class="n">2</div><h3>Escaneo/medición</h3><p class="muted">Luz estructurada o fotogrametría.</p></div>
+        <div class="step"><div class="n">3</div><h3>Reconstrucción CAD</h3><p class="muted">Modelo paramétrico editable.</p></div>
+        <div class="step"><div class="n">4</div><h3>Revisión</h3><p class="muted">Ajustes finales contigo.</p></div>
+        <div class="step"><div class="n">5</div><h3>Entrega</h3><p class="muted">Archivo CAD STEP + malla.</p></div>
+        <div class="step"><div class="n">6</div><h3>Opcional</h3><p class="muted">Impresión 3D o fabricación.</p></div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <h2 class="h2">Entrega y formatos</h2>
+      <div class="cards-grid">
+        <div class="card-item">
+          <h3>CAD</h3>
+          <p class="muted">Formato estándar: <strong>STEP (.step/.stp)</strong>.</p>
+        </div>
+        <div class="card-item">
+          <h3>Malla</h3>
+          <p class="muted">STL u OBJ para impresión o visualización.</p>
+        </div>
+        <div class="card-item">
+          <h3>Planos</h3>
+          <p class="muted">PDF con cotas principales (bajo pedido).</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" data-reveal>
+      <h2 class="h2">Precios orientativos</h2>
+      <div class="cards-grid">
+        <div class="card-item">
+          <span class="price-tag">desde 60–120 €</span>
+          <h3>Básico</h3>
+          <p class="muted">Pieza simple, pocas cotas clave.</p>
+        </div>
+        <div class="card-item">
+          <span class="price-tag">desde 180–350 €</span>
+          <h3>Medio</h3>
+          <p class="muted">Geometría mixta y encajes técnicos.</p>
+        </div>
+        <div class="card-item">
+          <span class="price-tag">desde 450–900 €</span>
+          <h3>Avanzado</h3>
+          <p class="muted">Carcasa compleja o forma orgánica.</p>
+        </div>
+      </div>
+      <p class="muted" style="margin-top:20px; font-size: 13px;">* Precios sujetos a complejidad técnica. No incluyen impresión 3D.</p>
+    </section>
+
+    <section class="section" data-reveal>
+      <div class="cta-box">
+        <h2>¿Empezamos con tu pieza?</h2>
+        <p>Envíanos fotos y medidas; te damos presupuesto rápido y sin compromiso.</p>
+        <a class="btn-primary" style="background:white; color:black;" href="contacto.html?tipo=escaneo">Pedir presupuesto</a>
+      </div>
+    </section>
+
+  </main>
+
+  <div data-include="footer.html"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      // 1. Carga componentes
+      const slots = document.querySelectorAll('[data-include]');
+      for (const el of slots) {
+        try {
+          const res = await fetch(el.getAttribute('data-include'));
+          if (res.ok) el.outerHTML = await res.text();
+        } catch (e) {}
+      }
+
+      // 2. Animaciones Reveal
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('in'); });
+      }, {threshold: 0.1});
+      document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
+    });
+  </script>
+</body>
+</html>

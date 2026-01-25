@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>Proyectos – EST Ingenieros</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <link rel="stylesheet" href="assets/css/global.css">
+</head>
+<body>
+
+  <div data-include="header.html"></div>
+
+  <main class="wrap">
+    <section class="page-intro">
+      <h1>Ingeniería & Proyectos</h1>
+      <p>Soluciones técnicas llave en mano. Del concepto a la fabricación.</p>
+      <div class="sep-line"></div>
+    </section>
+
+    <article class="project-row">
+      <div class="proj-img-col">
+        <a href="assets/Maquinas/MaquinaBurletes/maquina-burletes.html">
+          <img src="assets/Maquinas/MaquinaBurletes/Images/Burletes1.webp" alt="Máquina de Corte">
+        </a>
+      </div>
+      <div class="proj-txt-col">
+        <span class="proj-cat">Industrial / Automatización</span>
+        <h2 class="proj-title">Máquina de Corte de Burletes</h2>
+        <p class="proj-desc">Diseño y fabricación de estación semiautomática para corte de precisión. Aumento de productividad x4.</p>
+        <a href="assets/Maquinas/MaquinaBurletes/maquina-burletes.html" class="proj-link">Ver Caso de Éxito →</a>
+      </div>
+    </article>
+
+    <article class="project-row reverse">
+      <div class="proj-img-col">
+        <a href="assets/Maquinas/Transportador/transportador.html">
+          <img src="assets/Maquinas/Transportador/Images/ZRtransportador.webp" alt="Transportador">
+        </a>
+      </div>
+      <div class="proj-txt-col">
+        <span class="proj-cat">Industrial / Transporte</span>
+        <h2 class="proj-title">Sistema Transportador</h2>
+        <p class="proj-desc">Cinta transportadora modular para optimización de flujo logístico. Velocidad variable y control integrado.</p>
+        <a href="assets/Maquinas/Transportador/transportador.html" class="proj-link">Ver Caso de Éxito →</a>
+      </div>
+    </article>
+
+    <article class="project-row">
+      <div class="proj-img-col">
+        <a href="assets/Maquinas/ICT49/ICT49.html">
+          <img src="assets/Maquinas/ICT49/Images/ICT49_1.webp" alt="Sistema ICT49">
+        </a>
+      </div>
+      <div class="proj-txt-col">
+        <span class="proj-cat">Industrial / Transporte</span>
+        <h2 class="proj-title">Sistema Transportador ICT49</h2>
+        <p class="proj-desc">Cinta transportadora modular para optimización de flujo logístico.</p>
+        <a href="assets/Maquinas/ICT49/ICT49.html" class="proj-link">Ver Caso de Éxito →</a>
+      </div>
+    </article>
+
+    <article class="project-row reverse">
+      <div class="proj-img-col">
+        <a href="contacto.html">
+          <div style="background:#f4f4f4; width:100%; height:300px; display:flex; align-items:center; justify-content:center; color:#ccc; border:1px solid var(--line); border-radius:8px;">
+            <i class="fa fa-plus" style="font-size:40px;"></i>
+          </div>
+        </a>
+      </div>
+      <div class="proj-txt-col">
+        <span class="proj-cat">Nuevo Reto</span>
+        <h2 class="proj-title">Tu Próximo Proyecto</h2>
+        <p class="proj-desc">¿Necesitas desarrollar una máquina o pieza? Cuéntanos tu idea y la haremos realidad.</p>
+        <a href="contacto.html" class="proj-link">Iniciar Proyecto →</a>
+      </div>
+    </article>
+  </main>
+
+  <div data-include="footer.html"></div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', async () => {
+      document.querySelectorAll('[data-include]').forEach(async el => {
+        try {
+          const res = await fetch(el.getAttribute('data-include'));
+          el.outerHTML = await res.text();
+        } catch (e) { console.error("Error cargando include", e); }
+      });
+    });
+  </script>
+</body>
+</html>

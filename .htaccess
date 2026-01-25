@@ -1,0 +1,10 @@
+RewriteEngine On
+
+# 1. Quitar la extensión .html de la URL
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.html -f
+RewriteRule ^(.*)$ $1.html [NC,L]
+
+# 2. Opcional: Redirigir de /home a la raíz (estingenieros.com)
+# Si quieres que al entrar a la web no salga nada después del .com
+RewriteRule ^home$ / [R=301,L]
