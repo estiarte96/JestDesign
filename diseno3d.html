@@ -2,14 +2,18 @@
 <html lang="es">
 
 <head>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="1caf3909-123e-4e98-b2f5-b97f18ce963b"
+    data-blockingmode="auto" type="text/javascript"></script>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Diseño 3D de Prototipos y Modelado CAD Industrial | EST Ingenieros</title>
   <meta name="description"
     content="Servicio profesional de diseño 3D de prototipos y piezas mecánicas. Expertos en modelado CAD paramétrico, validación funcional y optimización para fabricación.">
 
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
-  <script>
+
+  <script type="text/plain" data-cookieconsent="statistics" async
+    src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
+  <script type="text/plain" data-cookieconsent="statistics">
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
@@ -113,23 +117,7 @@
 
   <div data-include="footer.html"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      // Carga de componentes
-      const slots = document.querySelectorAll('[data-include]');
-      for (const el of slots) {
-        try {
-          const res = await fetch(el.getAttribute('data-include'));
-          if (res.ok) el.outerHTML = await res.text();
-        } catch (e) { }
-      }
-      // Animaciones
-      const io = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('in'); });
-      }, { threshold: 0.1 });
-      document.querySelectorAll('[data-reveal]').forEach(el => io.observe(el));
-    });
-  </script>
+  <script src="assets/js/main.js" defer></script>
 </body>
 
 </html>

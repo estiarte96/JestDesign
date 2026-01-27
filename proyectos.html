@@ -1,15 +1,29 @@
 <!doctype html>
 <html lang="es">
+
 <head>
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="1caf3909-123e-4e98-b2f5-b97f18ce963b"
+    data-blockingmode="auto" type="text/javascript"></script>
   <meta charset="utf-8" />
   <title>Proyectos – EST Ingenieros</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Oswald:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <script type="text/plain" data-cookieconsent="statistics" async
+    src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
+  <script type="text/plain" data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-TBZK1N6QGS');
+  </script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-  
+
   <link rel="stylesheet" href="assets/css/global.css">
 </head>
+
 <body>
 
   <div data-include="header.html"></div>
@@ -30,7 +44,8 @@
       <div class="proj-txt-col">
         <span class="proj-cat">Industrial / Automatización</span>
         <h2 class="proj-title">Máquina de Corte de Burletes</h2>
-        <p class="proj-desc">Diseño y fabricación de estación semiautomática para corte de precisión. Aumento de productividad x4.</p>
+        <p class="proj-desc">Diseño y fabricación de estación semiautomática para corte de precisión. Aumento de
+          productividad x4.</p>
         <a href="assets/Maquinas/MaquinaBurletes/maquina-burletes.html" class="proj-link">Ver Caso de Éxito →</a>
       </div>
     </article>
@@ -44,7 +59,8 @@
       <div class="proj-txt-col">
         <span class="proj-cat">Industrial / Transporte</span>
         <h2 class="proj-title">Sistema Transportador</h2>
-        <p class="proj-desc">Cinta transportadora modular para optimización de flujo logístico. Velocidad variable y control integrado.</p>
+        <p class="proj-desc">Cinta transportadora modular para optimización de flujo logístico. Velocidad variable y
+          control integrado.</p>
         <a href="assets/Maquinas/Transportador/transportador.html" class="proj-link">Ver Caso de Éxito →</a>
       </div>
     </article>
@@ -66,7 +82,8 @@
     <article class="project-row reverse">
       <div class="proj-img-col">
         <a href="contacto.html">
-          <div style="background:#f4f4f4; width:100%; height:300px; display:flex; align-items:center; justify-content:center; color:#ccc; border:1px solid var(--line); border-radius:8px;">
+          <div
+            style="background:#f4f4f4; width:100%; height:300px; display:flex; align-items:center; justify-content:center; color:#ccc; border:1px solid var(--line); border-radius:8px;">
             <i class="fa fa-plus" style="font-size:40px;"></i>
           </div>
         </a>
@@ -82,15 +99,7 @@
 
   <div data-include="footer.html"></div>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', async () => {
-      document.querySelectorAll('[data-include]').forEach(async el => {
-        try {
-          const res = await fetch(el.getAttribute('data-include'));
-          el.outerHTML = await res.text();
-        } catch (e) { console.error("Error cargando include", e); }
-      });
-    });
-  </script>
+  <script src="assets/js/main.js" defer></script>
 </body>
+
 </html>
