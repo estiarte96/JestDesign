@@ -27,17 +27,35 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 // Función para marcar el link activo según la URL
 function markActiveLink() {
-    const currentPath = window.location.pathname.split("/").pop() || "home.html";
+    // Obtenemos el nombre del archivo actual sin extensión para comparar
+    let currentPath = window.location.pathname.split("/").pop() || "index.html";
+    currentPath = currentPath.replace('.html', '');
+    if (currentPath === '') currentPath = 'index'; // Para la raíz
+
     document.querySelectorAll(".nav-link").forEach(link => {
-        const href = link.getAttribute("href").split("/").pop();
-        if (href === currentPath) {
+        const href = link.getAttribute("href");
+        if (!href) return;
+
+        // Obtenemos el objetivo del link sin extensión
+        let linkPath = href.split("/").pop() || "index.html";
+        linkPath = linkPath.replace('.html', '');
+        if (linkPath === '') linkPath = 'index';
+
+        if (linkPath === currentPath) {
             link.classList.add("active");
         }
     });
 }
-// Limpiar .html e index.html de la barra de direcciones
-if (window.location.pathname.endsWith('/index.html')) {
-    window.history.replaceState(null, '', window.location.pathname.replace('/index.html', '/'));
-} else if (window.location.pathname.endsWith('.html')) {
-    window.history.replaceState(null, '', window.location.pathname.replace('.html', ''));
+
+// Limpiar .html e index.html de la barra de direcciones manteniendo parámetros
+const cleanPath = (path) => {
+    if (path.endsWith('/index.html')) return path.replace('/index.html', '/');
+    if (path.endsWith('.html')) return path.replace('.html', '');
+    return path;
+};
+
+const newPath = cleanPath(window.location.pathname);
+// Solo reemplazamos si el path cambia, y CONSERVAMOS search y hash
+if (newPath !== window.location.pathname) {
+    window.history.replaceState(null, '', newPath + window.location.search + window.location.hash);
 }
