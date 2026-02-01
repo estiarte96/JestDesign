@@ -90,8 +90,9 @@
             <label class="form-label">Servicio Requerido</label>
             <select name="asunto" class="form-control">
               <option value="Presupuesto-3D">Diseño 3D y Prototipado</option>
+              <option value="Presupuesto-Impresion-3D">Impresión 3D</option>
               <option value="Presupuesto-Maquinaria">Desarrollo de Maquinaria</option>
-              <option value="Ingenieria-Inversa">Escaneo 3D / Ing. Inversa</option>
+              <option value="Ingenieria-Inversa">Escaneo 3D e Ingeniería Inversa</option>
               <option value="General">Otras Consultas</option>
             </select>
           </div>
@@ -119,3 +120,20 @@
 </body>
 
 </html>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    // 1. Obtener los parámetros de la URL actual
+    const params = new URLSearchParams(window.location.search);
+
+    // 2. Buscar si existe el parámetro 'asunto'
+    const asuntoSeleccionado = params.get('asunto');
+
+    // 3. Si hay un asunto en la URL, buscar el select y cambiar su valor
+    if (asuntoSeleccionado) {
+      const selectElement = document.querySelector('select[name="asunto"]');
+      if (selectElement) {
+        selectElement.value = asuntoSeleccionado;
+      }
+    }
+  });
+</script>
