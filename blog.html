@@ -199,7 +199,7 @@
       <h3>Newsletter de Ingeniería Industrial</h3>
       <p>Suscríbete para recibir guías de diseño, tablas técnicas y novedades en fabricación aditiva directamente en tu
         email.</p>
-      <form class="news-form" action="https://formspree.io/f/xkoogvdb" method="POST">
+      <form class="news-form" id="newsletter-form">
         <input type="email" name="email" placeholder="Correo corporativo" class="news-input" required>
         <button type="submit" class="news-btn">Suscribirme</button>
       </form>
@@ -212,11 +212,13 @@
   <script src="assets/js/main.js" defer></script>
   <script>
     document.addEventListener('DOMContentLoaded', () => {
+      // Filtros
       const filterBtns = document.querySelectorAll('.cat-btn');
       const articles = document.querySelectorAll('.blog-card');
 
       filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
+          // ... (logica existente de filtros) ...
           filterBtns.forEach(b => b.classList.remove('active'));
           btn.classList.add('active');
 
@@ -226,6 +228,49 @@
             article.style.display = (filterValue === 'all' || filterValue === articleCat) ? 'flex' : 'none';
           });
         });
+      });
+
+      // Newsletter
+      const form = document.getElementById("newsletter-form");
+      const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2taDsvAYg06Ms6YzZS4wEp7BAVC9cFSZFYu4bPFKODQ2g9yFTpI1Q6gzihM03fzsC/exec";
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button');
+        const originalText = btn.innerText;
+        btn.disabled = true; btn.innerText = "Suscribiendo...";
+
+        const email = form.querySelector('input[name="email"]').value;
+
+        const payload = {
+          nombre: "Nuevo Suscriptor",
+          email: email,
+          material: "NEWSLETTER",
+          precio: "Alta en Blog",
+          fileData: ""
+        };
+
+        try {
+          const res = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "text/plain;charset=utf-8" }
+          });
+
+          const data = await res.json();
+
+          if (data.result === "success") {
+            alert("¡Gracias por suscribirte al blog!");
+            form.reset();
+          } else {
+            throw new Error(data.error);
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Error al suscribirse. Inténtalo de nuevo.");
+        } finally {
+          btn.disabled = false; btn.innerText = originalText;
+        }
       });
     });
   </script>

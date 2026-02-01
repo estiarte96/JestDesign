@@ -75,7 +75,7 @@
       </div>
 
       <div class="contact-form">
-        <form action="https://formspree.io/f/mlggezql" method="POST">
+        <form id="contact-form">
           <div class="form-group">
             <label class="form-label">Nombre o Empresa</label>
             <input type="text" name="nombre" class="form-control" placeholder="Nombre completo" required>
@@ -103,6 +103,13 @@
               placeholder="Explica brevemente los requisitos técnicos, materiales o plazos..." required></textarea>
           </div>
 
+          <div class="form-group">
+            <label class="form-label">Adjuntar Archivo (Opcional)</label>
+            <input type="file" name="adjunto" class="form-control" style="padding: 10px; height: auto;">
+            <p style="font-size: 0.7rem; color: var(--muted); margin-top: 5px;">Formatos: PDF, STEP, STL, ZIP. Máx 25MB.
+              (Para archivos mayores, incluye un enlace de descarga en el mensaje).</p>
+          </div>
+
           <div style="margin-bottom: 15px; font-size: 13px; color: var(--muted);">
             <label><input type="checkbox" required> Acepto la política de privacidad y el tratamiento de datos
               técnicos.</label>
@@ -121,19 +128,89 @@
 
 </html>
 <script>
+  // URL DEL SCRIPT DE GOOGLE
+  const GOOGLE_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbw2taDsvAYg06Ms6YzZS4wEp7BAVC9cFSZFYu4bPFKODQ2g9yFTpI1Q6gzihM03fzsC/exec";
+
   document.addEventListener("DOMContentLoaded", function () {
     // 1. Obtener los parámetros de la URL actual
     const params = new URLSearchParams(window.location.search);
-
-    // 2. Buscar si existe el parámetro 'asunto'
     const asuntoSeleccionado = params.get('asunto');
-
-    // 3. Si hay un asunto en la URL, buscar el select y cambiar su valor
     if (asuntoSeleccionado) {
       const selectElement = document.querySelector('select[name="asunto"]');
-      if (selectElement) {
-        selectElement.value = asuntoSeleccionado;
-      }
+      if (selectElement) selectElement.value = asuntoSeleccionado;
+    }
+
+    // 2. Manejo del Formulario
+    const form = document.querySelector("form"); // Seleccionamos el primer formulario
+
+    // Si queremos ser más específicos o le ponemos ID:
+    // const form = document.getElementById("contact-form"); 
+
+    if (form) {
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+        const btn = form.querySelector('button[type="submit"]');
+        const originalText = btn.innerText;
+        btn.disabled = true; btn.innerText = "Procesando...";
+
+        // Preparar datos
+        const formData = new FormData(form);
+        const fileInput = form.querySelector('input[name="adjunto"]');
+        const file = fileInput ? fileInput.files[0] : null;
+
+        // Mapeamos los campos del formulario de contacto a los que espera el Script (que son de pedidos)
+        // Asunto -> Material
+        // Mensaje -> Precio (para que se guarde el texto largo)
+        const payload = {
+          nombre: formData.get("nombre"),
+          email: formData.get("email"),
+          material: formData.get("asunto"), // Reutilizamos el campo material para el asunto
+          precio: formData.get("mensaje"),  // Reutilizamos el campo precio para el mensaje
+          fileName: "",
+          mimeType: "",
+          fileData: ""
+        };
+
+        const readFileBase64 = (f) => {
+          return new Promise((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => resolve(reader.result.split(',')[1]);
+            reader.onerror = error => reject(error);
+            reader.readAsDataURL(f);
+          });
+        };
+
+        try {
+          if (file) {
+            btn.innerText = "Subiendo archivo...";
+            payload.fileName = file.name;
+            payload.mimeType = file.type;
+            payload.fileData = await readFileBase64(file);
+          }
+
+          btn.innerText = "Enviando...";
+
+          const res = await fetch(GOOGLE_SCRIPT_URL, {
+            method: 'POST',
+            body: JSON.stringify(payload),
+            headers: { "Content-Type": "text/plain;charset=utf-8" }
+          });
+
+          const data = await res.json();
+
+          if (data.result === "success") {
+            alert("¡Mensaje enviado correctamente! Hemos recibido tu consulta y el archivo.");
+            form.reset();
+          } else {
+            throw new Error(data.error || "Error del servidor");
+          }
+        } catch (err) {
+          console.error(err);
+          alert("Hubo un error al enviar: " + err.message);
+        } finally {
+          btn.disabled = false; btn.innerText = originalText;
+        }
+      });
     }
   });
 </script>
