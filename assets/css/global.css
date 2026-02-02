@@ -534,6 +534,68 @@ main {
   color: var(--primary);
 }
 
+/* DROPDOWN MENU */
+.nav-dropdown {
+  position: relative;
+}
+
+.nav-dropdown .nav-link i {
+  font-size: 10px;
+  margin-left: 4px;
+  transition: transform 0.3s ease;
+}
+
+.nav-dropdown:hover .nav-link i {
+  transform: rotate(180deg);
+}
+
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  list-style: none;
+  margin: 8px 0 0 0;
+  padding: 8px 0;
+  min-width: 200px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all 0.3s ease;
+  z-index: 1000;
+}
+
+.nav-dropdown:hover .dropdown-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.dropdown-menu li {
+  margin: 0;
+}
+
+.dropdown-menu li a {
+  display: block;
+  padding: 10px 20px;
+  color: var(--fg);
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: none;
+  transition: all 0.2s ease;
+}
+
+.dropdown-menu li a:hover {
+  background: #f6f6f6;
+  color: var(--primary);
+  padding-left: 24px;
+}
+
+
 /* HAMBURGUESA (MÓVIL) */
 .nav-toggle-checkbox {
   display: none;
@@ -582,6 +644,44 @@ main {
   .nav-link {
     width: 100%;
     text-align: center;
+  }
+
+  /* Dropdown en móvil */
+  .nav-dropdown {
+    width: 100%;
+  }
+
+  .dropdown-menu {
+    position: static;
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    box-shadow: none;
+    border: none;
+    margin-top: 8px;
+    padding: 0;
+    display: none;
+  }
+
+  .nav-dropdown:hover .dropdown-menu,
+  .nav-dropdown .dropdown-menu {
+    display: none;
+  }
+
+  .nav-dropdown.active .dropdown-menu {
+    display: block;
+  }
+
+  .dropdown-menu li a {
+    text-align: center;
+    padding: 8px 20px;
+    background: #f9f9f9;
+    margin: 4px 0;
+    border-radius: 8px;
+  }
+
+  .dropdown-menu li a:hover {
+    padding-left: 20px;
   }
 }
 
