@@ -4,7 +4,7 @@
   <!-- Página Principal -->
   <url>
     <loc>https://estingenieros.com/</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -12,35 +12,35 @@
   <!-- Servicios Principales (Alta Prioridad) -->
   <url>
     <loc>https://estingenieros.com/diseno3d.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://estingenieros.com/impresion3d.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
 
   <url>
     <loc>https://estingenieros.com/Calculadora3D.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://estingenieros.com/IngenieriaInversa.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <url>
     <loc>https://estingenieros.com/estdesignLab.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -48,7 +48,7 @@
   <!-- Portfolio y Casos de Estudio -->
   <url>
     <loc>https://estingenieros.com/portfolio.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -63,7 +63,7 @@
   <!-- Blog (Contenido que genera tráfico orgánico) -->
   <url>
     <loc>https://estingenieros.com/blog.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
@@ -92,7 +92,7 @@
   <!-- Contacto -->
   <url>
     <loc>https://estingenieros.com/contacto.html</loc>
-    <lastmod>2026-02-02</lastmod>
+    <lastmod>2026-02-03</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -117,6 +117,49 @@
     <lastmod>2026-01-15</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://estingenieros.com/assets/Maquinas/Escud1/Escud1.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <url>
+    <loc>https://estingenieros.com/assets/Maquinas/ICT185/ICT185.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Páginas de Productos -->
+  <url>
+    <loc>https://estingenieros.com/assets/products/Corte%20Burlete/CorteBurlete.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://estingenieros.com/assets/products/EtiquetasCamper/EtiquetasCamper.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://estingenieros.com/assets/products/ManetaMercedes/ManetaMercedes.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
+  </url>
+
+  <url>
+    <loc>https://estingenieros.com/assets/products/PenjadorDucato/PenjadorDucato.html</loc>
+    <lastmod>2026-02-03</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.5</priority>
   </url>
 
   <!-- Páginas Legales (Baja prioridad pero necesarias) -->
