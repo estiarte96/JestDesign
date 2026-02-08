@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EST Ingenieros | Enlaces & Catálogo 3D</title>
+    <meta name="description"
+        content="Enlaces oficiales y catálogo de piezas impresas en 3D de EST Ingenieros. Diseño industrial y fabricación aditiva.">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Oswald:wght@500;700&display=swap"
+        rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- internal CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Favicon -->
+    <link rel="icon" href="../assets/images/favicon.webp">
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header>
+            <img src="../assets/images/bg-logo.webp" alt="EST Ingenieros Logo" class="profile-img">
+            <h1>EST Ingenieros</h1>
+            <p class="bio">Oficina Técnica Virtual & Impresión 3D. <br>Soluciones de ingeniería y fabricación aditiva a
+                medida.</p>
+        </header>
+
+        <!-- Main Links -->
+        <div class="links-container">
+            <a href="https://wa.me/34639709440" class="link-btn featured stagger-1" target="_blank">
+                <i class="fa-brands fa-whatsapp"></i>
+                Pedir Presupuesto (WhatsApp)
+            </a>
+
+            <a href="../index.html" class="link-btn stagger-2">
+                <i class="fa fa-globe"></i>
+                Visitar Web Oficial
+            </a>
+
+            <a href="../Calculadora3D.html" class="link-btn stagger-3">
+                <i class="fa fa-calculator"></i>
+                Calculadora de Impresión 3D
+            </a>
+
+            <a href="../contacto.html" class="link-btn stagger-4">
+                <i class="fa fa-envelope"></i>
+                Formulario de Contacto
+            </a>
+        </div>
+
+        <!-- Catalog Section -->
+        <h2 class="catalog-title">Catálogo de Piezas</h2>
+
+        <div class="catalog-grid">
+            <!-- Product 1: Soporte Monitor -->
+            <a href="SoporteMonitor/SoporteMonitor.html" class="catalog-card">
+                <div class="card-img-wrapper">
+                    <img src="SoporteMonitor/Images/1.jpg" alt="Soporte Monitor 3D" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Soporte Monitor</h3>
+                    <p>Diseño / Oficina</p>
+                </div>
+            </a>
+            <!-- Product 2: Porta Lápices -->
+            <a href="PortaLapices/PortaLapices.html" class="catalog-card">
+                <div class="card-img-wrapper">
+                    <img src="PortaLapices/Images/21.png" alt="Porta Lápices 3D" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Porta Lápices</h3>
+                    <p>Diseño / Oficina</p>
+                </div>
+            </a>
+            <!-- Product 3: Maneta Mercedes -->
+            <a href="ManetaMercedes/ManetaMercedes.html" class="catalog-card">
+                <div class="card-img-wrapper">
+                    <img src="ManetaMercedes/Images/1.webp" alt="Maneta Mercedes 3D" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Maneta Mercedes</h3>
+                    <p>Automoción</p>
+                </div>
+            </a>
+
+            <!-- Product 4: Penjador Ducato -->
+            <a href="PenjadorDucato/PenjadorDucato.html" class="catalog-card">
+                <div class="card-img-wrapper">
+                    <img src="PenjadorDucato/Images/1.webp" alt="Penjador Ducato 3D" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Gancho Ducato</h3>
+                    <p>Caravaning</p>
+                </div>
+            </a>
+
+            <!-- Product 5: Etiquetas Camper -->
+            <a href="EtiquetasCamper/EtiquetasCamper.html" class="catalog-card">
+                <div class="card-img-wrapper">
+                    <img src="EtiquetasCamper/Images/1.webp" alt="Etiquetas Camper 3D" loading="lazy">
+                </div>
+                <div class="card-info">
+                    <h3>Etiquetas Camper</h3>
+                    <p>Accesorios</p>
+                </div>
+            </a>
+
+
+        </div>
+
+
+        <!-- Footer -->
+        <footer>
+            <div class="social-footer">
+                <a href="https://www.instagram.com/estingenieros" target="_blank" title="Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://es.wallapop.com/user/josepe-1185474346" target="_blank" title="Wallapop">
+                    <i class="fas fa-store"></i>
+                </a>
+            </div>
+            <p>&copy; 2024 EST Ingenieros</p>
+        </footer>
+
+        <!-- Back to Top Button -->
+        <a href="#" id="back-to-top" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
+    </div>
+
+    <script>
+        // Intersection Observer for staggered animations
+        document.addEventListener('DOMContentLoaded', () => {
+            const staggeredElements = document.querySelectorAll('[class*="stagger-"]');
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 }); // Trigger when 10% of the element is visible
+
+            staggeredElements.forEach(element => {
+                observer.observe(element);
+            });
+
+            // Back to Top Button functionality
+            const backToTopButton = document.getElementById('back-to-top');
+
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 300) { // Show button after scrolling 300px
+                    backToTopButton.classList.add('show');
+                } else {
+                    backToTopButton.classList.remove('show');
+                }
+            });
+
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+
+</body>
+
+</html>
