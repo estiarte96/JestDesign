@@ -128,10 +128,10 @@
 
         .form-control:focus {
             outline: none;
-            border-color: var(--admin-accent);
-            background-color: #334155 !important;
-            /* Azul pizarra más claro para que se vea bien el foco */
+            border-color: var(--admin-accent) !important;
+            background-color: #2d3a4f !important;
             color: #ffffff !important;
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
         }
 
         .btn-submit {
@@ -386,10 +386,13 @@
         }
 
         function loadProjects() {
+            console.log("ADMIN SYSTEM V3 - Iniciando carga...");
             const statusBadge = document.getElementById('status-badge');
             const select = document.getElementById('project');
 
+            // Definimos el callback en el objeto global para que Google lo encuentre sí o sí
             window.handleProjectList = function (projects) {
+                console.log("¡Datos recibidos con éxito!", projects);
                 if (!projects || !Array.isArray(projects)) return;
 
                 select.innerHTML = '<option value="" disabled selected>Selecciona un proyecto...</option>';
@@ -409,16 +412,19 @@
 
                 statusBadge.textContent = "Sincronizado con Sheets";
                 statusBadge.style.background = "rgba(34, 197, 94, 0.2)";
-                statusBadge.style.color = "#22c55e";
             };
 
-            const script = document.createElement('script');
-            script.src = `${SCRIPT_URL}?action=getProjects&callback=handleProjectList`;
-            script.onerror = () => {
-                console.log("Carga automática bloqueada. Usando modo manual.");
-                statusBadge.textContent = "Modo Registro Activo";
-            };
-            document.body.appendChild(script);
+            // Un pequeño retraso para asegurar que el DOM está estable (útil en GitHub Pages)
+            setTimeout(() => {
+                const script = document.createElement('script');
+                const cacheBuster = Date.now();
+                script.src = `${SCRIPT_URL}?action=getProjects&callback=handleProjectList&v=${cacheBuster}`;
+                script.onerror = () => {
+                    console.error("Error de conexión con el Script de Google.");
+                    statusBadge.textContent = "Error de sincronización";
+                };
+                document.body.appendChild(script);
+            }, 500);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
