@@ -91,17 +91,14 @@
 
         .form-control {
             width: 100%;
-            background: #1e293b;
-            /* Un poco más claro que el fondo para contraste */
+            background-color: #1e293b !important;
             border: 1px solid var(--admin-border);
             color: #ffffff !important;
-            /* Forzar blanco */
             padding: 12px 16px;
             border-radius: 8px;
             font-size: 14px;
-            transition: border-color 0.2s;
+            transition: all 0.2s ease;
             appearance: none;
-            /* Reset nativo */
         }
 
         /* Estilos específicos para que se vea el desplegable */
@@ -132,6 +129,9 @@
         .form-control:focus {
             outline: none;
             border-color: var(--admin-accent);
+            background-color: #334155 !important;
+            /* Azul pizarra más claro para que se vea bien el foco */
+            color: #ffffff !important;
         }
 
         .btn-submit {
@@ -390,19 +390,19 @@
             const statusBadge = document.getElementById('status-badge');
 
             try {
-                // Pedimos proyectos al script
-                const response = await fetch(`${SCRIPT_URL}?action=getProjects`);
-                // Si la URL no está configurada aún o falla, usamos fallback silencioso
-                if (!response.ok) throw new Error('Script no configurado');
+                // Para evitar errores de CORS en el listado, usamos un enfoque más permisivo
+                const response = await fetch(`${SCRIPT_URL}?action=getProjects`, {
+                    method: 'GET',
+                    mode: 'cors', // Cambiamos a cors pero manejando el posible error
+                });
+
+                if (!response.ok) throw new Error('CORS o Red');
 
                 const projects = await response.json();
 
-                // Mantener solo el primer placeholder
                 select.innerHTML = '<option value="" disabled selected>Selecciona un proyecto...</option>';
-
-                // Proyectos desde Sheets
                 projects.forEach(proj => {
-                    if (proj && proj.trim() !== '') {
+                    if (proj && proj.trim()) {
                         const opt = document.createElement('option');
                         opt.value = proj;
                         opt.textContent = proj;
@@ -410,16 +410,22 @@
                     }
                 });
 
-                // Añadir siempre la opción de crear nuevo al final
                 const addOpt = document.createElement('option');
                 addOpt.value = "NEW_PROJECT";
                 addOpt.textContent = "+ Añadir nuevo proyecto...";
                 select.appendChild(addOpt);
-
-                statusBadge.textContent = "Proyectos Activos";
+                statusBadge.textContent = "Proyectos Sincronizados";
 
             } catch (error) {
-                console.log('Usando lista estática (Google Script offline)');
+                console.log("Aviso: No se pudo cargar la lista automática. Modo manual activo.");
+                // Si falla la carga, nos aseguramos de que al menos esté la opción de Añadir Nuevo
+                if (select.options.length <= 1) {
+                    const addOpt = document.createElement('option');
+                    addOpt.value = "NEW_PROJECT";
+                    addOpt.textContent = "+ Añadir nuevo proyecto...";
+                    select.appendChild(addOpt);
+                }
+                statusBadge.textContent = "Modo Registro Activo";
             }
         }
 
@@ -428,7 +434,7 @@
             document.getElementById('date').value = today;
 
             loadRecords();
-            loadProjects(); // <--- Carga proyectos al abrir la web
+            loadProjects();
 
             const form = document.getElementById('hours-form');
             form.addEventListener('submit', async (e) => {
