@@ -376,7 +376,7 @@
     <script>
         // Configuración
         // REEMPLAZAR con la URL de tu Web App de Google Apps Script
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzajyr5niyakufwTcPI2mjbsGsZhlIUnitoLAIjI7LDoYXXAHVl2j-WDYzxxJqOP4BW6g/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwqmZ6FhR3-i6sNS22zWLUW8gwHfRyFkEnnZAqHqyQeYQIQ__THWaiWsTIu8-jLeWjfrQ/exec';
 
         function checkNewProject(val) {
             const newGroup = document.getElementById('new-project-group');
@@ -475,9 +475,9 @@
                     // Enviar a Google Sheets
                     const response = await fetch(SCRIPT_URL, {
                         method: 'POST',
-                        mode: 'no-cors', // Necesario para Google Apps Script
+                        mode: 'no-cors',
                         cache: 'no-cache',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: { 'Content-Type': 'text/plain' }, // Cambiado para mayor compatibilidad
                         body: JSON.stringify(data)
                     });
 
