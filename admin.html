@@ -376,7 +376,7 @@
     <script>
         // Configuración
         // REEMPLAZAR con la URL de tu Web App de Google Apps Script
-        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzC5rQ6NcLgzfEGfnpUYgSWsuvY1pM20R8nNIn0jgfMpRAa5_02LYoPmFCTvCAIOBTbOQ/exec';
+        const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzajyr5niyakufwTcPI2mjbsGsZhlIUnitoLAIjI7LDoYXXAHVl2j-WDYzxxJqOP4BW6g/exec';
 
         function checkNewProject(val) {
             const newGroup = document.getElementById('new-project-group');
@@ -392,17 +392,18 @@
         }
 
         function loadProjects() {
-            console.log("ADMIN SYSTEM V3 - Iniciando carga...");
             const statusBadge = document.getElementById('status-badge');
             const select = document.getElementById('project');
 
-            // Definimos el callback en el objeto global para que Google lo encuentre sí o sí
-            window.handleProjectList = function (projects) {
-                console.log("¡Datos recibidos con éxito!", projects);
-                if (!projects || !Array.isArray(projects)) return;
+            // 1. Cargar proyectos guardados localmente anteriormente
+            const localProjects = JSON.parse(localStorage.getItem('admin_projects') || '[]');
+
+            function updateSelect(projectList) {
+                // Combinar con los locales y eliminar duplicados
+                const combined = [...new Set([...projectList, ...localProjects])];
 
                 select.innerHTML = '<option value="" disabled selected>Selecciona un proyecto...</option>';
-                projects.forEach(proj => {
+                combined.forEach(proj => {
                     if (proj && proj.trim()) {
                         const opt = document.createElement('option');
                         opt.value = proj;
@@ -415,22 +416,24 @@
                 addOpt.value = "NEW_PROJECT";
                 addOpt.textContent = "+ Añadir nuevo proyecto...";
                 select.appendChild(addOpt);
+                statusBadge.textContent = "Panel de Control Activo";
+            }
 
-                statusBadge.textContent = "Sincronizado con Sheets";
-                statusBadge.style.background = "rgba(34, 197, 94, 0.2)";
+            // Inicializar con lo que tengamos (locales o vacío)
+            updateSelect(['ICT', 'SUDESA', 'EST Ingenieros']);
+
+            // 2. Intentar actualizar desde Google en segundo plano
+            window.handleProjectList = function (projects) {
+                if (Array.isArray(projects)) {
+                    updateSelect(projects);
+                    statusBadge.textContent = "Sincronizado con Sheets";
+                }
             };
 
-            // Un pequeño retraso para asegurar que el DOM está estable (útil en GitHub Pages)
-            setTimeout(() => {
-                const script = document.createElement('script');
-                const cacheBuster = Date.now();
-                script.src = `${SCRIPT_URL}?action=getProjects&callback=handleProjectList&v=${cacheBuster}`;
-                script.onerror = () => {
-                    console.error("Error de conexión con el Script de Google.");
-                    statusBadge.textContent = "Error de sincronización";
-                };
-                document.body.appendChild(script);
-            }, 500);
+            const script = document.createElement('script');
+            script.src = `${SCRIPT_URL}?action=getProjects&callback=handleProjectList&v=${Date.now()}`;
+            // No ponemos onerror para no ensuciar la consola si hay bloqueos de AdBlock
+            document.body.appendChild(script);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
@@ -454,7 +457,15 @@
 
                 // Si es un proyecto nuevo, sobreescribir el ID con el nombre escrito
                 if (data.project === 'NEW_PROJECT') {
-                    data.project = document.getElementById('new_project_name').value;
+                    const newProjName = document.getElementById('new_project_name').value;
+                    data.project = newProjName;
+
+                    // Guardar en la lista de proyectos locales para que aparezca en el desplegable la próxima vez
+                    let localProjects = JSON.parse(localStorage.getItem('admin_projects') || '[]');
+                    if (!localProjects.includes(newProjName)) {
+                        localProjects.push(newProjName);
+                        localStorage.setItem('admin_projects', JSON.stringify(localProjects));
+                    }
                 }
 
                 try {
