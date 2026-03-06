@@ -385,20 +385,12 @@
             }
         }
 
-        async function loadProjects() {
-            const select = document.getElementById('project');
+        function loadProjects() {
             const statusBadge = document.getElementById('status-badge');
+            const select = document.getElementById('project');
 
-            try {
-                // Para evitar errores de CORS en el listado, usamos un enfoque más permisivo
-                const response = await fetch(`${SCRIPT_URL}?action=getProjects`, {
-                    method: 'GET',
-                    mode: 'cors', // Cambiamos a cors pero manejando el posible error
-                });
-
-                if (!response.ok) throw new Error('CORS o Red');
-
-                const projects = await response.json();
+            window.handleProjectList = function (projects) {
+                if (!projects || !Array.isArray(projects)) return;
 
                 select.innerHTML = '<option value="" disabled selected>Selecciona un proyecto...</option>';
                 projects.forEach(proj => {
@@ -414,19 +406,19 @@
                 addOpt.value = "NEW_PROJECT";
                 addOpt.textContent = "+ Añadir nuevo proyecto...";
                 select.appendChild(addOpt);
-                statusBadge.textContent = "Proyectos Sincronizados";
 
-            } catch (error) {
-                console.log("Aviso: No se pudo cargar la lista automática. Modo manual activo.");
-                // Si falla la carga, nos aseguramos de que al menos esté la opción de Añadir Nuevo
-                if (select.options.length <= 1) {
-                    const addOpt = document.createElement('option');
-                    addOpt.value = "NEW_PROJECT";
-                    addOpt.textContent = "+ Añadir nuevo proyecto...";
-                    select.appendChild(addOpt);
-                }
+                statusBadge.textContent = "Sincronizado con Sheets";
+                statusBadge.style.background = "rgba(34, 197, 94, 0.2)";
+                statusBadge.style.color = "#22c55e";
+            };
+
+            const script = document.createElement('script');
+            script.src = `${SCRIPT_URL}?action=getProjects&callback=handleProjectList`;
+            script.onerror = () => {
+                console.log("Carga automática bloqueada. Usando modo manual.");
                 statusBadge.textContent = "Modo Registro Activo";
-            }
+            };
+            document.body.appendChild(script);
         }
 
         document.addEventListener('DOMContentLoaded', () => {
