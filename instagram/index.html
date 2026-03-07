@@ -36,68 +36,58 @@
                 medida.</p>
         </header>
 
-        <!-- Main Links -->
-        <div class="links-container">
-            <a href="https://wa.me/34937525129" class="link-btn featured stagger-1" target="_blank">
-                <i class="fa-brands fa-whatsapp"></i>
-                Pedir Presupuesto (WhatsApp)
-            </a>
+        <!-- Catalog Section -->
+        <h2 class="catalog-title" id="catalog">Catálogo de Piezas</h2>
 
-            <a href="../index.html" class="link-btn stagger-2">
-                <i class="fa fa-globe"></i>
-                Visitar Web Oficial
-            </a>
-
-            <a href="../Calculadora3D.html" class="link-btn stagger-3">
-                <i class="fa fa-calculator"></i>
-                Calculadora de Impresión 3D
-            </a>
-
-            <a href="../contacto.html" class="link-btn stagger-4">
-                <i class="fa fa-envelope"></i>
-                Formulario de Contacto
-            </a>
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="tab-btn active" data-filter="all">Totes</button>
+            <button class="tab-btn" data-filter="coche">Coche</button>
+            <button class="tab-btn" data-filter="bici">Bici</button>
+            <button class="tab-btn" data-filter="merchandising">Merchandising</button>
+            <button class="tab-btn" data-filter="altres">Altres</button>
         </div>
 
-        <!-- Catalog Section -->
-        <h2 class="catalog-title">Catálogo de Piezas</h2>
-
-        <div class="catalog-grid">
+        <div class="catalog-grid" id="catalog-grid">
             <!-- Product 1: Soporte Monitor -->
-            <a href="SoporteMonitor/SoporteMonitor.html" class="catalog-card">
+            <a href="SoporteMonitor/SoporteMonitor.html" class="catalog-card" data-category="altres">
                 <div class="card-img-wrapper">
                     <img src="SoporteMonitor/Images/1.jpg" alt="Soporte Monitor 3D" loading="lazy">
+                    <div class="card-badge">35€</div>
                 </div>
                 <div class="card-info">
                     <h3>Soporte Monitor</h3>
-                    <p>Diseño / Oficina</p>
+                    <p>Disseny · Oficina</p>
                 </div>
             </a>
             <!-- Product 2: Porta Lápices -->
-            <a href="PortaLapices/PortaLapices.html" class="catalog-card">
+            <a href="PortaLapices/PortaLapices.html" class="catalog-card" data-category="altres">
                 <div class="card-img-wrapper">
                     <img src="PortaLapices/Images/21.png" alt="Porta Lápices 3D" loading="lazy">
+                    <div class="card-badge">16€</div>
                 </div>
                 <div class="card-info">
                     <h3>Porta Lápices</h3>
-                    <p>Diseño / Oficina</p>
+                    <p>Disseny · Oficina</p>
                 </div>
             </a>
             <!-- Product 3: Maneta Mercedes -->
-            <a href="ManetaMercedes/ManetaMercedes.html" class="catalog-card">
+            <a href="ManetaMercedes/ManetaMercedes.html" class="catalog-card" data-category="coche">
                 <div class="card-img-wrapper">
                     <img src="ManetaMercedes/Images/1.webp" alt="Maneta Mercedes 3D" loading="lazy">
+                    <div class="card-badge">25€</div>
                 </div>
                 <div class="card-info">
                     <h3>Maneta Mercedes</h3>
-                    <p>Automoción</p>
+                    <p>Automoció</p>
                 </div>
             </a>
 
             <!-- Product 4: Penjador Ducato -->
-            <a href="PenjadorDucato/PenjadorDucato.html" class="catalog-card">
+            <a href="PenjadorDucato/PenjadorDucato.html" class="catalog-card" data-category="coche">
                 <div class="card-img-wrapper">
                     <img src="PenjadorDucato/Images/1.webp" alt="Penjador Ducato 3D" loading="lazy">
+                    <div class="card-badge">19,90€</div>
                 </div>
                 <div class="card-info">
                     <h3>Gancho Ducato</h3>
@@ -106,13 +96,74 @@
             </a>
 
             <!-- Product 5: Etiquetas Camper -->
-            <a href="EtiquetasCamper/EtiquetasCamper.html" class="catalog-card">
+            <a href="EtiquetasCamper/EtiquetasCamper.html" class="catalog-card" data-category="altres">
                 <div class="card-img-wrapper">
                     <img src="EtiquetasCamper/Images/1.webp" alt="Etiquetas Camper 3D" loading="lazy">
+                    <div class="card-badge">9,90€</div>
                 </div>
                 <div class="card-info">
                     <h3>Etiquetas Camper</h3>
-                    <p>Accesorios</p>
+                    <p>Accessoris</p>
+                </div>
+            </a>
+
+            <!-- Product 6: Bike Wall Mount -->
+            <a href="BikeWallMount/BikeWallMount.html" class="catalog-card" data-category="bici">
+                <div class="card-img-wrapper">
+                    <img src="BikeWallMount/Images/1.png" alt="Bike Wall Mount" loading="lazy">
+                    <div class="card-badge">20€</div>
+                </div>
+                <div class="card-info">
+                    <h3>Bike Wall Mount</h3>
+                    <p>Bici · Suport</p>
+                </div>
+            </a>
+
+            <!-- Product 7: Garmin Mount -->
+            <a href="GarminMount/GarminMount.html" class="catalog-card" data-category="bici">
+                <div class="card-img-wrapper">
+                    <img src="GarminMount/Images/1.png" alt="Garmin Mount" loading="lazy">
+                    <div class="card-badge">15€</div>
+                </div>
+                <div class="card-info">
+                    <h3>Garmin Mount</h3>
+                    <p>Bici · GPS</p>
+                </div>
+            </a>
+
+            <!-- Product 8: Llinterna -->
+            <a href="Llinterna/Llinterna.html" class="catalog-card" data-category="bici">
+                <div class="card-img-wrapper">
+                    <img src="Llinterna/Images/1.jpg" alt="Suport Llinterna" loading="lazy">
+                    <div class="card-badge">12€</div>
+                </div>
+                <div class="card-info">
+                    <h3>Suport Llinterna</h3>
+                    <p>Bici · Llum</p>
+                </div>
+            </a>
+
+            <!-- Product 9: Porta Bido -->
+            <a href="PortaBido/PortaBido.html" class="catalog-card" data-category="bici">
+                <div class="card-img-wrapper">
+                    <img src="PortaBido/Images/1.png" alt="Porta Bidó" loading="lazy">
+                    <div class="card-badge">18€</div>
+                </div>
+                <div class="card-info">
+                    <h3>Porta Bidó</h3>
+                    <p>Bici · Hidratació</p>
+                </div>
+            </a>
+
+            <!-- Product 10: Protector Canvi -->
+            <a href="ProtectorCanvi/ProtectorCanvi.html" class="catalog-card" data-category="bici">
+                <div class="card-img-wrapper">
+                    <img src="ProtectorCanvi/Images/1.png" alt="Protector Canvi" loading="lazy">
+                    <div class="card-badge">22€</div>
+                </div>
+                <div class="card-info">
+                    <h3>Protector de Canvi</h3>
+                    <p>Bici · Protecció</p>
                 </div>
             </a>
 
@@ -137,6 +188,26 @@
         <!-- Back to Top Button -->
         <a href="#" id="back-to-top" class="back-to-top"><i class="fas fa-arrow-up"></i></a>
     </div>
+
+    <!-- Bottom App-like Navigation -->
+    <nav class="bottom-nav">
+        <a href="../index.html" class="nav-item">
+            <i class="fa fa-globe"></i>
+            <span>Web</span>
+        </a>
+        <a href="https://wa.me/34937525129" class="nav-item" target="_blank">
+            <i class="fa-brands fa-whatsapp"></i>
+            <span>WhatsApp</span>
+        </a>
+        <a href="#catalog" class="nav-item">
+            <i class="fa fa-th-large"></i>
+            <span>Categories</span>
+        </a>
+        <a href="../contacto.html" class="nav-item">
+            <i class="fa fa-envelope"></i>
+            <span>Contacte</span>
+        </a>
+    </nav>
 
     <script>
         // Intersection Observer for staggered animations
@@ -172,6 +243,39 @@
                 window.scrollTo({
                     top: 0,
                     behavior: 'smooth'
+                });
+            });
+
+            // Category Filtering Logic
+            const tabBtns = document.querySelectorAll('.tab-btn');
+            const catalogCards = document.querySelectorAll('.catalog-card');
+
+            tabBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons
+                    tabBtns.forEach(b => b.classList.remove('active'));
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+
+                    const filter = btn.getAttribute('data-filter');
+
+                    catalogCards.forEach(card => {
+                        const category = card.getAttribute('data-category');
+
+                        if (filter === 'all' || filter === category) {
+                            card.style.display = 'block';
+                            setTimeout(() => {
+                                card.style.opacity = '1';
+                                card.style.transform = 'scale(1)';
+                            }, 10);
+                        } else {
+                            card.style.opacity = '0';
+                            card.style.transform = 'scale(0.95)';
+                            setTimeout(() => {
+                                card.style.display = 'none';
+                            }, 300);
+                        }
+                    });
                 });
             });
         });
