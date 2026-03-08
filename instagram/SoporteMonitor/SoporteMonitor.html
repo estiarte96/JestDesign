@@ -204,6 +204,81 @@
                 width: 100%;
             }
         }
+
+        /* Product Footer Nav & Related */
+        .product-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px 0 20px;
+            border-top: 1px solid var(--line);
+            margin-top: 40px;
+        }
+
+        .product-nav a {
+            font-weight: 600;
+            font-size: 14px;
+            color: var(--muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .product-nav a:hover {
+            color: #1b6e3a;
+        }
+
+        .related-section {
+            padding: 0 0 40px;
+        }
+
+        .related-section h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+        }
+
+        .related-card {
+            background: #fff;
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid var(--line);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .related-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .related-card img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            object-fit: cover;
+        }
+
+        .related-card-info {
+            padding: 12px;
+            text-align: center;
+        }
+
+        .related-card-info h4 {
+            font-size: 13px;
+            margin: 0;
+            color: var(--fg);
+        }
+
+        @media (max-width: 600px) {
+            .related-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
     </style>
 </head>
 
@@ -265,6 +340,42 @@
                 </div>
             </section>
         </article>
+
+        <div class="product-nav">
+            <a href="../index.html" class="prev-prod"><i class="fa fa-chevron-left"></i> Catálogo</a>
+            <a href="../PortaLapices/PortaLapices.html" class="next-prod">Siguiente <i
+                    class="fa fa-chevron-right"></i></a>
+        </div>
+
+        <section class="related-section">
+            <h3>Más Productos</h3>
+            <div class="related-grid">
+                <a href="../PortaLapices/PortaLapices.html" class="related-card">
+                    <img src="../PortaLapices/Images/1.jpg" alt="Porta Lápices">
+                    <div class="related-card-info">
+                        <h4>Porta Lápices</h4>
+                    </div>
+                </a>
+                <a href="../ManetaMercedes/ManetaMercedes.html" class="related-card">
+                    <img src="../ManetaMercedes/Images/1.jpg" alt="Maneta Mercedes">
+                    <div class="related-card-info">
+                        <h4>Maneta Mercedes</h4>
+                    </div>
+                </a>
+                <a href="../PenjadorDucato/PenjadorDucato.html" class="related-card">
+                    <img src="../PenjadorDucato/Images/1.jpg" alt="Gancho Ducato">
+                    <div class="related-card-info">
+                        <h4>Gancho Ducato</h4>
+                    </div>
+                </a>
+                <a href="../BikeWallMount/BikeWallMount.html" class="related-card">
+                    <img src="../BikeWallMount/Images/1.png" alt="Bike Wall Mount">
+                    <div class="related-card-info">
+                        <h4>Bike Wall Mount</h4>
+                    </div>
+                </a>
+            </div>
+        </section>
 
     </main>
 
