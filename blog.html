@@ -54,12 +54,36 @@
       margin-bottom: 80px;
     }
 
+    /* En pantallas grandes, forzar estructura 2-3-3... */
+    @media (min-width: 1024px) {
+      .blog-grid {
+        grid-template-columns: repeat(6, 1fr); /* Grid base de 6 columnas para dividir en 2 y 3 */
+      }
+
+      /* Los dos primeros ocupan 3 columnas cada uno (total 6 -> media fila cada uno) */
+      .blog-card:nth-child(1),
+      .blog-card:nth-child(2) {
+        grid-column: span 3;
+      }
+
+      /* El resto ocupan 2 columnas cada uno (total 6 -> un tercio de fila cada uno) */
+      .blog-card:nth-child(n+3) {
+        grid-column: span 2;
+      }
+
+      .blog-card:nth-child(1) .card-title,
+      .blog-card:nth-child(2) .card-title {
+        font-size: 1.8rem;
+      }
+    }
+
     .card-excerpt {
       font-size: 14px;
       color: var(--muted);
       margin-bottom: 20px;
       display: -webkit-box;
       -webkit-line-clamp: 3;
+      line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
@@ -151,16 +175,35 @@
 
     <section class="blog-grid">
 
+      <!-- MÁS RECIENTE 1: RECAMBIOS -->
+      <article class="card-item blog-card" data-category="mantenimiento">
+        <a href="blog-cost-recanvis-2d.html">
+          <img src="assets/images/blog-recanvis-2d-1.png"
+            alt="Archivos y planos 2D antiguos para el mantenimiento y digitalización"
+            style="width:100%; border-radius:4px; margin-bottom:15px; height:250px; object-fit:cover;">
+        </a>
+        <div class="card-body">
+          <span class="card-tag">Mantenimiento</span>
+          <h3 class="card-title"><a href="blog-cost-recanvis-2d.html">¿Cuánto Cuesta Esperar un Plano 2D? El coste real del downtime</a></h3>
+          <p class="card-excerpt">La ingeniería inversa y los catálogos 3D evitan paradas de planta innecesarias por falta de documentación técnica original.</p>
+          <div class="card-meta">
+            <span><i class="far fa-clock"></i> 5 min</span>
+            <span>25 May, 2026</span>
+          </div>
+        </div>
+      </article>
+
+      <!-- MÁS RECIENTE 2: ASISTENTE TALADRO -->
       <article class="card-item blog-card" data-category="ingenieria">
         <a href="blog-asistente-taladro.html">
           <img src="assets/images/hole_wizard_hero.png"
             alt="Representación 3D de un mecanizado mediante el Asistente para Taladro (Hole Wizard)"
-            style="width:100%; border-radius:4px; margin-bottom:15px; height:200px; object-fit:cover;">
+            style="width:100%; border-radius:4px; margin-bottom:15px; height:250px; object-fit:cover;">
         </a>
         <div class="card-body">
           <span class="card-tag">Ingeniería</span>
-          <h3 class="card-title"><a href="blog-asistente-taladro.html">El Asistente para Taladro: Ingeniería para Fabricación</a></h3>
-          <p class="card-excerpt">Guía sobre cómo utilizar el Asistente para Taladro (Hole Wizard) en diseño 3D CAD para asegurar una transición perfecta a la fabricación mecanizada.</p>
+          <h3 class="card-title"><a href="blog-asistente-taladro.html">El Asistente para Taladro: Ingeniería para la Fabricación real</a></h3>
+          <p class="card-excerpt">Guía avanzada sobre Hole Wizard para asegurar una transición perfecta entre el diseño CAD y el taller de mecanizado.</p>
           <div class="card-meta">
             <span><i class="far fa-clock"></i> 6 min</span>
             <span>03 Abr, 2026</span>
@@ -177,8 +220,7 @@
         <div class="card-body">
           <span class="card-tag">Ingeniería</span>
           <h3 class="card-title"><a href="blog-tolerancias.html">Ajustes y Tolerancias ISO: Guía práctica</a></h3>
-          <p class="card-excerpt">Aprende a elegir el ajuste correcto (H7/g6, Interferencia...) y optimiza costes de
-            fabricación con nuestra guía rápida.</p>
+          <p class="card-excerpt">Aprende a elegir el ajuste correcto (H7/g6, Interferencia...) y optimiza costes de fabricación con nuestra guía rápida.</p>
           <div class="card-meta">
             <span><i class="far fa-clock"></i> 5 min</span>
             <span>25 Ene, 2026</span>
@@ -190,13 +232,12 @@
         <a href="blog-roscas.html">
           <img src="assets/images/blog-roscas.webp"
             alt="Tabla de diámetros de brocas para roscas métricas y gas - Guía técnica de taller"
-            style="width:100%; border-radius:4px; margin-bottom:15px;">
+            style="width:100%; border-radius:4px; margin-bottom:15px; height:200px; object-fit:cover;">
         </a>
         <div class="card-body">
           <span class="card-tag">Taller</span>
           <h3 class="card-title"><a href="blog-roscas.html">Tabla de Roscas: Qué broca usar para cada macho</a></h3>
-          <p class="card-excerpt">Optimiza tu proceso de mecanizado con nuestra guía rápida de diámetros de taladro para
-            roscas Métricas e ISO (BSP/Gas).</p>
+          <p class="card-excerpt">Optimiza tu proceso de mecanizado con nuestra guía rápida de diámetros de taladro para roscas Métricas e ISO (BSP/Gas).</p>
           <div class="card-meta">
             <span><i class="far fa-clock"></i> 2 min</span>
             <span>22 Ene, 2026</span>
@@ -207,14 +248,13 @@
       <article class="card-item blog-card" data-category="taller">
         <a href="blog-din912.html">
           <img src="assets/images/din912.webp" alt="Dimensiones tornillería Allen DIN 912 para diseño CAD"
-            style="width:100%; border-radius:4px; margin-bottom:15px;">
+            style="width:100%; border-radius:4px; margin-bottom:15px; height:200px; object-fit:cover;">
         </a>
         <div class="card-body">
           <span class="card-tag">Taller</span>
           <h3 class="card-title"><a href="blog-din912.html">Dimensiones DIN 912: Tabla técnica para alojamientos</a>
           </h3>
-          <p class="card-excerpt">Estandariza tus diseños CAD con las tolerancias y dimensiones correctas para
-            tornillería de cabeza cilíndrica (Allen).</p>
+          <p class="card-excerpt">Estandariza tus diseños CAD con las tolerancias y dimensiones correctas para tornillería de cabeza cilíndrica (Allen).</p>
           <div class="card-meta">
             <span><i class="far fa-clock"></i> 3 min</span>
             <span>08 Ene, 2026</span>
