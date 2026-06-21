@@ -1,0 +1,175 @@
+<!doctype html>
+<html lang="es">
+<head>
+
+  <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="1caf3909-123e-4e98-b2f5-b97f18ce963b"
+    data-blockingmode="auto" type="text/javascript"></script>
+
+  <script type="text/plain" data-cookieconsent="statistics" async
+    src="https://www.googletagmanager.com/gtag/js?id=G-TBZK1N6QGS"></script>
+  <script type="text/plain" data-cookieconsent="statistics">
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-TBZK1N6QGS');
+  </script>
+
+  <link rel="icon" type="image/png" href="/assets/images/favicon.webp">
+  <meta name="theme-color" content="#1b6e3a">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+  <title>Herramienta de Agarre para Robot Kuka (End-Effector) – EST Ingenieros</title>
+  <meta name="description"
+    content="Diseño y fabricación de end-effector (gripper) para robot Kuka: herramienta de agarre de 4 puntos con mordazas deslizantes sobre guías lineales y actuación neumática para operaciones de pick & place industrial." />
+
+  <link rel="canonical" href="https://estingenieros.com/assets/Maquinas/Robot1/Robot1.html" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Oswald:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <link rel="stylesheet" href="/assets/css/global.css">
+
+  <style>
+    .carousel-container {
+      position: relative;
+      width: 100%;
+      margin: 30px 0;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid #eee;
+      background: #fff;
+      aspect-ratio: 16/9;
+    }
+    .carousel-slide {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
+      height: 100%;
+    }
+    .carousel-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      flex-shrink: 0;
+    }
+    .carousel-btn {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background: rgba(0,0,0,0.3);
+      color: white;
+      border: none;
+      padding: 15px 10px;
+      cursor: pointer;
+      z-index: 10;
+    }
+    .carousel-btn.next { right: 0; }
+    .carousel-btn:hover { background: var(--primary); }
+  </style>
+</head>
+<body>
+
+  <div data-include="/header.html"></div>
+
+  <main class="wrap">
+    <header class="project-header">
+      <div class="muted" style="font-size: 12px; margin-bottom: 10px; text-transform: uppercase;">
+        <a href="/portfolio.html">← Volver a Proyectos</a> / Robótica Industrial
+      </div>
+      <h1 class="h1">Herramienta de Agarre para Robot Kuka</h1>
+      <p class="lead">End-effector de 4 puntos con mordazas deslizantes y actuación neumática para operaciones de pick &amp; place de piezas de gran formato.</p>
+    </header>
+
+    <div class="project-grid">
+      <section class="content">
+
+        <div class="card-item" style="padding: 0; overflow: hidden; margin-bottom: 30px;">
+          <img src="Images/1.png" alt="Vista general del end-effector gripper de 4 puntos para robot Kuka" style="width: 100%; display: block;">
+        </div>
+
+        <h2 class="h2">El Reto: Coger y Soltar Piezas de Gran Formato con Precisión</h2>
+        <p>El cliente necesitaba que su robot Kuka pudiera manipular piezas voluminosas de forma segura y repetible, con tiempos de ciclo mínimos. El principal desafío era diseñar una <strong>herramienta de fin de brazo (end-effector)</strong> capaz de adaptarse a distintos tamaños de pieza sin cambio manual de utillaje, manteniendo un agarre firme durante todo el recorrido del robot.</p>
+
+        <div class="card-item" style="padding: 0; overflow: hidden; margin-bottom: 30px;">
+          <img src="Images/2.png" alt="Detalle de las mordazas deslizantes y el sistema de guías lineales del gripper" style="width: 100%; display: block;">
+        </div>
+
+        <h2 class="h2">La Solución: Gripper de 4 Puntos con Mordazas Deslizantes</h2>
+        <p>Diseñamos un end-effector robusto y de bajo peso basado en una estructura de perfil de aluminio con cuatro mordazas de agarre que se desplazan sincronizadamente por guías lineales:</p>
+
+        <ul class="feature-list">
+          <li><strong>Cuatro puntos de agarre sincronizados:</strong> Las mordazas se desplazan simétricamente desde las esquinas hacia el centro mediante guías lineales de precisión, asegurando que la pieza quede centrada automáticamente en cada ciclo.</li>
+          <li><strong>Actuación neumática:</strong> El sistema de apriete y liberación se controla mediante circuito neumático con regulador de presión incorporado, permitiendo ajustar la fuerza de agarre según el material y el peso de la pieza.</li>
+          <li><strong>Cadenas portacables integradas:</strong> El tendido de mangueras neumáticas y cableado de señal discurre por cadenas portacables dimensionadas para acompañar el movimiento de las mordazas sin riesgo de enganches.</li>
+          <li><strong>Estructura en perfil de aluminio:</strong> Rigidez estructural óptima con el menor peso posible, maximizando la carga útil disponible del robot Kuka.</li>
+          <li><strong>Placa de fijación central adaptable:</strong> Interfaz de montaje al flange del robot configurable según el modelo de Kuka, con patrón de taladros estándar.</li>
+        </ul>
+
+        <div class="card-item" style="padding: 0; overflow: hidden; margin-bottom: 30px;">
+          <img src="Images/3.png" alt="Sección técnica del end-effector mostrando el mecanismo de guías y actuación neumática" style="width: 100%; display: block;">
+        </div>
+
+        <h2 class="h2">Resultado: Ciclos de Pick &amp; Place Rápidos y sin Errores</h2>
+        <p>La herramienta permite al robot Kuka coger y soltar piezas de distintos tamaños de forma completamente autónoma, sin intervención del operario entre referencias. El centrado automático por las cuatro mordazas elimina los descartes por posicionamiento incorrecto, y la actuación neumática garantiza tiempos de agarre inferiores a un segundo, optimizando el tiempo de ciclo total de la célula.</p>
+
+        <h2 class="h2">Galería de Detalles</h2>
+        <div class="carousel-container">
+          <div class="carousel-slide" id="carouselSlide"></div>
+          <button class="carousel-btn prev" onclick="moveSlide(-1)">&#10094;</button>
+          <button class="carousel-btn next" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+
+      </section>
+
+      <aside>
+        <div class="tech-sheet">
+          <div class="tech-item"><span class="tech-label">Sector</span><div class="tech-value">Robótica Industrial</div></div>
+          <div class="tech-item"><span class="tech-label">Aplicación</span><div class="tech-value">Pick &amp; Place</div></div>
+          <div class="tech-item"><span class="tech-label">Robot</span><div class="tech-value">Kuka</div></div>
+          <div class="tech-item"><span class="tech-label">Tipo</span><div class="tech-value">End-Effector / Gripper</div></div>
+          <div class="tech-item"><span class="tech-label">Actuación</span><div class="tech-value">Neumática</div></div>
+          <div class="tech-item"><span class="tech-label">Puntos de agarre</span><div class="tech-value">4 mordazas deslizantes</div></div>
+          <div class="tech-item"><span class="tech-label">Estructura</span><div class="tech-value">Perfil de Aluminio</div></div>
+          <div class="tech-item"><span class="tech-label">Año</span><div class="tech-value">2026</div></div>
+
+          <div class="cta-box" style="background: var(--primary); color: white; border: none; padding: 25px; border-radius: 8px; text-align: center; margin-top: 20px;">
+            <p style="margin-bottom: 15px; font-weight: 600;">¿Necesitas una herramienta para tu robot?</p>
+            <a href="/contacto.html" class="btn-primary" style="background: white; color: black; width: 100%; text-align: center;">Solicitar Presupuesto</a>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <div data-include="/footer.html"></div>
+
+  <script src="/assets/js/main.js" defer></script>
+  <script>
+    const slideContainer = document.getElementById('carouselSlide');
+    const folderPath = 'Images/CarruselRobot1/';
+    const totalImages = 8;
+    let currentIndex = 0;
+
+    function loadCarousel() {
+      for (let i = 1; i <= totalImages; i++) {
+        const img = document.createElement('img');
+        img.src = `${folderPath}${i}.png`;
+        img.alt = `Detalle del gripper end-effector para robot Kuka - imagen ${i}`;
+        img.onerror = function() { this.style.display = 'none'; };
+        slideContainer.appendChild(img);
+      }
+    }
+
+    function moveSlide(direction) {
+      const slides = slideContainer.querySelectorAll('img:not([style*="none"])');
+      if (slides.length === 0) return;
+      currentIndex = (currentIndex + direction + slides.length) % slides.length;
+      slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+    }
+
+    loadCarousel();
+    setInterval(() => moveSlide(1), 5000);
+  </script>
+</body>
+</html>
